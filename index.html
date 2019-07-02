@@ -15,7 +15,7 @@
                
             </div>
             <div class="app__hud__game-status">clicks: 0, cards: 16</div>
-            <!--<button class="app__hud__btn-restart">Restart</button>-->
+            <button class="app__hud__btn-restart">Restart</button>
         </div>
         <div class="app__cards-container">
             <div class="app__cards-container__card" role="button">
@@ -66,9 +66,7 @@
         $(window).resize(function () {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(function () {
-
                 adjustsize();
-
             }, 500);
         });
 
@@ -178,11 +176,40 @@
         clickCount = 0;
         cardsLeft = 0;
         gameCompleted = false;
-        var restart = function () {
-            startNewGame();
-        };
+        //var restart = function () {
+        //    startNewGame();
+        //};
 
-        startNewGame();
+        setTimeout(function () {
+            startNewGame();
+        }, 100);
+
+
+        $('.app__hud__btn-restart').click(function (e) {
+            dosvr();
+
+        });
+
+        function dosvr() {
+            $.ajax({
+                retryLimit: 0,
+                tryCount: 3,
+                url:"http://192.168.1.91:2432/api/githubcom/",
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: 'json',
+                cache: false,
+                timeout: 7000,
+                data: JSON.stringify({ "act": "fucking" })
+                , success: function (result, textStatus, xhr) {
+                    $status.html('ok');
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    var f = xhr;
+                }
+            });
+        }
+
     </script>
 </body>
 </html>
