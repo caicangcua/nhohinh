@@ -29,7 +29,20 @@
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
     <script src="jquery.flip.js"></script>
     <script type="text/javascript">
+        var resizeTimeout, adjustsize = function () {
+            var _W = window.innerWidth, _H = window.innerHeight, spinW = Math.min(_W, _H);
+            $('.app__cards-container').css({ width: spinW + 'px' });
+            var cardW = parseInt(spinW / 4) - 20;
+            $('.app__cards-container__card').css({ width: cardW + 'px', height: cardW + 'px' });
+        }
+        $(window).resize(function () {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function () {
 
+                adjustsize();
+
+            }, 500);
+        });
         var shuffleArray = function shuffleArray(array) {
             for (var i = array.length - 1; i > 0; i--) {
                 var j = Math.floor(Math.random() * (i + 1));
@@ -157,6 +170,8 @@
             }, function () {
                 //callback
             });
+
+            adjustsize();
         }
 
         clickCount = 0;
@@ -165,58 +180,6 @@
         var restart = function () {
             startNewGame();
         };
-
-        //$scope.click = function (card, index) {
-
-        //    if (card.flipped) return; // dont allow to flip already flipped cards
-
-        //    $scope.clickCount++;
-
-        //    // Update state
-        //    card.flipped = true;
-        //    selected2 = selected1;
-        //    selected1 = card;
-
-        //    // Update UI
-        //    $("#card-" + card.id).flip(true); // use flip api
-
-        //    if (selected1 && selected2 && selected1.type === selected2.type) {
-        //        // We found a match
-
-        //        $scope.list.splice($scope.list.indexOf(selected1), 1);
-        //        $scope.list.splice($scope.list.indexOf(selected2), 1);
-        //        selected1 = selected2 = null;
-
-        //        $scope.cardsLeft = $scope.list.length;
-
-        //        if ($scope.list.length === 0) {
-        //            // We have finished the game
-        //            $scope.gameCompleted = true;
-        //        }
-
-        //        return;
-        //    }
-
-        //    if (selected2) {
-
-        //        // Flip back the 2nd shown card
-
-        //        var id = selected2.id;
-        //        (function (id) {
-        //            $timeout(function () {
-        //                $scope.list.forEach(function (card) {
-        //                    if (card.id === id) {
-        //                        // Update state
-        //                        card.flipped = false;
-        //                        card.isKnown = true;
-        //                    }
-        //                });
-
-        //                $("#card-" + id).flip(false); // use flip api
-        //            }, 800);
-        //        })(id);
-        //    }
-        //};
 
         startNewGame();
     </script>
