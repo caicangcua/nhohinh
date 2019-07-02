@@ -86,7 +86,7 @@
                 var the=$tmp.clone();
                 the.attr('id', 'card-' + card.id);
                 $(the.children()[0]).removeClass('khoitao').addClass('front').html( card.isKnown ? "" : "?");
-                $(the.children()[1]).find('span').addClass(card.theme).html(card.icon).css('background-image', 'url("imgs/' + card.id + '.png")');
+                $(the.children()[1]).find('span').addClass(card.theme).html(card.icon).css('background-image', 'url("imgs/' + card.icon + '.png")');
                 $app.append(the);
                 the.click(function () {
 
@@ -105,11 +105,11 @@
                         if (selected1 && selected2 && selected1.type === selected2.type) {
                             // We found a match
 
+                            $("#card-" + selected1.id).fadeOut('5000', function () { $(this).remove() });
+                            $("#card-" + selected2.id).fadeOut('5000', function () { $(this).remove() });
+
                             list.splice(list.indexOf(selected1), 1);
                             list.splice(list.indexOf(selected2), 1);
-
-                            $("#card-" + selected1.id).fadeOut('1000', function () {$(this).remove() });
-                            $("#card-" + selected2.id).fadeOut('1000', function () { $(this).remove() });
 
                             selected1 = selected2 = null;
 
