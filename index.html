@@ -21,7 +21,7 @@
             <div class="app__cards-container__card" role="button">
                 <div class="khoitao app__cards-container__card__front"></div>
                 <div class="back app__cards-container__card__back">
-                    <span></span>
+                    <span class="foodhinh"></span>
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
                 var the=$tmp.clone();
                 the.attr('id', 'card-' + card.id);
                 $(the.children()[0]).removeClass('khoitao').addClass('front').html( card.isKnown ? "" : "?");
-                $(the.children()[1]).find('span').addClass(card.theme).html(card.icon);
+                $(the.children()[1]).find('span').addClass(card.theme).html(card.icon).css('background-image', 'url("imgs/' + card.id + '.png")');
                 $app.append(the);
                 the.click(function () {
 

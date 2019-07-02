@@ -53,7 +53,17 @@ button {
 .khoitao {
     display: none;
 }
+.foodhinh {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    text-align: center;
+    margin: auto;
+    padding: 0;
+    color: transparent;
+}
 .app {
+
   display: block;
   opacity: 0;
   transition: opacity 2s;
@@ -80,7 +90,7 @@ button {
     justify-content: center;
     align-items: center;
     flex-flow: row wrap; }
-    @media (min-width: 600px) {
+    @media (min-width:400px) {
       .app__cards-container {
         max-width: 600px; } }
     .app__cards-container__card {
@@ -91,7 +101,7 @@ button {
       user-select: none;
       width: 60px;
       height: 60px; }
-      @media (min-width: 600px) {
+      @media (min-width:400px) {
         .app__cards-container__card {
           width: 120px;
           height: 120px; } }
@@ -147,7 +157,7 @@ button {
         background: rgba(255, 255, 255, 0.1);
         cursor: pointer;
         animation: front-cover 2s ease-in-out alternate infinite; }
-        @media (min-width: 600px) {
+        @media (min-width: 400px) {
           .app__cards-container__card__front {
             line-height: 120px; } }
         .app__cards-container__card__front:hover {
@@ -156,10 +166,10 @@ button {
         text-align: center;
         line-height: 60px;
         font-size: 40px; }
-        @media (min-width: 600px) {
+        @media (min-width: 400px) {
           .app__cards-container__card__back {
             line-height: 120px; } }
-        @media (min-width: 600px) {
+        @media (min-width: 400px) {
           .app__cards-container__card__back {
             font-size: 60px; } }
         .app__cards-container__card__back > span {
