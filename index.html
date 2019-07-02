@@ -99,7 +99,7 @@
                 var the=$tmp.clone();
                 the.attr('id', 'card-' + card.id);
                 $(the.children()[0]).removeClass('khoitao').addClass('front').html( card.isKnown ? "" : "?");
-                $(the.children()[1]).find('span').addClass(card.theme).html(card.icon).css('background-image', 'url("imgs/' + card.icon + '.png")');
+                //
                 $app.append(the);
                 the.click(function () {
 
@@ -111,6 +111,8 @@
                         card.flipped = true;
                         selected2 = selected1;
                         selected1 = card;
+
+                        $(the.children()[1]).find('span').addClass(card.theme).html(card.icon).css('background-image', 'url("imgs/' + card.icon + '.png")');
 
                         // Update UI
                         $("#card-" + card.id).flip(true); // use flip api
@@ -151,7 +153,9 @@
                                         }
                                     });
 
-                                    $("#card-" + id).flip(false); // use flip api
+                                    $("#card-" + id).flip(false, function () {
+                                        $("#card-" + id).find('span').addClass(card.theme).html(card.icon).css('background-image', 'none');
+                                    }); // use flip api
                                 }, 800);
                             })(id);
                         }
@@ -167,8 +171,8 @@
                 axis: 'y',
                 trigger: 'manual',
                 reverse: true
-            }, function () {
-                //callback
+            }, function (e) {
+                var c = e;
             });
 
             adjustsize();
