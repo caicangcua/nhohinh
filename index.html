@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Find the match memory game</title>
+    <link rel="stylesheet" href="assets/styles/app.css?v=1">
+</head>
+<body>
+    <main class="app ng-scope app-ready" ng-app="app" ng-controller="appController" ng-class="{'app-ready': appReady}">
+        <div class="app__hud">
+            <div class="app__hud__game-info" ng-hide="gameCompleted" ng-click="titleAction()" ng-swipe-left="changeIcons()" ng-swipe-right="changeIcons()">Find the match</div>
+            <div class="app__hud__game-completed ng-hide" ng-show="gameCompleted">
+                Congratulations!
+            </div>
+            <div class="app__hud__game-status ng-binding">clicks: 0, cards: 16</div>
+            <button ng-click="restart()" class="app__hud__btn-restart">Restart</button>
+        </div>
+        <div class="app__cards-container">
+            <div class="app__cards-container__card" role="button">
+                <div class="khoitao app__cards-container__card__front"></div>
+                <div class="back app__cards-container__card__back">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+    <script src="jquery.flip.js"></script>
+    <script type="text/javascript">
+
+        var shuffleArray = function shuffleArray(array) {
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+            return array;
+        };
+
+        var selected1 = undefined,
+            selected2 = undefined,
+            clickCount = 0,
+            cardsLeft = 0,
+            gameCompleted = false,
+            titleAction = function () { },
+            changeIcons = function () {
+                icons = icons === iconFruits ? iconAnimals : iconFruits;
+            };
+
+        var iconAnimals = ['🐵', '🐶', '🐺', '🐱', '🐯', '🐴', '🐮', '🐷', '🐗', '🐭', '🐹', '🐰', '🐻', '🐨', '🐼', '🐔', '🐤', '🐦', '🐧', '🐸'];
+        var iconFruits = ['🍇', '🍈', '🍉', '🍊', '🍋', '🍌', '🍍', '🍎', '🍏', '🍑', '🍒', '🍓'];
+
+        var icons = iconAnimals;
+
+        function showAllCards() {
+            $scope.list.forEach(function (card) {
+                $("#card-" + card.id).flip(true);
+            });
+        }
+
+        function startNewGame() {
+
+            shuffleArray(icons); // randomize displayed icons       
+
+            var list = [], cardCount = 16;
+            for (var i = 1; i <= cardCount; i++) {
+                var type = i % (cardCount / 2) + 1;
+                list.push({
+                    id: i,
+                    type: type,
+                    icon: icons[type - 1],
+                    theme: 'theme' + type,
+                    isKnown: false
+                });
+            }
+
+            shuffleArray(list); // randomize card on the board
+
+
+            var $app = $('.app__cards-container'), $tmp = $app.children().first();
+            $tmp.detach();
+            $.each(list, function (i, card) {
+                var the=$tmp.clone();
+                the.attr('id', 'card-' + card.id);
+                $(the.children()[0]).removeClass('khoitao').addClass('front').html( card.isKnown ? "" : "?");
+                $(the.children()[1]).find('span').addClass(card.theme).html(card.icon);
+                $app.append(the);
+                the.click(function () {
+
+                        if (card.flipped) return; // dont allow to flip already flipped cards
+
+                        clickCount++;
+
+                        // Update state
+                        card.flipped = true;
+                        selected2 = selected1;
+                        selected1 = card;
+
+                        // Update UI
+                        $("#card-" + card.id).flip(true); // use flip api
+
+                        if (selected1 && selected2 && selected1.type === selected2.type) {
+                            // We found a match
+
+                            list.splice(list.indexOf(selected1), 1);
+                            list.splice(list.indexOf(selected2), 1);
+
+                            $("#card-" + selected1.id).fadeOut('1000', function () {$(this).remove() });
+                            $("#card-" + selected2.id).fadeOut('1000', function () { $(this).remove() });
+
+                            selected1 = selected2 = null;
+
+                            cardsLeft = list.length;
+
+                            if (list.length === 0) {
+                                // We have finished the game
+                                gameCompleted = true;
+                            }
+
+                            return;
+                        }
+
+                        if (selected2) {
+
+                            // Flip back the 2nd shown card
+
+                            var id = selected2.id;
+                            (function (id) {
+                                setTimeout(function () {
+                                    list.forEach(function (card) {
+                                        if (card.id === id) {
+                                            // Update state
+                                            card.flipped = false;
+                                            card.isKnown = true;
+                                        }
+                                    });
+
+                                    $("#card-" + id).flip(false); // use flip api
+                                }, 800);
+                            })(id);
+                        }
+                });
+            });
+
+            // Update state
+            selected1 = selected2 = null;
+            cardsLeft = list.length;
+
+            var $card = $(".app__cards-container__card");
+            $card.flip({
+                axis: 'y',
+                trigger: 'manual',
+                reverse: true
+            }, function () {
+                //callback
+            });
+        }
+
+        clickCount = 0;
+        cardsLeft = 0;
+        gameCompleted = false;
+        var restart = function () {
+            startNewGame();
+        };
+
+        //$scope.click = function (card, index) {
+
+        //    if (card.flipped) return; // dont allow to flip already flipped cards
+
+        //    $scope.clickCount++;
+
+        //    // Update state
+        //    card.flipped = true;
+        //    selected2 = selected1;
+        //    selected1 = card;
+
+        //    // Update UI
+        //    $("#card-" + card.id).flip(true); // use flip api
+
+        //    if (selected1 && selected2 && selected1.type === selected2.type) {
+        //        // We found a match
+
+        //        $scope.list.splice($scope.list.indexOf(selected1), 1);
+        //        $scope.list.splice($scope.list.indexOf(selected2), 1);
+        //        selected1 = selected2 = null;
+
+        //        $scope.cardsLeft = $scope.list.length;
+
+        //        if ($scope.list.length === 0) {
+        //            // We have finished the game
+        //            $scope.gameCompleted = true;
+        //        }
+
+        //        return;
+        //    }
+
+        //    if (selected2) {
+
+        //        // Flip back the 2nd shown card
+
+        //        var id = selected2.id;
+        //        (function (id) {
+        //            $timeout(function () {
+        //                $scope.list.forEach(function (card) {
+        //                    if (card.id === id) {
+        //                        // Update state
+        //                        card.flipped = false;
+        //                        card.isKnown = true;
+        //                    }
+        //                });
+
+        //                $("#card-" + id).flip(false); // use flip api
+        //            }, 800);
+        //        })(id);
+        //    }
+        //};
+
+        startNewGame();
+    </script>
+</body>
+</html>
