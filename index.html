@@ -11,11 +11,11 @@
     <main class="app ng-scope app-ready">
         <div class="app__hud">
             <div class="app__hud__game-info">Find the match</div>
-            <div class="app__hud__game-completed ng-hide" >
+            <div class="app__hud__game-completed" >
                
             </div>
-            <div class="app__hud__game-status ng-binding">clicks: 0, cards: 16</div>
-            <button ng-click="restart()" class="app__hud__btn-restart">Restart</button>
+            <div class="app__hud__game-status">clicks: 0, cards: 16</div>
+            <!--<button class="app__hud__btn-restart">Restart</button>-->
         </div>
         <div class="app__cards-container">
             <div class="app__cards-container__card" role="button">
@@ -44,7 +44,7 @@
             clickCount = 0,
             cardsLeft = 0,
             gameCompleted = false,
-            $app__hud = $('.app__hud');
+            $app__hud = $('.app__hud'),$status = $('.app__hud__game-status');
 
         var iconAnimals = ['🐵', '🐶', '🐺', '🐱', '🐯', '🐴', '🐮', '🐷', '🐗', '🐭', '🐹', '🐰', '🐻', '🐨', '🐼', '🐔', '🐤', '🐦', '🐧', '🐸'];
         var iconFruits = ['🍇', '🍈', '🍉', '🍊', '🍋', '🍌', '🍍', '🍎', '🍏', '🍑', '🍒', '🍓'];
@@ -90,7 +90,6 @@
 
             shuffleArray(list); // randomize card on the board
 
-
             var $app = $('.app__cards-container'), $tmp = $app.children().first();
             $tmp.detach();
             $.each(list, function (i, card) {
@@ -111,10 +110,11 @@
                         selected2 = selected1;
                         selected1 = card;
 
-                        $(the.children()[1]).find('span').css({display:'inherit'});
+                        var that = $(this);
+                        that.find('span').css({ display: 'inherit' });
 
                         // Update UI
-                        $("#card-" + card.id).flip(true); // use flip api
+                        that.flip(true); // use flip api
 
                         if (selected1 && selected2 && selected1.type === selected2.type) {
                             // We found a match
@@ -133,14 +133,12 @@
                                 // We have finished the game
                                 gameCompleted = true;
                             }
-
+                            $status.html('clicks: ' + clickCount + ', cards: ' + cardsLeft + '');
                             return;
                         }
-
+                        $status.html('clicks: ' + clickCount + ', cards: ' + cardsLeft + '');
                         if (selected2) {
-
                             // Flip back the 2nd shown card
-
                             var id = selected2.id;
                             (function (id) {
                                 setTimeout(function () {
@@ -153,7 +151,7 @@
                                     });
 
                                     $("#card-" + id).flip(false, function () {
-                                        $("#card-" + id).find('span').css({ display: 'none' });
+                                        $(this).find('span').css({ display: 'none' });
                                     }); // use flip api
                                 }, 800);
                             })(id);
