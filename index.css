@@ -114,8 +114,7 @@ button {
 }
 
 .app__cards-container {
-    margin: 5px auto 0;
-    /*max-width: 320px;*/
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -175,20 +174,12 @@ button {
     flex-direction:column; 
 }
 
-/*@media (min-width: 400px) {
-    .app__cards-container__card__front {
-        line-height: 120px;
-    }
-}*/
-
 .app__cards-container__card__front:hover {
     background: rgba(255, 255, 255, 0.3);
 }
 
 .app__cards-container__card__back {
     text-align: center;
-    /*line-height: 60px;
-    font-size: 40px;*/
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -196,17 +187,6 @@ button {
     overflow: hidden;
 }
 
-/*@media (min-width: 400px) {
-    .app__cards-container__card__back {
-        line-height: 120px;
-    }
-}*/
-
-/*@media (min-width: 400px) {
-    .app__cards-container__card__back {
-        font-size: 60px;
-    }
-}*/
 
 .app__cards-container__card__back > span {
     display: block;
@@ -249,4 +229,18 @@ button {
 .ng-leave-stagger {
     transition-delay: 0.1s;
     transition-duration: 0s;
+}
+
+@media (orientation: landscape) {
+    .app {
+        display:flex;
+        height: 100%;
+    }
+        .app .app__hud{
+         width:100px;
+         display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+    }
 }

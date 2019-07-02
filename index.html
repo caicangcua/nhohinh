@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="index.css?v=2">
 </head>
 <body>
-    <main class="app ng-scope app-ready" ng-app="app" ng-controller="appController" ng-class="{'app-ready': appReady}">
+    <main class="app ng-scope app-ready">
         <div class="app__hud">
-            <div class="app__hud__game-info" ng-hide="gameCompleted" ng-click="titleAction()" ng-swipe-left="changeIcons()" ng-swipe-right="changeIcons()">Find the match</div>
-            <div class="app__hud__game-completed ng-hide" ng-show="gameCompleted">
-                Congratulations!
+            <div class="app__hud__game-info">Find the match</div>
+            <div class="app__hud__game-completed ng-hide" >
+               
             </div>
             <div class="app__hud__game-status ng-binding">clicks: 0, cards: 16</div>
             <button ng-click="restart()" class="app__hud__btn-restart">Restart</button>
@@ -29,20 +29,6 @@
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
     <script src="jquery.flip.js"></script>
     <script type="text/javascript">
-        var resizeTimeout, adjustsize = function () {
-            var _W = window.innerWidth, _H = window.innerHeight, spinW = Math.min(_W, _H);
-            $('.app__cards-container').css({ width: spinW + 'px' });
-            var cardW = parseInt(spinW / 4) - 20;
-            $('.app__cards-container__card').css({ width: cardW + 'px', height: cardW + 'px' });
-        }
-        $(window).resize(function () {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(function () {
-
-                adjustsize();
-
-            }, 500);
-        });
         var shuffleArray = function shuffleArray(array) {
             for (var i = array.length - 1; i > 0; i--) {
                 var j = Math.floor(Math.random() * (i + 1));
@@ -58,21 +44,33 @@
             clickCount = 0,
             cardsLeft = 0,
             gameCompleted = false,
-            titleAction = function () { },
-            changeIcons = function () {
-                icons = icons === iconFruits ? iconAnimals : iconFruits;
-            };
+            $app__hud = $('.app__hud');
 
         var iconAnimals = ['🐵', '🐶', '🐺', '🐱', '🐯', '🐴', '🐮', '🐷', '🐗', '🐭', '🐹', '🐰', '🐻', '🐨', '🐼', '🐔', '🐤', '🐦', '🐧', '🐸'];
         var iconFruits = ['🍇', '🍈', '🍉', '🍊', '🍋', '🍌', '🍍', '🍎', '🍏', '🍑', '🍒', '🍓'];
 
         var icons = iconAnimals;
 
-        function showAllCards() {
-            $scope.list.forEach(function (card) {
-                $("#card-" + card.id).flip(true);
-            });
+        var resizeTimeout, adjustsize = function () {
+            var _W = window.innerWidth, _H = window.innerHeight;
+            if (_W>_H){
+                _W-=$app__hud.width();
+            }else{
+                _H-=$app__hud.height();
+            }
+           var spinW = Math.min(_W, _H);
+            $('.app__cards-container').css({ width: spinW + 'px' });
+            var cardW = parseInt(spinW / 4) - 20;
+            $('.app__cards-container__card').css({ width: cardW + 'px', height: cardW + 'px' });
         }
+        $(window).resize(function () {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function () {
+
+                adjustsize();
+
+            }, 500);
+        });
 
         function startNewGame() {
 
@@ -99,7 +97,7 @@
                 var the=$tmp.clone();
                 the.attr('id', 'card-' + card.id);
                 $(the.children()[0]).removeClass('khoitao').addClass('front').html(card.isKnown ? "" : "?");
-                $(the.children()[1]).find('span').addClass(card.theme).html(card.icon).css({display:'none','background-image': 'url("imgs/' + card.icon + '.png")'});
+                $(the.children()[1]).find('span').addClass(card.theme).css({display:'none','background-image': 'url("imgs/' + card.icon + '.png")'});
                 //
                 $app.append(the);
                 the.click(function () {
