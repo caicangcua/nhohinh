@@ -169,10 +169,10 @@ button {
     background: rgba(255, 255, 255, 0.1);
     cursor: pointer;
     animation: front-cover 2s ease-in-out alternate infinite;
-    display: flex;
+    /*display: flex;
     justify-content:center;
     align-content:center;
-    flex-direction:column; /* column | row */
+    flex-direction:column; /* column | row */*/
 }
 
 /*@media (min-width: 400px) {
