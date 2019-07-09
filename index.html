@@ -8,6 +8,7 @@
 <body>
     <header></header>
     <section></section>
+    <iframe src="http://comhop.dnd.vn/resource/spstatus.json" />
 
     <script  type="text/javascript">
         var header = document.querySelector('header');
@@ -54,17 +55,17 @@
             }
         }
 
-        var request = new XMLHttpRequest();
-        request.open('GET', 'http://comhop.dnd.vn/resource/spstatus.json');
-        request.responseType = 'text'; // now we're getting a string!
-        request.send();
+        //var request = new XMLHttpRequest();
+        //request.open('GET', 'https://www.google.com/search?q=%http://comhop.dnd.vn/resource/spstatus.json');
+        //request.responseType = 'text'; // now we're getting a string!
+        //request.send();
 
-        request.onload = function () {
-            var superHeroesText = request.response; // get the string from the response
-            var superHeroes = JSON.parse(superHeroesText); // convert it to an object
-            populateHeader(superHeroes);
-            showHeroes(superHeroes);
-        }
+        //request.onload = function () {
+        //    var superHeroesText = request.response; // get the string from the response
+        //    var superHeroes = JSON.parse(superHeroesText); // convert it to an object
+        //    populateHeader(superHeroes);
+        //    showHeroes(superHeroes);
+        //}
     </script>
 </body>
 </html>
