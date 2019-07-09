@@ -1,216 +1,69 @@
 ﻿<!DOCTYPE html>
-<html lang="en" class="">
+<html>
 <head>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Find the match memory game</title>
-    <link rel="stylesheet" href="index.css?v=2">
+    <title></title>
+	<meta charset="utf-8" />
 </head>
 <body>
-    <main class="app ng-scope app-ready">
-        <div class="app__hud">
-            <div class="app__hud__game-info">Find the match</div>
-            <div class="app__hud__game-completed" >
-               
-            </div>
-            <div class="app__hud__game-status">clicks: 0, cards: 16</div>
-            <button class="app__hud__btn-restart">Restart</button>
-        </div>
-        <div class="app__cards-container">
-            <div class="app__cards-container__card" role="button">
-                <div class="khoitao app__cards-container__card__front"></div>
-                <div class="back app__cards-container__card__back">
-                    <span class="foodhinh"></span>
-                </div>
-            </div>
-        </div>
-    </main>
-    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
-    <script src="jquery.flip.js"></script>
-    <script type="text/javascript">
-        var shuffleArray = function shuffleArray(array) {
-            for (var i = array.length - 1; i > 0; i--) {
-                var j = Math.floor(Math.random() * (i + 1));
-                var temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-            }
-            return array;
-        };
+    <header></header>
+    <section></section>
 
-        var selected1 = undefined,
-            selected2 = undefined,
-            clickCount = 0,
-            cardsLeft = 0,
-            gameCompleted = false,
-            $app__hud = $('.app__hud'),$status = $('.app__hud__game-status');
+    <script  type="text/javascript">
+        var header = document.querySelector('header');
+        var section = document.querySelector('section');
+        function populateHeader(jsonObj) {
+            var myH1 = document.createElement('h1');
+            myH1.textContent = jsonObj['squadName'];
+            header.appendChild(myH1);
 
-        var iconAnimals = ['🐵', '🐶', '🐺', '🐱', '🐯', '🐴', '🐮', '🐷', '🐗', '🐭', '🐹', '🐰', '🐻', '🐨', '🐼', '🐔', '🐤', '🐦', '🐧', '🐸'];
-        var iconFruits = ['🍇', '🍈', '🍉', '🍊', '🍋', '🍌', '🍍', '🍎', '🍏', '🍑', '🍒', '🍓'];
-
-        var icons = iconAnimals;
-
-        var resizeTimeout, adjustsize = function () {
-            var _W = window.innerWidth, _H = window.innerHeight;
-            if (_W>_H){
-                _W-=$app__hud.width();
-            }else{
-                _H-=$app__hud.height();
-            }
-           var spinW = Math.min(_W, _H);
-            $('.app__cards-container').css({ width: spinW + 'px' });
-            var cardW = parseInt(spinW / 4) - 20;
-            $('.app__cards-container__card').css({ width: cardW + 'px', height: cardW + 'px' });
+            var myPara = document.createElement('p');
+            myPara.textContent = 'Hometown: ' + jsonObj['homeTown'] + ' // Formed: ' + jsonObj['formed'];
+            header.appendChild(myPara);
         }
-        $(window).resize(function () {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(function () {
-                adjustsize();
-            }, 500);
-        });
+        function showHeroes(jsonObj) {
+            var heroes = jsonObj['members'];
 
-        function startNewGame() {
+            for (var i = 0; i < heroes.length; i++) {
+                var myArticle = document.createElement('article');
+                var myH2 = document.createElement('h2');
+                var myPara1 = document.createElement('p');
+                var myPara2 = document.createElement('p');
+                var myPara3 = document.createElement('p');
+                var myList = document.createElement('ul');
 
-            shuffleArray(icons); // randomize displayed icons       
+                myH2.textContent = heroes[i].name;
+                myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
+                myPara2.textContent = 'Age: ' + heroes[i].age;
+                myPara3.textContent = 'Superpowers:';
 
-            var list = [], cardCount = 16;
-            for (var i = 1; i <= cardCount; i++) {
-                var type = i % (cardCount / 2) + 1;
-                list.push({
-                    id: i,
-                    type: type,
-                    icon: icons[type - 1],
-                    theme: 'theme' + type,
-                    isKnown: false
-                });
-            }
-
-            shuffleArray(list); // randomize card on the board
-
-            var $app = $('.app__cards-container'), $tmp = $app.children().first();
-            $tmp.detach();
-            $.each(list, function (i, card) {
-                var the=$tmp.clone();
-                the.attr('id', 'card-' + card.id);
-                $(the.children()[0]).removeClass('khoitao').addClass('front').html(card.isKnown ? "" : "?");
-                $(the.children()[1]).find('span').addClass(card.theme).css({display:'none','background-image': 'url("imgs/' + card.icon + '.png")'});
-                //
-                $app.append(the);
-                the.click(function () {
-
-                        if (card.flipped) return; // dont allow to flip already flipped cards
-
-                        clickCount++;
-
-                        // Update state
-                        card.flipped = true;
-                        selected2 = selected1;
-                        selected1 = card;
-
-                        var that = $(this);
-                        that.find('span').css({ display: 'inherit' });
-
-                        // Update UI
-                        that.flip(true); // use flip api
-
-                        if (selected1 && selected2 && selected1.type === selected2.type) {
-                            // We found a match
-
-                            $("#card-" + selected1.id).fadeOut('5000', function () { $(this).remove() });
-                            $("#card-" + selected2.id).fadeOut('5000', function () { $(this).remove() });
-
-                            list.splice(list.indexOf(selected1), 1);
-                            list.splice(list.indexOf(selected2), 1);
-
-                            selected1 = selected2 = null;
-
-                            cardsLeft = list.length;
-
-                            if (list.length === 0) {
-                                // We have finished the game
-                                gameCompleted = true;
-                            }
-                            $status.html('clicks: ' + clickCount + ', cards: ' + cardsLeft + '');
-                            return;
-                        }
-                        $status.html('clicks: ' + clickCount + ', cards: ' + cardsLeft + '');
-                        if (selected2) {
-                            // Flip back the 2nd shown card
-                            var id = selected2.id;
-                            (function (id) {
-                                setTimeout(function () {
-                                    list.forEach(function (card) {
-                                        if (card.id === id) {
-                                            // Update state
-                                            card.flipped = false;
-                                            card.isKnown = true;
-                                        }
-                                    });
-
-                                    $("#card-" + id).flip(false, function () {
-                                        $(this).find('span').css({ display: 'none' });
-                                    }); // use flip api
-                                }, 800);
-                            })(id);
-                        }
-                });
-            });
-
-            // Update state
-            selected1 = selected2 = null;
-            cardsLeft = list.length;
-
-            var $card = $(".app__cards-container__card");
-            $card.flip({
-                axis: 'y',
-                trigger: 'manual',
-                reverse: true
-            }, function (e) {
-                var c = e;
-            });
-
-            adjustsize();
-        }
-
-        clickCount = 0;
-        cardsLeft = 0;
-        gameCompleted = false;
-        //var restart = function () {
-        //    startNewGame();
-        //};
-
-        setTimeout(function () {
-            startNewGame();
-        }, 100);
-
-
-        $('.app__hud__btn-restart').click(function (e) {
-            dosvr();
-
-        });
-
-        function dosvr() {
-            $.ajax({
-                retryLimit: 0,
-                tryCount: 3,
-                url: "http://brickapi.dnd.vn/api/githubcom/",
-                type: "POST",
-                contentType: "application/json;charset=utf-8",
-                dataType: 'json',
-                cache: false,
-                timeout: 7000,
-                data: JSON.stringify({ "act": "fucking" })
-                , success: function (result, textStatus, xhr) {
-                    $status.html('ok');
-                },
-                error: function (xhr, textStatus, errorThrown) {
-                    var f = xhr;
+                var superPowers = heroes[i].powers;
+                for (var j = 0; j < superPowers.length; j++) {
+                    var listItem = document.createElement('li');
+                    listItem.textContent = superPowers[j];
+                    myList.appendChild(listItem);
                 }
-            });
+
+                myArticle.appendChild(myH2);
+                myArticle.appendChild(myPara1);
+                myArticle.appendChild(myPara2);
+                myArticle.appendChild(myPara3);
+                myArticle.appendChild(myList);
+
+                section.appendChild(myArticle);
+            }
         }
 
+        var request = new XMLHttpRequest();
+        request.open('GET', 'http://comhop.dnd.vn/resource/spstatus.json');
+        request.responseType = 'text'; // now we're getting a string!
+        request.send();
+
+        request.onload = function () {
+            var superHeroesText = request.response; // get the string from the response
+            var superHeroes = JSON.parse(superHeroesText); // convert it to an object
+            populateHeader(superHeroes);
+            showHeroes(superHeroes);
+        }
     </script>
 </body>
 </html>
