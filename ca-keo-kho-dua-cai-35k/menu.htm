@@ -5,7 +5,7 @@
     <title>Swiper demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="https://idangero.us/swiper/dist/css/swiper.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
 
     <!-- Demo styles -->
     <style>
@@ -15,7 +15,8 @@
         }
 
         body {
-            background: #000;
+                background: -webkit-radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
+    background: radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
             font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
             font-size: 14px;
             color: #000;
@@ -31,8 +32,9 @@
         }
 
         .swiper-slide {
-            background-size: cover;
-            background-position: center;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
         }
 
         .gallery-top {
@@ -44,6 +46,7 @@
             height: 20%;
             box-sizing: border-box;
             padding: 10px 0;
+
         }
 
             .gallery-thumbs .swiper-slide {
@@ -60,16 +63,8 @@
     <!-- Swiper -->
     <div class="swiper-container gallery-top">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/1/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/2/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/3/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/4/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/5/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/6/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/7/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/8/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/9/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/10/)"></div>
+            <div class="swiper-slide" style="background-image:url(http://caunoi.dnd.vn/ca-keo-kho-dua-cai-35k/0.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(http://caunoi.dnd.vn/ca-keo-kho-dua-cai-35k/1.jpg)"></div>
         </div>
         <!-- Add Arrows -->
         <div class="swiper-button-next swiper-button-white"></div>
@@ -77,28 +72,20 @@
     </div>
     <div class="swiper-container gallery-thumbs">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/1/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/2/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/3/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/4/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/5/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/6/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/7/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/8/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/9/)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/10/)"></div>
+            <div class="swiper-slide" style="background-image:url(http://caunoi.dnd.vn/ca-keo-kho-dua-cai-35k/0.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(http://caunoi.dnd.vn/ca-keo-kho-dua-cai-35k/1.jpg)"></div>
         </div>
     </div>
 
     <!-- Swiper JS -->
-    <script src="https://idangero.us/swiper/dist/js/swiper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 
     <!-- Initialize Swiper -->
     <script>
     var galleryThumbs = new Swiper('.gallery-thumbs', {
       spaceBetween: 10,
       slidesPerView: 4,
-      loop: true,
+      loop: false,
       freeMode: true,
       loopedSlides: 5, //looped slides should be the same
       watchSlidesVisibility: true,
@@ -106,7 +93,7 @@
     });
     var galleryTop = new Swiper('.gallery-top', {
       spaceBetween: 10,
-      loop:true,
+      loop: true,
       loopedSlides: 5, //looped slides should be the same
       navigation: {
         nextEl: '.swiper-button-next',
