@@ -1,0 +1,590 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="google" content="notranslate">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:description" content="Góp phần xây dựng cuộc sống - brick.dnd.vn">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CƠM PHÚC KÝ">
+    <meta property="og:title" content="ca-keo-kho-dua-cai-35k">
+    <meta property="og:url" content="http://comhop.dnd.vn/baidang/ca-keo-kho-dua-cai-35k">
+    <meta property="og:image" content="http://comhop.dnd.vn/baidang/ca-keo-kho-dua-cai-35k/0.jpg">
+    <title>http://comhop.dnd.vn/ca-keo-kho-dua-cai-35k</title>
+    <style type="text/css">
+               html, body {
+                   padding: 0;
+                   margin: 0;
+                   background-image: url("/imgs/bg.png");
+               }
+
+               .project-page-main {
+                   margin-left: 70px;
+               }
+
+               .carousel-container {
+                   width: 100%;
+                   overflow: hidden;
+                   position: absolute;
+                   bottom: 0px;
+                   top: 0px;
+                   right: 0px;
+                   left: 0px;
+                   display: flex;
+               }
+
+               .current-image {
+                   position: absolute;
+                   left: 0px;
+                   top: 0px;
+                   right: 0px;
+                   bottom: 0px;
+                   background-repeat: no-repeat;
+                   background-size: contain;
+                   background-position: center;
+               }
+
+               .tbthumb {
+                   width: 100px;
+                   table-layout: fixed;
+                   position: absolute;
+                   width: 100%;
+                   bottom: 0px;
+               }
+
+               .next-list {
+                   list-style-type: none;
+                   margin: 0;
+                   padding: 0;
+                   width: 100%;
+                   bottom: 10px;
+                   left: 0;
+                   display: flex;
+                   align-items: center;
+                   overflow: hidden;
+                   transition: all .5s;
+               }
+
+                   .next-list li {
+                       display: inline-block;
+                       padding: 0;
+                       margin: 0;
+                       width: 100px;
+                       min-width: 100px;
+                       height: 51px;
+                       margin: 0 5px;
+                       text-align: center;
+                       line-height: 50px;
+                       cursor: pointer;
+                       transition: all .5s;
+                       border: 5px solid white;
+                   }
+
+
+
+               .image-of-list {
+                   width: 100%;
+                   height: 100%;
+                   opacity: 0.5;
+                   transition: all .5s;
+               }
+
+               .current-image-list {
+                   opacity: 1;
+                   transition: all .5s;
+               }
+
+               /*.arrow {
+                   width: 50px;
+                   height: 100px;
+                   bottom: 10px;
+                   flex: 1;
+                   text-align: center;
+                   line-height: 50px;
+                   color: #FFF;
+                   cursor: pointer;
+                   z-index: 2;
+               }*/
+
+
+               .arrow-left {
+               }
+
+               .arrow-right {
+               }
+
+               /*
+        * Animations
+        */
+
+               @keyframes fadeIn {
+                   0% {
+                       opacity: 0;
+                   }
+
+                   100% {
+                       opacity: 1;
+                   }
+               }
+
+               @keyframes slideInFromLeft {
+                   0% {
+                       opacity: 0;
+                       transform: translateX(-100%);
+                   }
+
+                   100% {
+                       opacity: 1;
+                       transform: translateX(0px);
+                   }
+               }
+
+               @keyframes slideInFromRight {
+                   0% {
+                       opacity: 0;
+                       transform: translateX(100%);
+                   }
+
+                   100% {
+                       opacity: 1;
+                       transform: translateX(0px);
+                   }
+               }
+
+               .slideInFromLeft {
+                   animation: slideInFromLeft .5s ease-in-out;
+               }
+
+               .slideInFromRight {
+                   animation: slideInFromRight .5s ease-in-out;
+               }
+
+               .fadeIn {
+                   animation: fadeIn .5s ease-in-out;
+               }
+    </style>
+    <style type="text/css">
+        .button {
+            background: transparent;
+            color: #fff;
+            border-radius: 50px;
+            padding: 0.8rem 2rem;
+            font: 20px "Margarine", sans-serif;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            transition: 0.2s ease-in-out;
+            letter-spacing: 2px;
+        }
+
+        .button-rainbow {
+            z-index: 1;
+            position: relative;
+            top: 2em;
+            margin: 0 auto;
+            height: 50px;
+        }
+
+            .button-rainbow .button {
+                animation: rainbow 3s infinite, heartbeat 0.6s infinite;
+                background: #c0392b;
+            }
+
+                .button-rainbow .button .rainbow {
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    top: -40px;
+                    transition: 0.5s ease;
+                    opacity: 0;
+                    transform: rotate(0);
+                }
+
+                    .button-rainbow .button .rainbow:before {
+                        content: "🌈";
+                        left: 0;
+                    }
+
+                .button-rainbow .button:hover .rainbow {
+                    opacity: 1;
+                    animation: rotate-nonstop 0.2s infinite;
+                }
+
+                .button-rainbow .button + .name {
+                    color: #444;
+                }
+
+        @keyframes rotate-nonstop {
+            50% {
+                transform: rotate(92deg);
+            }
+        }
+
+        @keyframes omg-yes {
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                top: -50px;
+            }
+        }
+
+        @keyframes rainbow {
+            0% {
+                background: #1abc9c;
+            }
+
+            10% {
+                background: #2ecc71;
+            }
+
+            20% {
+                background: #3498db;
+            }
+
+            30% {
+                background: #9b59b6;
+            }
+
+            40% {
+                background: #e74c3c;
+            }
+
+            50% {
+                background: #e67e22;
+            }
+
+            60% {
+                background: #f1c40f;
+            }
+
+            70% {
+                background: #2c3e50;
+            }
+
+            80% {
+                background: #9b59b6;
+            }
+        }
+
+        @keyframes heartbeat {
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+
+        .button-typewriter p {
+            animation: typing 4s steps(12) infinite;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .button-typewriter .button__wrapper:hover p {
+            animation: blink 0.3s infinite;
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+
+            50% {
+                width: 100%;
+            }
+
+            55%, 65%, 75% {
+                opacity: 1;
+            }
+
+            60%, 70% {
+                opacity: 0;
+            }
+
+            80% {
+                width: 100%;
+            }
+
+            100% {
+                width: 0;
+            }
+        }
+
+        /* Starburst 3 */
+        .kmribbon {
+            position: absolute !important;
+            z-index: 50000000;
+            top: 20%;
+            left: 2em;
+            font-family: Arial, sans-serif;
+            font-size: 1em;
+            -moz-transition: all 0.3s ease-out;
+            -webkit-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+            -webkit-transform: rotate(-67.5deg);
+            -moz-transform: rotate(-67.5deg);
+            rotation: -67.5deg;
+            width: 6em;
+            height: 6em;
+        }
+
+        .starburst3 {
+            display: block;
+            width: 6em;
+            height: 6em;
+            position: absolute;
+            text-align: center;
+            text-decoration: none;
+            color: #475ae4;
+            opacity: 0.6;
+        }
+
+            .starburst3 span {
+                display: block;
+                width: 6em;
+                height: 6em;
+                background: #00e530;
+                -webkit-transform: rotate(11.25deg);
+                -moz-transform: rotate(11.25deg);
+                rotation: 12.5deg;
+            }
+
+        .kmribbon:hover span:not(.dis) {
+            background: #00f3ff;
+        }
+
+        .kmribbon:hover {
+            left: 2.5em;
+            top: 18%;
+        }
+
+        .kmribbon .dis {
+            display: block;
+            width: 6em;
+            height: 6em;
+            position: absolute;
+            color: yellow;
+            -webkit-transform: rotate(11.25deg);
+            -moz-transform: rotate(11.25deg);
+            rotation: 12.5deg;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .noselect {
+            cursor: default;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .prev-button, .next-button {
+            background-color: rgba(0,0,0,.4);
+            border-radius: 5px;
+            cursor: pointer;
+            height: 30px;
+            outline: none;
+            padding: 10px;
+            transition: all .15s ease-in-out;
+            width: 30px;
+            margin: auto;
+        }
+
+            .prev-button:hover, .next-button:hover {
+                background-color: rgba(0,0,0,.5);
+            }
+
+        .tbthumb svg {
+            fill: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="kmribbon noselect">
+        <div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div>
+        <span class="dis">
+            GIÁ<div style="font-size: 30px">25.000đ</div>
+            FREE SHIP
+        </span>
+    </div>
+
+    <div class="carousel-container">
+        <div class="item button-rainbow">
+            <div class="button placeorder">
+                Nhấn vào đây đặt cơm
+                <div class="rainbow"></div>
+            </div>
+        </div>
+        <div style='background-image: url(0.jpg)' class="current-image">
+            <%--            <div class="item button-typewriter" style="--bg-color: #e74c3c;">
+                <div class="button__wrapper">
+                    <div class="button">
+                        <p>Mời bạn chơi game lật hình giảm giá</p>
+                    </div>
+                </div>
+            </div>--%>
+        </div>
+    </div>
+    <table class="tbthumb">
+        <tr>
+            <td style="width: 50px; text-align: center">
+                <div class="prev-button arrow arrow-left" style="background-position: center center; background-repeat: no-repeat;">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
+                        <g>
+                            <path d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z"></path>
+                        </g>
+                    </svg>
+                </div>
+            </td>
+            <td>
+
+                <ul class="next-list">
+                    <li>
+                        <div style="background-image: url(https://placeimg.com/640/480/arch)" class="image-of-list"></div>
+                    </li>
+                    <li>
+                        <div style="background-image: url(https://placeimg.com/640/480/nature)" class="image-of-list"></div>
+                    </li>
+                    <li>
+                        <div style="background-image: url(https://placeimg.com/640/480/people)" class="image-of-list"></div>
+                    </li>
+                    <li>
+                        <div style="background-image: url(https://placeimg.com/640/480/tech)" class="image-of-list"></div>
+                    </li>
+                    <li>
+                        <div style="background-image: url(https://placeimg.com/640/480/animals/grayscale)" class="image-of-list"></div>
+                    </li>
+                    <li>
+                        <div style="background-image: url(https://placeimg.com/640/480/nature/sepia)" class="image-of-list"></div>
+                    </li>
+                    <li>
+                        <div style="background-image: url(https://placeimg.com/640/480/people/sepia)" class="image-of-list"></div>
+                    </li>
+                </ul>
+            </td>
+            <td style="width: 50px; text-align: center">
+                <div class="next-button arrow arrow-right" style="background-position: center center; background-repeat: no-repeat;">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
+                        <g>
+                            <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"></path>
+                        </g>
+                    </svg>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <script type="text/javascript">
+
+        const carouselContainer = document.querySelector('.carousel-container');
+        const listImageArea = document.querySelector('.next-list');
+        const listOfImages = listImageArea.querySelectorAll('.image-of-list');
+        const currentImage = carouselContainer.querySelector('.current-image');
+        const arrowLeft = document.querySelector('.arrow-left');
+        const arrowRight = document.querySelector('.arrow-right');
+
+        function styleList() {
+            if (listImageArea.scrollWidth == listImageArea.offsetWidth) {
+                listImageArea.style.justifyContent = 'center'
+            } else {
+                listImageArea.style.justifyContent = 'flex-start'
+            }
+
+        };
+
+        function goToRight() {
+            var current = listImageArea.querySelector('.current-image-list');
+            current.parentElement.nextElementSibling.children[0].classList.add('current-image-list');
+            current.classList.remove('current-image-list');
+            current = listImageArea.querySelector('.current-image-list');
+            listImageArea.scrollLeft = current.offsetLeft;
+            currentImage.style.backgroundImage = current.style.backgroundImage;
+            currentImage.classList.add('slideInFromRight');
+            setTimeout(function () {
+                currentImage.classList.remove('slideInFromRight');
+            }, 500);
+        };
+
+        function goToLeft() {
+            var current = listImageArea.querySelector('.current-image-list');
+            current.parentElement.previousElementSibling.children[0].classList.add('current-image-list');
+            current.classList.remove('current-image-list');
+            current = listImageArea.querySelector('.current-image-list');
+            listImageArea.scrollLeft = current.offsetLeft;
+            currentImage.style.backgroundImage = current.style.backgroundImage;
+            currentImage.classList.add('slideInFromLeft');
+            setTimeout(function () {
+                currentImage.classList.remove('slideInFromLeft');
+            }, 500);
+        };
+
+        function changeCurrentImage(newImage) {
+            currentImage.classList.add('fadeIn');
+            setTimeout(function () {
+                currentImage.classList.remove('fadeIn');
+            }, 500);
+            currentImage.style.backgroundImage = this.style.backgroundImage;
+            //listOfImages.forEach(image => image.classList.remove('current-image-list'));
+            listOfImages.forEach(function (image) {
+                image.classList.remove('current-image-list');
+            })
+            this.classList.add('current-image-list');
+        }
+
+        styleList();
+
+        function redirect(url, method) {
+            var form = document.createElement('form');
+            form.method = method;
+            form.action = url;
+            //
+            var input = document.createElement('input');
+            input.type = "hidden";
+            input.name = "pricekm";
+            input.value = JSON.stringify({ 'ncc':'phucky','id':encodeURIComponent( window.location.href) });
+            //
+            form.appendChild(input);
+            document.body.appendChild(form);
+            form.submit();
+        };
+
+
+
+        arrowLeft.addEventListener('click', goToLeft);
+        arrowRight.addEventListener('click', goToRight);
+        document.querySelector('.placeorder').addEventListener('click', function () {
+            redirect('http://phucky.dnd.vn', 'post');// http://192.168.1.91:10996/phucky;
+        });
+
+        window.addEventListener('resize', function (e) {
+            styleList();
+        });
+
+        (function () {
+            if (typeof NodeList.prototype.forEach === "function") return false;
+            NodeList.prototype.forEach = Array.prototype.forEach;
+        })();
+
+        //listOfImages.forEach(image => image.addEventListener('click', changeCurrentImage));
+        listOfImages.forEach(function (image) {
+            image.addEventListener('click', changeCurrentImage);
+        });
+
+    </script>
+</body>
+</html>
