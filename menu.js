@@ -75,7 +75,19 @@ function redirect(url, method) {
 arrowLeft.addEventListener('click', goToLeft);
 arrowRight.addEventListener('click', goToRight);
 document.querySelector('.placeorder').addEventListener('click', function () {
-    redirect('http://192.168.1.91:10996/phucky', 'post');// http://phucky.dnd.vn ;
+    //redirect('http://192.168.1.91:10996/phucky', 'post');// http://phucky.dnd.vn ;
+    var xhr = new XMLHttpRequest();
+    var url = "url";
+    xhr.open("POST", 'http://192.168.1.91:2432/api/githubcom/', true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+            console.log(xhr.responseText);
+        }
+    };
+    var data = JSON.stringify({ "act": "findthesameimg", "ncc": "phucky" });
+    xhr.send(data);
 });
 
 window.addEventListener('resize', function (e) {
