@@ -14,18 +14,27 @@
     <meta property="og:title" content="ca-keo-kho-dua-cai-35k">
     <meta property="og:image" content="http://caunoi.dnd.vn/ca-keo-kho-dua-cai-35k/0.jpg">
     <title>ca-keo-kho-dua-cai-35k</title>
-    <link type="text/css" href="../menu.css" rel="stylesheet" />
+    <!--<link type="text/css" href="../menu.css" rel="stylesheet" />-->
+    <style type="text/css">
+        .loading {
+            background-image:url('http://blog.dynamicdrive.com/wp-content/plugins/jetpack/modules/sharedaddy/images/loading.gif');
+            background-position:center center;
+            background-repeat:no-repeat;
+        }
+    </style>
 </head>
 <body>
-    <div class="kmribbon noselect">
-        <div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div>
-        <span class="dis">
-            GIÁ<div style="font-size: 30px">25.000đ</div>
-            FREE SHIP
-        </span>
-    </div>
+    <div id="jscss_addin"></div>
 
-    <div class="carousel-container">
+    <div class="carousel-container" style="display:none;">
+        <div class="kmribbon noselect">
+            <div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div>
+            <span class="dis">
+                GIÁ<div style="font-size: 30px">25.000đ</div>
+                FREE SHIP
+            </span>
+        </div>
+
         <div class="item button-rainbow">
             <div class="button placeorder">
                 Nhấn vào đây đặt cơm
@@ -33,6 +42,7 @@
             </div>
         </div>
         <div style='background-image: url(0.jpg)' class="current-image">
+
         </div>
     </div>
     <table class="tbthumb">
@@ -49,25 +59,26 @@
             <td>
                 <ul class="next-list">
                     <li>
-                        <div style="background-image: url(https://placeimg.com/640/480/arch)" class="image-of-list"></div>
+                        <div class="image-of-list loading"></div>
                     </li>
                     <li>
-                        <div style="background-image: url(https://placeimg.com/640/480/nature)" class="image-of-list"></div>
+                        <div  class="image-of-list loading">
+                        </div>
                     </li>
                     <li>
-                        <div style="background-image: url(https://placeimg.com/640/480/people)" class="image-of-list"></div>
+                        <div class="image-of-list loading"></div>
                     </li>
                     <li>
-                        <div style="background-image: url(https://placeimg.com/640/480/tech)" class="image-of-list"></div>
+                        <div class="image-of-list loading"></div>
                     </li>
                     <li>
-                        <div style="background-image: url(https://placeimg.com/640/480/animals/grayscale)" class="image-of-list"></div>
+                        <div class="image-of-list loading"></div>
                     </li>
                     <li>
-                        <div style="background-image: url(https://placeimg.com/640/480/nature/sepia)" class="image-of-list"></div>
+                        <div class="image-of-list loading"></div>
                     </li>
                     <li>
-                        <div style="background-image: url(https://placeimg.com/640/480/people/sepia)" class="image-of-list"></div>
+                        <div class="image-of-list loading"></div>
                     </li>
                 </ul>
             </td>
@@ -82,6 +93,155 @@
             </td>
         </tr>
     </table>
-    <script type="text/javascript" src="../menu.js"></script>
+    <!--<script type="text/javascript" src="../menu.js"></script>-->
+
+    <script type="text/javascript">
+
+        Node.prototype.hasClass = function (className) {
+            if (this.classList) {
+                return this.classList.contains(className);
+            } else {
+                return (-1 < this.className.indexOf(className));
+            }
+        };
+
+        Node.prototype.addClass = function (className) {
+            if (this.classList) {
+                this.classList.add(className);
+            } else if (!this.hasClass(className)) {
+                var classes = this.className.split(" ");
+                classes.push(className);
+                this.className = classes.join(" ");
+            }
+            return this;
+        };
+
+        Node.prototype.removeClass = function (className) {
+            if (this.classList) {
+                this.classList.remove(className);
+            } else {
+                var classes = this.className.split(" ");
+                classes.splice(classes.indexOf(className), 1);
+                this.className = classes.join(" ");
+            }
+            return this;
+        };
+
+        var jscss_addin = document.getElementById('jscss_addin'),filesadded = "", jsLoader = function () { };
+
+        jsLoader.prototype = {
+            require: function (scripts, callback) {
+                this.loadCount = 0;
+                this.totalRequired = scripts.length;
+                this.callback = callback;
+
+                for (var i = 0; i < scripts.length; i++) {
+                    this.writeScript(scripts[i]);
+                }
+            },
+            loaded: function (evt) {
+                this.loadCount++;
+                if (this.loadCount == this.totalRequired && typeof this.callback == 'function') this.callback.call();
+            },
+            writeScript: function (src) {
+                if (filesadded.indexOf("[" + src + "]") == -1) {
+                    var self = this;
+                    var s = document.createElement('script');
+                    s.type = "text/javascript";
+                    s.async = true;
+                    s.src = src;
+                    s.addEventListener('load', function (e) { self.loaded(e); }, false);
+                    jscss_addin.appendChild(s);
+                    //
+                    filesadded += "[" + src + "]" //add to list of files already added, in the form of "[filename1],[filename2],etc"
+                } else {
+                    this.loaded();
+                }
+            }
+        }
+        function loadjscssfile(filename, filetype) {
+            if (filetype == "js") { //if filename is a external JavaScript file
+                var fileref = document.createElement('script')
+                fileref.setAttribute("type", "text/javascript");
+                fileref.setAttribute("src", filename);
+            }
+            else if (filetype == "css") { //if filename is an external CSS file
+                var fileref = document.createElement("link")
+                fileref.setAttribute("rel", "stylesheet");
+                fileref.setAttribute("type", "text/css");
+                fileref.setAttribute("href", filename);
+            }
+            if (typeof fileref != "undefined")
+                //document.getElementsByTagName("head")[0].appendChild(fileref)
+                jscss_addin.appendChild(fileref);
+        }
+
+        function checkloadjscssfile(filename, filetype) {
+            if (filesadded.indexOf("[" + filename + "]") == -1) {
+                loadjscssfile(filename, filetype)
+                filesadded += "[" + filename + "]" //add to list of files already added, in the form of "[filename1],[filename2],etc"
+            }
+        }
+
+        function removejscssfile(filename, filetype) {
+            var removedelements = 0
+            var targetelement = (filetype == "js") ? "script" : (filetype == "css") ? "link" : "none" //determine element type to create nodelist using
+            var targetattr = (filetype == "js") ? "src" : (filetype == "css") ? "href" : "none" //determine corresponding attribute to test for
+            var allsuspects = document.getElementsByTagName(targetelement)
+            for (var i = allsuspects.length; i >= 0; i--) { //search backwards within nodelist for matching elements to remove
+                if (allsuspects[i] && allsuspects[i].getAttribute(targetattr) != null && allsuspects[i].getAttribute(targetattr).indexOf(filename) != -1) {
+                    allsuspects[i].parentNode.removeChild(allsuspects[i]) //remove element by calling parentNode.removeChild()
+                    removedelements += 1
+                }
+            }
+            if (removedelements > 0)
+                alert("Removed " + removedelements + " instances of " + filename)
+        }
+
+        function createjscssfile(filename, filetype) {
+            if (filetype == "js") { //if filename is a external JavaScript file
+                var fileref = document.createElement('script')
+                fileref.setAttribute("type", "text/javascript")
+                fileref.setAttribute("src", filename)
+            }
+            else if (filetype == "css") { //if filename is an external CSS file
+                fileref = document.createElement("link")
+                fileref.setAttribute("rel", "stylesheet")
+                fileref.setAttribute("type", "text/css")
+                fileref.setAttribute("href", filename)
+            }
+            return fileref
+        }
+
+        function replacejscssfile(oldfilename, newfilename, filetype) {
+            var replacedelements = 0
+            var targetelement = (filetype == "js") ? "script" : (filetype == "css") ? "link" : "none" //determine element type to create nodelist using
+            var targetattr = (filetype == "js") ? "src" : (filetype == "css") ? "href" : "none" //determine corresponding attribute to test for
+            var allsuspects = document.getElementsByTagName(targetelement)
+            for (var i = allsuspects.length; i >= 0; i--) { //search backwards within nodelist for matching elements to remove
+                if (allsuspects[i] && allsuspects[i].getAttribute(targetattr) != null && allsuspects[i].getAttribute(targetattr).indexOf(oldfilename) != -1) {
+                    var newelement = createjscssfile(newfilename, filetype)
+                    allsuspects[i].parentNode.replaceChild(newelement, allsuspects[i])
+                    replacedelements += 1
+                }
+            }
+            if (replacedelements > 0)
+                alert("Replaced " + replacedelements + " instances of " + oldfilename + " with " + newfilename)
+        }
+
+        window.addEventListener('load', function () {
+            //for (var i = 0; i < lstImgs.length; i++) {
+            //    lstImgs[i].removeClass('loading');
+            //    //if (allimages[i].getAttribute('data-src')) {
+            //    //    allimages[i].setAttribute('src', allimages[i].getAttribute('data-src'));
+            //    //}
+            //}
+            checkloadjscssfile('../menu.css', 'css');
+            checkloadjscssfile('../menu.js', 'js');
+
+        }, false)
+
+
+    </script>
 </body>
 </html>
