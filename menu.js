@@ -78,7 +78,7 @@ document.querySelector('.placeorder').addEventListener('click', function () {
     //redirect('http://192.168.1.91:10996/phucky', 'post');// http://phucky.dnd.vn ;
     var xhr = new XMLHttpRequest();
     var url = "url";
-    xhr.open("POST", 'http://192.168.1.91:2432/api/githubcom/', true);
+    xhr.open("POST", 'http://brickapi.dnd.vn/api/githubcom/', true);////http://192.168.1.91:2432/api
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
