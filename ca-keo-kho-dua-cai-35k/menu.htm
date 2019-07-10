@@ -188,6 +188,8 @@
             display: inline-block;
             overflow: hidden;
             white-space: nowrap;
+            margin: 0px;
+            font-size: 20px;
         }
 
         .button-typewriter .button__wrapper:hover p {
@@ -224,7 +226,7 @@
         .kmribbon {
             position: absolute !important;
             z-index: 50000000;
-            top: 10%;
+            top: 2em;
             left: 2em;
             font-family: Arial, sans-serif;
             font-size: 1em;
@@ -236,6 +238,7 @@
             rotation: -67.5deg;
             width: 6em;
             height: 6em;
+            cursor:pointer;
         }
 
         .starburst3 {
@@ -263,10 +266,6 @@
             background: #00f3ff;
         }
 
-        .kmribbon:hover {
-            left: 2.5em;
-                top: 18%;
-        }
 
         .kmribbon .dis {
             display: block;
@@ -355,15 +354,14 @@
         <div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div>
         <span class="dis">
             GIÁ<div style="font-size: 30px">25.000đ</div>
-            FREE SHIP
+            <div class="item button-typewriter" style="--bg-color: #e74c3c;">
+                <div class="button__wrapper">
+                    <p>Click Me!</p>
+                </div>
+            </div>
         </span>
     </div>
-    <div class="item button-rainbow">
-        <div class="button placeorder">
-            Nhấn vào đây đặt cơm
-            <div class="rainbow"></div>
-        </div>
-    </div>
+
 
     <!-- Swiper -->
     <div class="swiper-container gallery-top">
@@ -498,11 +496,11 @@
         //	classie.toggle( menuLeft, 'cbp-spmenu-open' );
         //	disableOther( 'showLeft' );
         //};
-        showRight.onclick = function () {
-            classie.toggle(this, 'active');
-            classie.toggle(menuRight, 'cbp-spmenu-open');
-            //disableOther( 'showRight' );
-        };
+        //showRight.onclick = function () {
+        //    classie.toggle(this, 'active');
+        //    classie.toggle(menuRight, 'cbp-spmenu-open');
+        //    //disableOther( 'showRight' );
+        //};
         //showTop.onclick = function() {
         //	classie.toggle( this, 'active' );
         //	classie.toggle( menuTop, 'cbp-spmenu-open' );
