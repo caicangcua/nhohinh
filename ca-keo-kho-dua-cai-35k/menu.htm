@@ -58,168 +58,6 @@
             }
     </style>
     <style type="text/css">
-        .button {
-            background: transparent;
-            color: #fff;
-            border-radius: 50px;
-            padding: 0.8rem 2rem;
-            font: 20px "Margarine", sans-serif;
-            outline: none;
-            cursor: pointer;
-            position: relative;
-            transition: 0.2s ease-in-out;
-            letter-spacing: 2px;
-            white-space: nowrap;
-        }
-
-        .item.button-rainbow {
-            position: absolute;
-            z-index: 10000;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .button-rainbow {
-            z-index: 1;
-            position: relative;
-            top: 2em;
-            margin: 0 auto;
-            height: 50px;
-        }
-
-            .button-rainbow .button {
-                animation: rainbow 3s infinite, heartbeat 0.6s infinite;
-                background: #c0392b;
-            }
-
-                .button-rainbow .button .rainbow {
-                    width: 120px;
-                    height: 120px;
-                    border-radius: 50%;
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    margin: auto;
-                    top: -40px;
-                    transition: 0.5s ease;
-                    opacity: 0;
-                    transform: rotate(0);
-                }
-
-                    .button-rainbow .button .rainbow:before {
-                        content: "🌈";
-                        left: 0;
-                    }
-
-                .button-rainbow .button:hover .rainbow {
-                    opacity: 1;
-                    animation: rotate-nonstop 0.2s infinite;
-                }
-
-                .button-rainbow .button + .name {
-                    color: #444;
-                }
-
-        @keyframes rotate-nonstop {
-            50% {
-                transform: rotate(92deg);
-            }
-        }
-
-        @keyframes omg-yes {
-            50% {
-                opacity: 1;
-            }
-
-            100% {
-                top: -50px;
-            }
-        }
-
-        @keyframes rainbow {
-            0% {
-                background: #1abc9c;
-            }
-
-            10% {
-                background: #2ecc71;
-            }
-
-            20% {
-                background: #3498db;
-            }
-
-            30% {
-                background: #9b59b6;
-            }
-
-            40% {
-                background: #e74c3c;
-            }
-
-            50% {
-                background: #e67e22;
-            }
-
-            60% {
-                background: #f1c40f;
-            }
-
-            70% {
-                background: #2c3e50;
-            }
-
-            80% {
-                background: #9b59b6;
-            }
-        }
-
-        @keyframes heartbeat {
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-
-        .button-typewriter p {
-            animation: typing 4s steps(12) infinite;
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            margin: 0px;
-            font-size: 20px;
-        }
-
-        .button-typewriter .button__wrapper:hover p {
-            animation: blink 0.3s infinite;
-        }
-
-        @keyframes typing {
-            0% {
-                width: 0;
-            }
-
-            50% {
-                width: 100%;
-            }
-
-            55%, 65%, 75% {
-                opacity: 1;
-            }
-
-            60%, 70% {
-                opacity: 0;
-            }
-
-            80% {
-                width: 100%;
-            }
-
-            100% {
-                width: 0;
-            }
-        }
-
         /* Starburst 3 */
         .kmribbon {
             position: absolute !important;
@@ -290,72 +128,6 @@
             user-select: none;
         }
 
-
-        #toolbar {
-            width: 100%;
-            max-width: 670px;
-            min-width: 550px;
-            margin: 70px auto;
-        }
-
-        .button {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background-color: #3AB09E;
-            color: #ffffff;
-            text-align: center;
-            font-size: 3.5em;
-            position: relative;
-            left: 50%;
-            margin-left: -35px;
-            z-index: 1;
-        }
-
-        .button, .icons {
-            -webkit-transition: -webkit-all 1s cubic-bezier(.87,-.41,.19,1.44);
-            transition: all 1s cubic-bezier(.87,-.41,.19,1.44);
-        }
-
-            .button:after {
-                content: "+";
-            }
-
-            .button.active {
-                -webkit-transform: rotate(45deg);
-                transform: rotate(45deg);
-                left: 60px;
-            }
-
-
-        .icons {
-            width: 0%;
-            overflow: hidden;
-            height: 36px;
-            list-style: none;
-            padding: 16px 10px 10px 50px;
-            background-color: #ffffff;
-            box-shadow: 1px 1px 1px 1px #DCDCDC;
-            margin: -68px 0 0 45%;
-            border-radius: 2em;
-        }
-
-            .icons.open {
-                width: 80%;
-                margin: -68px 0 0 5%;
-                overflow: hidden;
-            }
-
-            .icons li {
-                display: none;
-                width: 10%;
-                color: #3AB09E;
-            }
-
-            .icons.open li {
-                width: 16%;
-                display: inline-block;
-            }
     </style>
 
     <style>
@@ -388,7 +160,7 @@
         .wrapper {
             text-align: center;
             position: absolute;
-            z-index:9999999;
+            z-index: 9999999;
         }
 
         h3 {
@@ -575,11 +347,11 @@
         .my-nav {
             position: absolute;
             z-index: 222222222;
-            /*opacity: 0;*/
+            opacity: 0;
         }
 
             .my-nav.reveal {
-                /*visibility: visible;*/
+                visibility: visible;
                 opacity: 1;
             }
 
@@ -596,8 +368,8 @@
                 }
 
         .my-nav--list {
-            /*visibility: hidden;*/
-bottom:70px;
+            visibility: hidden;
+            bottom: 70px;
             right: 1.75rem;
             text-align: right;
         }
@@ -606,7 +378,7 @@ bottom:70px;
             transition: opacity 150ms ease-in-out;
             display: block;
             font-size: 0.90rem;
-            /*opacity: 0;*/
+            opacity: 0;
         }
 
             .my-nav__item.visible {
@@ -623,7 +395,7 @@ bottom:70px;
             box-shadow: inset 0 0 0 1px #fff;
             border-radius: 25px;
             color: #fff;
-           white-space:nowrap;
+            white-space: nowrap;
         }
 
         .my-nav__link--template:hover {
@@ -648,64 +420,12 @@ bottom:70px;
         }
     </style>
 
-    <link href="component.css" rel="stylesheet" />
-
 </head>
 <body>
     <!--https://tympanus.net/codrops/2013/04/17/slide-and-push-menus/-->
     <!--https://codepen.io/fornyhucker/pen/wklrG-->
     <!--https://codepen.io/arcs/pen/BodWvJ-->
     <!--https://codepen.io/violelune/pen/RKNaER-->
-    <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-        <h3>Menu</h3>
-        <a href="#">Celery seakale</a>
-        <a href="#">Dulse daikon</a>
-        <a href="#">Zucchini garlic</a>
-        <a href="#">Catsear azuki bean</a>
-        <a href="#">Dandelion bunya</a>
-        <a href="#">Rutabaga</a>
-    </nav>
-    <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
-        <h3>
-            Menu
-        </h3>
-        <a href="#">Celery seakale</a>
-        <a href="#">Dulse daikon</a>
-        <a href="#">Zucchini garlic</a>
-        <a href="#">Catsear azuki bean</a>
-        <a href="#">Dandelion bunya</a>
-        <a href="#">Rutabaga</a>
-    </nav>
-    <nav class="cbp-spmenu cbp-spmenu-horizontal cbp-spmenu-top" id="cbp-spmenu-s3">
-        <h3>Menu</h3>
-        <a href="#">Celery seakale</a>
-        <a href="#">Dulse daikon</a>
-        <a href="#">Zucchini garlic</a>
-        <a href="#">Catsear azuki bean</a>
-        <a href="#">Dandelion bunya</a>
-        <a href="#">Rutabaga</a>
-        <a href="#">Celery seakale</a>
-        <a href="#">Dulse daikon</a>
-        <a href="#">Zucchini garlic</a>
-        <a href="#">Catsear azuki bean</a>
-        <a href="#">Dandelion bunya</a>
-        <a href="#">Rutabaga</a>
-    </nav>
-    <nav class="cbp-spmenu cbp-spmenu-horizontal cbp-spmenu-bottom" id="cbp-spmenu-s4">
-        <h3>Menu</h3>
-        <a href="#">Celery seakale</a>
-        <a href="#">Dulse daikon</a>
-        <a href="#">Zucchini garlic</a>
-        <a href="#">Catsear azuki bean</a>
-        <a href="#">Dandelion bunya</a>
-        <a href="#">Rutabaga</a>
-        <a href="#">Celery seakale</a>
-        <a href="#">Dulse daikon</a>
-        <a href="#">Zucchini garlic</a>
-        <a href="#">Catsear azuki bean</a>
-        <a href="#">Dandelion bunya</a>
-        <a href="#">Rutabaga</a>
-    </nav>
 
     <div class="kmribbon noselect">
         <div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div>
@@ -716,7 +436,7 @@ bottom:70px;
 
     </div>
     <div class="wrapper" style="left:50%;transform:translateX(-50%)">
-        <a href="#" class="fancy-button bg-gradient1"><span style="white-space: normal;font-size: larger;">MỜI ĐẶT CƠM</span></a>
+        <a href="#" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a>
 
     </div>
 
@@ -776,145 +496,5 @@ bottom:70px;
         });
     </script>
 
-
-    <script>
-        /*!
-         * classie - class helper functions
-         * from bonzo https://github.com/ded/bonzo
-         *
-         * classie.has( elem, 'my-class' ) -> true/false
-         * classie.add( elem, 'my-new-class' )
-         * classie.remove( elem, 'my-unwanted-class' )
-         * classie.toggle( elem, 'my-class' )
-         */
-
-        /*jshint browser: true, strict: true, undef: true */
-
-        (function (window) {
-
-            'use strict';
-
-            // class helper functions from bonzo https://github.com/ded/bonzo
-
-            function classReg(className) {
-                return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
-            }
-
-            // classList support for class management
-            // altho to be fair, the api sucks because it won't accept multiple classes at once
-            var hasClass, addClass, removeClass;
-
-            if ('classList' in document.documentElement) {
-                hasClass = function (elem, c) {
-                    return elem.classList.contains(c);
-                };
-                addClass = function (elem, c) {
-                    elem.classList.add(c);
-                };
-                removeClass = function (elem, c) {
-                    elem.classList.remove(c);
-                };
-            }
-            else {
-                hasClass = function (elem, c) {
-                    return classReg(c).test(elem.className);
-                };
-                addClass = function (elem, c) {
-                    if (!hasClass(elem, c)) {
-                        elem.className = elem.className + ' ' + c;
-                    }
-                };
-                removeClass = function (elem, c) {
-                    elem.className = elem.className.replace(classReg(c), ' ');
-                };
-            }
-
-            function toggleClass(elem, c) {
-                var fn = hasClass(elem, c) ? removeClass : addClass;
-                fn(elem, c);
-            }
-
-            window.classie = {
-                // full names
-                hasClass: hasClass,
-                addClass: addClass,
-                removeClass: removeClass,
-                toggleClass: toggleClass,
-                // short names
-                has: hasClass,
-                add: addClass,
-                remove: removeClass,
-                toggle: toggleClass
-            };
-
-        })(window);
-
-        //var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
-        var menuRight = document.getElementById('cbp-spmenu-s2');
-        //	menuTop = document.getElementById( 'cbp-spmenu-s3' ),
-        //	menuBottom = document.getElementById( 'cbp-spmenu-s4' ),
-        //	showLeft = document.getElementById( 'showLeft' ),
-        var showRight = document.getElementById('showRightPush'), body = document.body;
-        //	showTop = document.getElementById( 'showTop' ),
-        //	showBottom = document.getElementById( 'showBottom' ),
-        //	showLeftPush = document.getElementById( 'showLeftPush' ),
-        //var showRightPush = document.getElementById('showRightPush')
-
-        //showLeft.onclick = function() {
-        //	classie.toggle( this, 'active' );
-        //	classie.toggle( menuLeft, 'cbp-spmenu-open' );
-        //	disableOther( 'showLeft' );
-        //};
-        //showRight.onclick = function () {
-        //    classie.toggle(this, 'active');
-        //    classie.toggle(menuRight, 'cbp-spmenu-open');
-        //    //disableOther( 'showRight' );
-        //};
-        //showTop.onclick = function() {
-        //	classie.toggle( this, 'active' );
-        //	classie.toggle( menuTop, 'cbp-spmenu-open' );
-        //	disableOther( 'showTop' );
-        //};
-        //showBottom.onclick = function() {
-        //	classie.toggle( this, 'active' );
-        //	classie.toggle( menuBottom, 'cbp-spmenu-open' );
-        //	disableOther( 'showBottom' );
-        //};
-        //showLeftPush.onclick = function() {
-        //	classie.toggle( this, 'active' );
-        //	classie.toggle( body, 'cbp-spmenu-push-toright' );
-        //	classie.toggle( menuLeft, 'cbp-spmenu-open' );
-        //	disableOther( 'showLeftPush' );
-        //};
-        //showRightPush.onclick = function() {
-        //	classie.toggle( this, 'active' );
-        //	classie.toggle( body, 'cbp-spmenu-push-toleft' );
-        //	classie.toggle( menuRight, 'cbp-spmenu-open' );
-        //	//disableOther( 'showRightPush' );
-        //};
-
-        function disableOther(button) {
-            if (button !== 'showLeft') {
-                classie.toggle(showLeft, 'disabled');
-            }
-            if (button !== 'showRight') {
-                classie.toggle(showRight, 'disabled');
-            }
-            if (button !== 'showTop') {
-                classie.toggle(showTop, 'disabled');
-            }
-            if (button !== 'showBottom') {
-                classie.toggle(showBottom, 'disabled');
-            }
-            if (button !== 'showLeftPush') {
-                classie.toggle(showLeftPush, 'disabled');
-            }
-            if (button !== 'showRightPush') {
-                classie.toggle(showRightPush, 'disabled');
-            }
-        }
-
-
-    </script>
 </body>
 </html>
