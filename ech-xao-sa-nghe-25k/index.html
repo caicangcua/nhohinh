@@ -21,8 +21,8 @@
         }
 
         body {
-            background: -webkit-radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
-            background: radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
+            background-color: #222;
+    overflow: hidden;
             font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
             font-size: 14px;
             color: #000;
@@ -437,252 +437,313 @@
             background: lightyellow;
         }
 
-.kontext {
-	width: 100%;
-	height: 100%;
-    position:fixed;
-    top:0px;
-}
+        .kontext {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            bottom: 0px;
+            right: 0px;
+        }
 
-.kontext .layer {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	visibility: hidden;
-	/*box-shadow: 0px 0px 120px rgba( 0, 0, 0, 0.8 );*/
-}
+            .kontext .layer {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                visibility: hidden;
+                /*box-shadow: 0px 0px 120px rgba( 0, 0, 0, 0.8 );*/
+            }
 
-.kontext .layer.show {
-	visibility: visible;
-}
+                .kontext .layer.show {
+                    visibility: visible;
+                }
 
-.kontext.capable {
-	-webkit-perspective: 1000px;
-	   -moz-perspective: 1000px;
-	        perspective: 1000px;
+            .kontext.capable {
+                -webkit-perspective: 1000px;
+                -moz-perspective: 1000px;
+                perspective: 1000px;
+                -webkit-transform-style: preserve-3d;
+                -moz-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+            }
 
-	-webkit-transform-style: preserve-3d;
-	   -moz-transform-style: preserve-3d;
-	        transform-style: preserve-3d;
-}
+                .kontext.capable .layer {
+                    -webkit-transform: translateZ( -100px );
+                    -moz-transform: translateZ( -100px );
+                    transform: translateZ( -100px );
+                }
 
-.kontext.capable .layer {
-	-webkit-transform: translateZ( -100px );
-	   -moz-transform: translateZ( -100px );
-	        transform: translateZ( -100px );
-}
+                    .kontext.capable .layer.show {
+                        -webkit-transform: translateZ( 0px );
+                        -moz-transform: translateZ( 0px );
+                        transform: translateZ( 0px );
+                    }
 
-.kontext.capable .layer.show {
-	-webkit-transform: translateZ( 0px );
-	   -moz-transform: translateZ( 0px );
-	        transform: translateZ( 0px );
-}
+                .kontext.capable.animate .layer.show.right {
+                    -webkit-animation: show-right 1s forwards ease;
+                    -moz-animation: show-right 1s forwards ease;
+                    animation: show-right 1s forwards ease;
+                }
 
-.kontext.capable.animate .layer.show.right {
-	-webkit-animation: show-right 1s forwards ease;
-	   -moz-animation: show-right 1s forwards ease;
-	        animation: show-right 1s forwards ease;
-}
+                .kontext.capable.animate .layer.hide.right {
+                    -webkit-animation: hide-right 1s forwards ease;
+                    -moz-animation: hide-right 1s forwards ease;
+                    animation: hide-right 1s forwards ease;
+                }
 
-.kontext.capable.animate .layer.hide.right {
-	-webkit-animation: hide-right 1s forwards ease;
-	   -moz-animation: hide-right 1s forwards ease;
-	        animation: hide-right 1s forwards ease;
-}
+                .kontext.capable.animate .layer.show.left {
+                    -webkit-animation: show-left 1s forwards ease;
+                    -moz-animation: show-left 1s forwards ease;
+                    animation: show-left 1s forwards ease;
+                }
 
-.kontext.capable.animate .layer.show.left {
-	-webkit-animation: show-left 1s forwards ease;
-	   -moz-animation: show-left 1s forwards ease;
-	        animation: show-left 1s forwards ease;
-}
-
-.kontext.capable.animate .layer.hide.left {
-	-webkit-animation: hide-left 1s forwards ease;
-	   -moz-animation: hide-left 1s forwards ease;
-	        animation: hide-left 1s forwards ease;
-}
-
-
-/* CSS animation keyframes */
-
-@-webkit-keyframes show-right {
-	0%   { -webkit-transform: translateZ( -200px ); }
-	40%  { -webkit-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg ); }
-	100% { -webkit-transform: translateZ( 0px ); }
-}
-
-@-webkit-keyframes hide-right {
-	0%   { -webkit-transform: translateZ( 0px ); visibility: visible; }
-	40%  { -webkit-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg ); }
-	100% { -webkit-transform: translateZ( -200px ); visibility: hidden; }
-}
-
-@-moz-keyframes show-right {
-	0%   { -moz-transform: translateZ( -200px ); }
-	40%  { -moz-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg ); }
-	100% { -moz-transform: translateZ( 0px ); }
-}
-
-@-moz-keyframes hide-right {
-	0%   { -moz-transform: translateZ( 0px ); visibility: visible; }
-	40%  { -moz-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg ); }
-	100% { -moz-transform: translateZ( -200px ); visibility: hidden; }
-}
-
-@keyframes show-right {
-	0%   { transform: translateZ( -200px ); }
-	40%  { transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg ); }
-	100% { transform: translateZ( 0px ); }
-}
-
-@keyframes hide-right {
-	0%   { transform: translateZ( 0px ); visibility: visible; }
-	40%  { transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg ); }
-	100% { transform: translateZ( -200px ); visibility: hidden; }
-}
+                .kontext.capable.animate .layer.hide.left {
+                    -webkit-animation: hide-left 1s forwards ease;
+                    -moz-animation: hide-left 1s forwards ease;
+                    animation: hide-left 1s forwards ease;
+                }
 
 
-@-webkit-keyframes show-left {
-	0%   { -webkit-transform: translateZ( -200px ); }
-	40%  { -webkit-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg ); }
-	100% { -webkit-transform: translateZ( 0px ); }
-}
+        /* CSS animation keyframes */
 
-@-webkit-keyframes hide-left {
-	0%   { -webkit-transform: translateZ( 0px ); visibility: visible; }
-	40%  { -webkit-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg ); }
-	100% { -webkit-transform: translateZ( -200px ); visibility: hidden; }
-}
+        @-webkit-keyframes show-right {
+            0% {
+                -webkit-transform: translateZ( -200px );
+            }
 
-@-moz-keyframes show-left {
-	0%   { -moz-transform: translateZ( -200px ); }
-	40%  { -moz-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg ); }
-	100% { -moz-transform: translateZ( 0px ); }
-}
+            40% {
+                -webkit-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg );
+            }
 
-@-moz-keyframes hide-left {
-	0%   { -moz-transform: translateZ( 0px ); visibility: visible; }
-	40%  { -moz-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg ); }
-	100% { -moz-transform: translateZ( -200px ); visibility: hidden; }
-}
+            100% {
+                -webkit-transform: translateZ( 0px );
+            }
+        }
 
-@keyframes show-left {
-	0%   { transform: translateZ( -200px ); }
-	40%  { transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg ); }
-	100% { transform: translateZ( 0px ); }
-}
+        @-webkit-keyframes hide-right {
+            0% {
+                -webkit-transform: translateZ( 0px );
+                visibility: visible;
+            }
 
-@keyframes hide-left {
-	0%   { transform: translateZ( 0px ); visibility: visible; }
-	40%  { transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg ); }
-	100% { transform: translateZ( -200px ); visibility: hidden; }
-}
+            40% {
+                -webkit-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg );
+            }
 
+            100% {
+                -webkit-transform: translateZ( -200px );
+                visibility: hidden;
+            }
+        }
 
-/* Dimmer */
+        @-moz-keyframes show-right {
+            0% {
+                -moz-transform: translateZ( -200px );
+            }
 
-.kontext .layer .dimmer {
-	display: block;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	visibility: hidden;
-	background: transparent;
-}
+            40% {
+                -moz-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg );
+            }
 
-	.kontext.capable.animate .layer .dimmer {
-		-webkit-transition: background 1s ease;
-		   -moz-transition: background 1s ease;
-		        transition: background 1s ease;
-	}
+            100% {
+                -moz-transform: translateZ( 0px );
+            }
+        }
 
-	.kontext.capable.animate .layer.hide .dimmer {
-		visibility: visible;
-		background: rgba( 0, 0, 0, 0.7 );
-	}
+        @-moz-keyframes hide-right {
+            0% {
+                -moz-transform: translateZ( 0px );
+                visibility: visible;
+            }
 
+            40% {
+                -moz-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg );
+            }
 
+            100% {
+                -moz-transform: translateZ( -200px );
+                visibility: hidden;
+            }
+        }
 
+        @keyframes show-right {
+            0% {
+                transform: translateZ( -200px );
+            }
 
-.layer {
-	text-align: center;
-	text-shadow: 1px 1px 0px rgba( 0, 0, 0, 0.1 );
-}
+            40% {
+                transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg );
+            }
 
-.layer h2 {
-	position: relative;
-	top: 20%;
-	margin: 0;
-	font-size: 6.25em;
-}
+            100% {
+                transform: translateZ( 0px );
+            }
+        }
 
-.layer p {
-	position: relative;
-	top: 20%;
-	margin: 0;
-}
+        @keyframes hide-right {
+            0% {
+                transform: translateZ( 0px );
+                visibility: visible;
+            }
 
+            40% {
+                transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg );
+            }
 
-.layer.two {
-	background: #95dc84;
-}
-
-.layer.three {
-	background: #64b9d2;
-}
-
-.bullets {
-	position: absolute;
-	width: 100%;
-	bottom: 20px;
-	padding: 0;
-	margin: 0;
-	text-align: center;
-    z-index:10;
-}
-
-	.bullets li {
-		display: inline-block;
-		width: 20px;
-		height: 20px;
-		border-radius: 50%;
-		margin: 0 3px;
-
-		background: rgba( 255, 255, 255, 0.5 );
-		box-shadow: 0px 0px 4px rgba( 0, 0, 0, 0.2 );
-		cursor: pointer;
-
-		-webkit-tap-highlight-color: rgba( 0, 0, 0, 0 );
-	}
-
-		.bullets li:hover {
-			background: rgba( 255, 255, 255, 0.8 );
-		}
-
-		.bullets li.active {
-			cursor: default;
-			background: #fff;
-		}
-
-@media screen and (max-width: 400px) {
-	body {
-		font-size: 12px;
-	}
-
-	.layer h2 {
-		font-size: 5em;
-	}
-
-	.bullets li {
-		margin: 0 6px;
-	}
-}
+            100% {
+                transform: translateZ( -200px );
+                visibility: hidden;
+            }
+        }
 
 
+        @-webkit-keyframes show-left {
+            0% {
+                -webkit-transform: translateZ( -200px );
+            }
+
+            40% {
+                -webkit-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg );
+            }
+
+            100% {
+                -webkit-transform: translateZ( 0px );
+            }
+        }
+
+        @-webkit-keyframes hide-left {
+            0% {
+                -webkit-transform: translateZ( 0px );
+                visibility: visible;
+            }
+
+            40% {
+                -webkit-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg );
+            }
+
+            100% {
+                -webkit-transform: translateZ( -200px );
+                visibility: hidden;
+            }
+        }
+
+        @-moz-keyframes show-left {
+            0% {
+                -moz-transform: translateZ( -200px );
+            }
+
+            40% {
+                -moz-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg );
+            }
+
+            100% {
+                -moz-transform: translateZ( 0px );
+            }
+        }
+
+        @-moz-keyframes hide-left {
+            0% {
+                -moz-transform: translateZ( 0px );
+                visibility: visible;
+            }
+
+            40% {
+                -moz-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg );
+            }
+
+            100% {
+                -moz-transform: translateZ( -200px );
+                visibility: hidden;
+            }
+        }
+
+        @keyframes show-left {
+            0% {
+                transform: translateZ( -200px );
+            }
+
+            40% {
+                transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg );
+            }
+
+            100% {
+                transform: translateZ( 0px );
+            }
+        }
+
+        @keyframes hide-left {
+            0% {
+                transform: translateZ( 0px );
+                visibility: visible;
+            }
+
+            40% {
+                transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg );
+            }
+
+            100% {
+                transform: translateZ( -200px );
+                visibility: hidden;
+            }
+        }
+
+
+        /* Dimmer */
+
+        .kontext .layer .dimmer {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            visibility: hidden;
+            background: transparent;
+        }
+
+        .kontext.capable.animate .layer .dimmer {
+            -webkit-transition: background 1s ease;
+            -moz-transition: background 1s ease;
+            transition: background 1s ease;
+        }
+
+        .kontext.capable.animate .layer.hide .dimmer {
+            visibility: visible;
+            background: rgba( 0, 0, 0, 0.7 );
+        }
+
+
+
+
+        .layer {
+            text-align: center;
+            text-shadow: 1px 1px 0px rgba( 0, 0, 0, 0.1 );
+        }
+
+            .layer h2 {
+                position: relative;
+                top: 20%;
+                margin: 0;
+                font-size: 6.25em;
+            }
+
+            .layer p {
+                position: relative;
+                top: 20%;
+                margin: 0;
+            }
+
+            .layer.one {
+                background: -webkit-radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
+                background: radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
+            }
+
+            .layer.two {
+                background: #64b9d2;
+            }
     </style>
 
 
@@ -694,7 +755,7 @@
     <!--https://codepen.io/arcs/pen/BodWvJ-->
     <!--https://codepen.io/violelune/pen/RKNaER-->
 
-    <article class="kontext">
+    <div class="kontext">
         <div class="layer one show">
 
             <div class="kmribbon noselect">
@@ -758,12 +819,8 @@
         <div class="layer two">
             <h2>Layer Two</h2>
         </div>
-        <div class="layer three">
-            <h2>Layer Three</h2>
-        </div>
-    </article>
+    </div>
 
-    <ul class="bullets"></ul>
 
     <!-- Swiper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
@@ -811,45 +868,7 @@
                 e.stopPropagation();
                 if (e.target.id == 'find02img') {
 
-             
-
-
-                    // Create a new instance of kontext
-                    var k = kontext(document.querySelector('.kontext'));
-
-                    var two = document.querySelector('.two');
-                    two.addEventListener('click', function (e) {
-                        k.prev();
-                        k.changed.remove();
-                    });
-
-                    // Update the bullets when the layer changes
-                    k.changed.add(function (layer, index) {
-                        var c = index;
-                    });
-                    k.show(1);
-
-                    //// Demo page JS
-
-                    //var bulletsContainer = document.body.querySelector('.bullets');
-
-                    //// Create one bullet per layer
-                    //for (var i = 0, len = k.getTotal() ; i < len; i++) {
-                    //    var bullet = document.createElement('li');
-                    //    bullet.className = i === 0 ? 'active' : '';
-                    //    bullet.setAttribute('index', i);
-                    //    bullet.onclick = function (event) { k.show(event.target.getAttribute('index')) };
-                    //    bullet.ontouchstart = function (event) { k.show(event.target.getAttribute('index')) };
-                    //    bulletsContainer.appendChild(bullet);
-                    //}
-
-
-
-                    //document.addEventListener('keyup', function (event) {
-                    //    if (event.keyCode === 37) k.prev();
-                    //    if (event.keyCode === 39) k.next();
-                    //}, false);
-
+                    k.next();
 
 
                 }
@@ -877,11 +896,11 @@
 
                 // Create dimmer elements to fade out preceding slides
                 layers.forEach(function (el, i) {
-                    if (!el.querySelector('.dimmer')) {
-                        var div = document.createElement("div");
-                        div.innerHTML = '<div class="dimmer"></div>';
-                        el.appendChild(div);
-                    };
+                    //if (!el.querySelector('.dimmer')) {
+                    //    var div = document.createElement("div");
+                    //    div.className = "dimmer";
+                    //    el.appendChild(div);
+                    //};
                 });
 
                 /**
@@ -1021,6 +1040,13 @@
 
 
 
+            // Create a new instance of kontext
+            var k = kontext(document.querySelector('.kontext'));
+
+            var two = document.querySelector('.two');
+            two.addEventListener('click', function (e) {
+                k.prev();
+            });
 
 
 
