@@ -694,7 +694,6 @@
     <!--https://codepen.io/arcs/pen/BodWvJ-->
     <!--https://codepen.io/violelune/pen/RKNaER-->
 
-
     <article class="kontext">
         <div class="layer one show">
 
@@ -754,6 +753,7 @@
                 </ul>
                 <a href="javascript:void(0)" id="gamemenu" class="fancy-button bg-gradient2"><span>GAME</span></a>
             </div>
+
         </div>
         <div class="layer two">
             <h2>Layer Two</h2>
@@ -877,7 +877,11 @@
 
                 // Create dimmer elements to fade out preceding slides
                 layers.forEach(function (el, i) {
-                    if (!el.querySelector('.dimmer')) el.innerHTML += '<div class="dimmer"></div>';
+                    if (!el.querySelector('.dimmer')) {
+                        var div = document.createElement("div");
+                        div.innerHTML = '<div class="dimmer"></div>';
+                        el.appendChild(div);
+                    };
                 });
 
                 /**
