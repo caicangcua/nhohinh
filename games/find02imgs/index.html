@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        body {
+            background: linear-gradient(to left,dodgerblue,#345);
+        }
+
+        .loading {
+            font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+            text-transform: uppercase;
+            width: 150px;
+            text-align: center;
+            line-height: 50px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 45%;
+            margin: auto;
+            /*transform: translateY(-50%);*/
+        }
+
+            .loading span {
+                position: relative;
+                z-index: 999;
+                color: #fff;
+            }
+
+            .loading:before {
+                content: '';
+                background: #61bdb6;
+                width: 128px;
+                height: 36px;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+                animation: 2s loadingBefore infinite ease-in-out;
+            }
+
+        @keyframes loadingBefore {
+            0% {
+                transform: translateX(-14px);
+            }
+
+            50% {
+                transform: translateX(14px);
+            }
+
+            100% {
+                transform: translateX(-14px);
+            }
+        }
+
+
+        .loading:after {
+            content: '';
+            background: #ff3600;
+            width: 14px;
+            height: 60px;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            opacity: .5;
+            animation: 2s loadingAfter infinite ease-in-out;
+        }
+
+        @keyframes loadingAfter {
+            0% {
+                transform: translateX(-50px);
+            }
+
+            50% {
+                transform: translateX(50px);
+            }
+
+            100% {
+                transform: translateX(-50px);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <span>Loading ...</span>
+    </div>
+
+    <main style="display:none" class="app ng-scope app-ready">
+        <div class="app__hud">
+            <div class="app__hud__game-info">Tìm 02 Món Ăn Giống Nhau</div>
+            <div class="app__hud__game-completed">
+
+            </div>
+            <div class="app__hud__game-status">Số lần: 0, Món: 16</div>
+            <button class="app__hud__btn-restart">Restart</button>
+
+        </div>
+        <div class="app__cards-container">
+            <div class="app__cards-container__card" role="button">
+                <div class="khoitao app__cards-container__card__front"></div>
+                <div class="back app__cards-container__card__back">
+                    <span class="foodhinh"></span>
+                </div>
+            </div>
+            <div class="rst">
+                <h1>CƠM PHÚC KÝ</h1>
+                <h2>Xin chúc mừng bạn đã hoàn thành trò chơi.<br />Chú ý kết quả này chỉ được bảo lưu trong vòng 3 phút.</h2>
+                <div class="pre">
+                </div>
+                <p>Bạn nhấn vào nút giảm giá phía dưới để chọn thực đơn.</p>
+                <div class="button-100 ">
+                    <div class="button" style="background:deeppink; display:inline-block">
+                    </div>
+                </div>
+                <p><a href="javascript:void(0)">Điện thoại</a><span>&middot;</span>093 934 40 99</p>
+                <p><a href="javascript:void(0)">FB Fanpage</a><span>&middot;</span>Com Phuc Ky</p>
+                <p><a href="javascript:void(0)">Địa chỉ</a><span>&middot;</span>376 CMT8, phường Bùi Hữu Nghĩa, Quận Bình Thủy, TP.Cần Thơ</p>
+            </div>
+
+
+        </div>
+    </main>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+    <script src='//cdn.rawgit.com/nnattawat/flip/v1.0.19/dist/jquery.flip.min.js'></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mgalante/jquery.redirect/master/jquery.redirect.js"></script>
+
+    <script type="text/javascript">
+
+        Node.prototype.hasClass = function (className) {
+            if (this.classList) {
+                return this.classList.contains(className);
+            } else {
+                return (-1 < this.className.indexOf(className));
+            }
+        };
+
+        Node.prototype.addClass = function (className) {
+            if (this.classList) {
+                this.classList.add(className);
+            } else if (!this.hasClass(className)) {
+                var classes = this.className.split(" ");
+                classes.push(className);
+                this.className = classes.join(" ");
+            }
+            return this;
+        };
+
+        Node.prototype.removeClass = function (className) {
+            if (this.classList) {
+                this.classList.remove(className);
+            } else {
+                var classes = this.className.split(" ");
+                classes.splice(classes.indexOf(className), 1);
+                this.className = classes.join(" ");
+            }
+            return this;
+        };
+
+        var jscss_addin , filesadded = "", jsLoader = function () { };
+
+        jsLoader.prototype = {
+            require: function (scripts, callback,jscontainer) {
+                this.loadCount = 0;
+                this.totalRequired = scripts.length;
+                this.callback = callback;
+
+                for (var i = 0; i < scripts.length; i++) {
+                    this.writeScript(scripts[i], jscontainer);
+                }
+            },
+            loaded: function (evt) {
+                this.loadCount++;
+                if (this.loadCount == this.totalRequired && typeof this.callback == 'function') this.callback.call();
+            },
+            writeScript: function (src, jscontainer) {
+                if (filesadded.indexOf("[" + src + "]") == -1) {
+                    var self = this;
+                    var s = document.createElement('script');
+                    s.type = "text/javascript";
+                    s.async = true;
+                    s.src = src;
+                    s.addEventListener('load', function (e) { self.loaded(e); }, false);
+                    jscontainer.appendChild(s);
+                    //
+                    filesadded += "[" + src + "]" //add to list of files already added, in the form of "[filename1],[filename2],etc"
+                } else {
+                    this.loaded();
+                }
+            }
+        }
+        function loadjscssfile(filename, filetype) {
+            if (filetype == "js") { //if filename is a external JavaScript file
+                var fileref = document.createElement('script')
+                fileref.setAttribute("type", "text/javascript");
+                fileref.setAttribute("src", filename);
+            }
+            else if (filetype == "css") { //if filename is an external CSS file
+                var fileref = document.createElement("link")
+                fileref.setAttribute("rel", "stylesheet");
+                fileref.setAttribute("type", "text/css");
+                fileref.setAttribute("href", filename);
+            }
+            if (typeof fileref != "undefined") {
+                //document.getElementsByTagName("head")[0].appendChild(fileref)
+                jscss_addin.appendChild(fileref);
+            }
+        }
+
+        function checkloadjscssfile(filename, filetype) {
+            if (filesadded.indexOf("[" + filename + "]") == -1) {
+                loadjscssfile(filename, filetype)
+                filesadded += "[" + filename + "]" //add to list of files already added, in the form of "[filename1],[filename2],etc"
+            }
+        }
+
+        function removejscssfile(filename, filetype) {
+            var removedelements = 0
+            var targetelement = (filetype == "js") ? "script" : (filetype == "css") ? "link" : "none" //determine element type to create nodelist using
+            var targetattr = (filetype == "js") ? "src" : (filetype == "css") ? "href" : "none" //determine corresponding attribute to test for
+            var allsuspects = document.getElementsByTagName(targetelement)
+            for (var i = allsuspects.length; i >= 0; i--) { //search backwards within nodelist for matching elements to remove
+                if (allsuspects[i] && allsuspects[i].getAttribute(targetattr) != null && allsuspects[i].getAttribute(targetattr).indexOf(filename) != -1) {
+                    allsuspects[i].parentNode.removeChild(allsuspects[i]) //remove element by calling parentNode.removeChild()
+                    removedelements += 1
+                }
+            }
+            if (removedelements > 0)
+                alert("Removed " + removedelements + " instances of " + filename)
+        }
+
+        function createjscssfile(filename, filetype) {
+            if (filetype == "js") { //if filename is a external JavaScript file
+                var fileref = document.createElement('script')
+                fileref.setAttribute("type", "text/javascript")
+                fileref.setAttribute("src", filename)
+            }
+            else if (filetype == "css") { //if filename is an external CSS file
+                fileref = document.createElement("link")
+                fileref.setAttribute("rel", "stylesheet")
+                fileref.setAttribute("type", "text/css")
+                fileref.setAttribute("href", filename)
+            }
+            return fileref
+        }
+
+        function replacejscssfile(oldfilename, newfilename, filetype) {
+            var replacedelements = 0
+            var targetelement = (filetype == "js") ? "script" : (filetype == "css") ? "link" : "none" //determine element type to create nodelist using
+            var targetattr = (filetype == "js") ? "src" : (filetype == "css") ? "href" : "none" //determine corresponding attribute to test for
+            var allsuspects = document.getElementsByTagName(targetelement)
+            for (var i = allsuspects.length; i >= 0; i--) { //search backwards within nodelist for matching elements to remove
+                if (allsuspects[i] && allsuspects[i].getAttribute(targetattr) != null && allsuspects[i].getAttribute(targetattr).indexOf(oldfilename) != -1) {
+                    var newelement = createjscssfile(newfilename, filetype)
+                    allsuspects[i].parentNode.replaceChild(newelement, allsuspects[i])
+                    replacedelements += 1
+                }
+            }
+            if (replacedelements > 0)
+                alert("Replaced " + replacedelements + " instances of " + oldfilename + " with " + newfilename)
+        }
+
+        //window.addEventListener('load', function () {
+        //    //for (var i = 0; i < lstImgs.length; i++) {
+        //    //    lstImgs[i].removeClass('loading');
+        //    //    //if (allimages[i].getAttribute('data-src')) {
+        //    //    //    allimages[i].setAttribute('src', allimages[i].getAttribute('data-src'));
+        //    //    //}
+        //    //}
+        //    checkloadjscssfile('../menu.css', 'css');
+        //    checkloadjscssfile('../menu.js', 'js');
+
+        //}, false)
+
+
+    </script>
+
+    <script type="text/javascript">
+        var args;
+        function trochoi(params) {
+            args = params;
+            jscss_addin = document.querySelector('.loading');
+            setTimeout(function () {
+                checkloadjscssfile('index.css', 'css');
+                document.querySelector('.app.ng-scope').style.display = '';
+                checkloadjscssfile('index.js', 'js');
+                //
+                jscss_addin.removeClass('loading');
+                jscss_addin.style.display = 'none';
+            },1000);
+        }
+    </script>
+
+
+</body>
+</html>

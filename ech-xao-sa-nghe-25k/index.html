@@ -22,7 +22,7 @@
 
         body {
             background-color: #222;
-    overflow: hidden;
+            overflow: hidden;
             font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
             font-size: 14px;
             color: #000;
@@ -351,7 +351,7 @@
     <style type="text/css">
         .my-nav {
             position: absolute;
-            z-index: 1;
+            z-index: 3;
             /*opacity: 0;*/
         }
 
@@ -423,18 +423,6 @@
 
         .my-nav__link:last-child {
             margin-bottom: 0;
-        }
-
-        .section {
-            position: absolute;
-            z-index: 2;
-            height: 100%;
-            width: 100%;
-            display: table;
-            pointer-events: none;
-            -webkit-transition: transform 0.45s cubic-bezier(0, 0, 0.21, 1);
-            transition: transform 0.45s cubic-bezier(0, 0, 0.21, 1);
-            background: lightyellow;
         }
 
         .kontext {
@@ -741,9 +729,9 @@
                 background: radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
             }
 
-            .layer.two {
+            /*.layer.two {
                 background: #64b9d2;
-            }
+            }*/
     </style>
 
 
@@ -816,9 +804,7 @@
             </div>
 
         </div>
-        <div class="layer two">
-            <h2>Layer Two</h2>
-        </div>
+        <iframe src="" class="layer two" frameborder="0" scrolling="no"></iframe>
     </div>
 
 
@@ -868,9 +854,31 @@
                 e.stopPropagation();
                 if (e.target.id == 'find02img') {
 
+                    /* From Modernizr */
+                    //function whichTransitionEvent() {
+                    //    var t;
+                    //    var el = document.createElement('fakeelement');
+                    //    var transitions = {
+                    //        'transition': 'transitionend',
+                    //        'OTransition': 'oTransitionEnd',
+                    //        'MozTransition': 'transitionend',
+                    //        'WebkitTransition': 'webkitTransitionEnd'
+                    //    }
+
+                    //    for (t in transitions) {
+                    //        if (el.style[t] !== undefined) {
+                    //            return transitions[t];
+                    //        }
+                    //    }
+                    //}
+                    //document.querySelector('.kontext').addEventListener(whichTransitionEvent(), function () {
+  
+                    //});
+
                     k.next();
 
-
+                    two.src = '../games/find02imgs/index.html';
+                    gameitem.style.display =  'none' ;
                 }
             });
 
@@ -1044,10 +1052,13 @@
             var k = kontext(document.querySelector('.kontext'));
 
             var two = document.querySelector('.two');
-            two.addEventListener('click', function (e) {
-                k.prev();
-            });
-
+            two.onload = function() {
+                two.contentWindow.trochoi({
+                    cb: function () {
+                        k.prev();
+                    }
+                });
+            }
 
 
         })();
