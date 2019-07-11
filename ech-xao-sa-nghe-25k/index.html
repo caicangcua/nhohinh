@@ -67,7 +67,7 @@
         /* Starburst 3 */
         .kmribbon {
             position: absolute !important;
-            z-index: 50000000;
+            z-index: 2;
             top: 2em;
             left: 2em;
             font-family: Arial, sans-serif;
@@ -133,7 +133,6 @@
             -ms-user-select: none;
             user-select: none;
         }
-
     </style>
 
     <style>
@@ -166,7 +165,7 @@
         .wrapper {
             text-align: center;
             position: absolute;
-            z-index: 9999999;
+            z-index: 2;
         }
 
         h3 {
@@ -352,7 +351,7 @@
     <style type="text/css">
         .my-nav {
             position: absolute;
-            z-index: 222222222;
+            z-index: 1;
             /*opacity: 0;*/
         }
 
@@ -382,7 +381,7 @@
         .my-nav__item {
             transition: opacity 150ms ease-in-out;
             display: block;
-            font-size: 0.90rem;
+            /*font-size: 0.90rem;*/
             /*opacity: 0;*/
         }
 
@@ -396,16 +395,18 @@
             display: inline-block;
             width: auto;
             margin: 1rem 0;
-            padding: 0.25rem 0.5rem;
+            padding: 0.5rem 0.5rem;
             box-shadow: inset 0 0 0 1px #fff;
             border-radius: 25px;
             color: #fff;
             white-space: nowrap;
+            cursor: pointer;
         }
 
         .my-nav__link--template:hover {
             background-color: #ffc946;
             color: #fff;
+            box-shadow: none !important;
         }
 
         .my-nav__link--new {
@@ -423,7 +424,268 @@
         .my-nav__link:last-child {
             margin-bottom: 0;
         }
+
+        .section {
+            position: absolute;
+            z-index: 2;
+            height: 100%;
+            width: 100%;
+            display: table;
+            pointer-events: none;
+            -webkit-transition: transform 0.45s cubic-bezier(0, 0, 0.21, 1);
+            transition: transform 0.45s cubic-bezier(0, 0, 0.21, 1);
+            background: lightyellow;
+        }
+
+.kontext {
+	width: 100%;
+	height: 100%;
+    position:fixed;
+    top:0px;
+}
+
+.kontext .layer {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	visibility: hidden;
+	/*box-shadow: 0px 0px 120px rgba( 0, 0, 0, 0.8 );*/
+}
+
+.kontext .layer.show {
+	visibility: visible;
+}
+
+.kontext.capable {
+	-webkit-perspective: 1000px;
+	   -moz-perspective: 1000px;
+	        perspective: 1000px;
+
+	-webkit-transform-style: preserve-3d;
+	   -moz-transform-style: preserve-3d;
+	        transform-style: preserve-3d;
+}
+
+.kontext.capable .layer {
+	-webkit-transform: translateZ( -100px );
+	   -moz-transform: translateZ( -100px );
+	        transform: translateZ( -100px );
+}
+
+.kontext.capable .layer.show {
+	-webkit-transform: translateZ( 0px );
+	   -moz-transform: translateZ( 0px );
+	        transform: translateZ( 0px );
+}
+
+.kontext.capable.animate .layer.show.right {
+	-webkit-animation: show-right 1s forwards ease;
+	   -moz-animation: show-right 1s forwards ease;
+	        animation: show-right 1s forwards ease;
+}
+
+.kontext.capable.animate .layer.hide.right {
+	-webkit-animation: hide-right 1s forwards ease;
+	   -moz-animation: hide-right 1s forwards ease;
+	        animation: hide-right 1s forwards ease;
+}
+
+.kontext.capable.animate .layer.show.left {
+	-webkit-animation: show-left 1s forwards ease;
+	   -moz-animation: show-left 1s forwards ease;
+	        animation: show-left 1s forwards ease;
+}
+
+.kontext.capable.animate .layer.hide.left {
+	-webkit-animation: hide-left 1s forwards ease;
+	   -moz-animation: hide-left 1s forwards ease;
+	        animation: hide-left 1s forwards ease;
+}
+
+
+/* CSS animation keyframes */
+
+@-webkit-keyframes show-right {
+	0%   { -webkit-transform: translateZ( -200px ); }
+	40%  { -webkit-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg ); }
+	100% { -webkit-transform: translateZ( 0px ); }
+}
+
+@-webkit-keyframes hide-right {
+	0%   { -webkit-transform: translateZ( 0px ); visibility: visible; }
+	40%  { -webkit-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg ); }
+	100% { -webkit-transform: translateZ( -200px ); visibility: hidden; }
+}
+
+@-moz-keyframes show-right {
+	0%   { -moz-transform: translateZ( -200px ); }
+	40%  { -moz-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg ); }
+	100% { -moz-transform: translateZ( 0px ); }
+}
+
+@-moz-keyframes hide-right {
+	0%   { -moz-transform: translateZ( 0px ); visibility: visible; }
+	40%  { -moz-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg ); }
+	100% { -moz-transform: translateZ( -200px ); visibility: hidden; }
+}
+
+@keyframes show-right {
+	0%   { transform: translateZ( -200px ); }
+	40%  { transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg ); }
+	100% { transform: translateZ( 0px ); }
+}
+
+@keyframes hide-right {
+	0%   { transform: translateZ( 0px ); visibility: visible; }
+	40%  { transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg ); }
+	100% { transform: translateZ( -200px ); visibility: hidden; }
+}
+
+
+@-webkit-keyframes show-left {
+	0%   { -webkit-transform: translateZ( -200px ); }
+	40%  { -webkit-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg ); }
+	100% { -webkit-transform: translateZ( 0px ); }
+}
+
+@-webkit-keyframes hide-left {
+	0%   { -webkit-transform: translateZ( 0px ); visibility: visible; }
+	40%  { -webkit-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg ); }
+	100% { -webkit-transform: translateZ( -200px ); visibility: hidden; }
+}
+
+@-moz-keyframes show-left {
+	0%   { -moz-transform: translateZ( -200px ); }
+	40%  { -moz-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg ); }
+	100% { -moz-transform: translateZ( 0px ); }
+}
+
+@-moz-keyframes hide-left {
+	0%   { -moz-transform: translateZ( 0px ); visibility: visible; }
+	40%  { -moz-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg ); }
+	100% { -moz-transform: translateZ( -200px ); visibility: hidden; }
+}
+
+@keyframes show-left {
+	0%   { transform: translateZ( -200px ); }
+	40%  { transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg ); }
+	100% { transform: translateZ( 0px ); }
+}
+
+@keyframes hide-left {
+	0%   { transform: translateZ( 0px ); visibility: visible; }
+	40%  { transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg ); }
+	100% { transform: translateZ( -200px ); visibility: hidden; }
+}
+
+
+/* Dimmer */
+
+.kontext .layer .dimmer {
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	visibility: hidden;
+	background: transparent;
+}
+
+	.kontext.capable.animate .layer .dimmer {
+		-webkit-transition: background 1s ease;
+		   -moz-transition: background 1s ease;
+		        transition: background 1s ease;
+	}
+
+	.kontext.capable.animate .layer.hide .dimmer {
+		visibility: visible;
+		background: rgba( 0, 0, 0, 0.7 );
+	}
+
+
+
+
+.layer {
+	text-align: center;
+	text-shadow: 1px 1px 0px rgba( 0, 0, 0, 0.1 );
+}
+
+.layer h2 {
+	position: relative;
+	top: 20%;
+	margin: 0;
+	font-size: 6.25em;
+}
+
+.layer p {
+	position: relative;
+	top: 20%;
+	margin: 0;
+}
+
+
+.layer.two {
+	background: #95dc84;
+}
+
+.layer.three {
+	background: #64b9d2;
+}
+
+.bullets {
+	position: absolute;
+	width: 100%;
+	bottom: 20px;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+    z-index:10;
+}
+
+	.bullets li {
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		margin: 0 3px;
+
+		background: rgba( 255, 255, 255, 0.5 );
+		box-shadow: 0px 0px 4px rgba( 0, 0, 0, 0.2 );
+		cursor: pointer;
+
+		-webkit-tap-highlight-color: rgba( 0, 0, 0, 0 );
+	}
+
+		.bullets li:hover {
+			background: rgba( 255, 255, 255, 0.8 );
+		}
+
+		.bullets li.active {
+			cursor: default;
+			background: #fff;
+		}
+
+@media screen and (max-width: 400px) {
+	body {
+		font-size: 12px;
+	}
+
+	.layer h2 {
+		font-size: 5em;
+	}
+
+	.bullets li {
+		margin: 0 6px;
+	}
+}
+
+
     </style>
+
+
 
 </head>
 <body>
@@ -432,63 +694,77 @@
     <!--https://codepen.io/arcs/pen/BodWvJ-->
     <!--https://codepen.io/violelune/pen/RKNaER-->
 
-    <div class="kmribbon noselect">
-        <div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div>
-        <span class="dis">
-            GIÁ<div style="font-size: 30px">25.000đ</div>
-            FREE SHIP
-        </span>
 
-    </div>
-    <div class="wrapper" style="right:10px">
-        <a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a>
-    </div>
+    <article class="kontext">
+        <div class="layer one show">
 
+            <div class="kmribbon noselect">
+                <div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div>
+                <span class="dis">
+                    GIÁ<div style="font-size: 30px">25.000đ</div>
+                    FREE SHIP
+                </span>
 
-    <!-- Swiper -->
-    <div class="swiper-container gallery-top">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide" style="background-image:url(0.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(1.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(2.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(3.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(4.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(5.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(6.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(7.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(8.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(9.jpg)"></div>
-        </div>
-        <!-- Add Arrows -->
-        <div class="swiper-button-next swiper-button-white"></div>
-        <div class="swiper-button-prev swiper-button-white"></div>
-    </div>
-    <div class="swiper-container gallery-thumbs">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide" style="background-image:url(0.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(1.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(2.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(3.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(4.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(5.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(6.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(7.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(8.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(9.jpg)"></div>
-        </div>
-    </div>
-    <div class="wrapper" style="right:10px;top:unset;bottom:0px">
-        <ul id="gameitem" style="display:none" class="my-nav my-nav--list">
-            <div id="wrapper-templates">
-                <li class="my-nav__item"> <a class="my-nav__link my-nav__link--template">Home</a> </li>
-                <li class="my-nav__item"> <a class="my-nav__link my-nav__link--template">About</a> </li>
-                <li class="my-nav__item"> <a class="my-nav__link my-nav__link--template">Contact</a> </li>
-                <li class="my-nav__item"> <a class="my-nav__link my-nav__link--new">+ New element</a> </li>
             </div>
-        </ul>
-        <a href="javascript:void(0)" id="gamemenu"  class="fancy-button bg-gradient2"><span>GAME</span></a>
+            <div class="wrapper" style="right:10px">
+                <a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a>
+            </div>
 
-    </div>
+
+            <!-- Swiper -->
+            <div class="swiper-container gallery-top">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" style="background-image:url(0.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(1.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(2.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(3.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(4.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(5.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(6.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(7.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(8.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(9.jpg)"></div>
+                </div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next swiper-button-white"></div>
+                <div class="swiper-button-prev swiper-button-white"></div>
+            </div>
+            <div class="swiper-container gallery-thumbs">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" style="background-image:url(0.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(1.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(2.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(3.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(4.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(5.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(6.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(7.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(8.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(9.jpg)"></div>
+                </div>
+            </div>
+            <div class="wrapper" style="right:10px;top:unset;bottom:0px">
+                <ul id="gameitem" style="display:none" class="my-nav my-nav--list">
+                    <div id="wrapper-templates">
+                        <!--<li class="my-nav__item"> <a class="my-nav__link my-nav__link--template">Home</a> </li>-->
+                        <li class="my-nav__item"><a id="openbox" class="my-nav__link my-nav__link--template">Mở hộp tìm quà</a> </li>
+                        <li class="my-nav__item"><a id="find02img" class="my-nav__link my-nav__link--template">Lật hình tìm 02 món ăn giống nhau</a> </li>
+                        <!--<li class="my-nav__item"> <a class="my-nav__link my-nav__link--new">Lật tìm hình 02 món ăn giống nhau</a> </li>-->
+                    </div>
+                </ul>
+                <a href="javascript:void(0)" id="gamemenu" class="fancy-button bg-gradient2"><span>GAME</span></a>
+            </div>
+        </div>
+        <div class="layer two">
+            <h2>Layer Two</h2>
+        </div>
+        <div class="layer three">
+            <h2>Layer Three</h2>
+        </div>
+    </article>
+
+    <ul class="bullets"></ul>
+
     <!-- Swiper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
     <!-- Initialize Swiper -->
@@ -514,19 +790,236 @@
                 swiper: galleryThumbs,
             },
         });
-    
+
         (function () {
             'use strict';
-            var gamemenu = document.getElementById('gamemenu'), gameitem = document.getElementById('gameitem');
-            gamemenu.addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                gameitem.style.display = '';
-            });
 
+            var gamemenu = document.getElementById('gamemenu'), gameitem = document.getElementById('gameitem');
             document.addEventListener("click", function () {
                 gameitem.style.display = 'none';
             });
+            gamemenu.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var ht = gameitem.style.display;
+                gameitem.style.display = (ht == '') ? 'none' : '';
+            });
+
+
+            gameitem.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (e.target.id == 'find02img') {
+
+             
+
+
+                    // Create a new instance of kontext
+                    var k = kontext(document.querySelector('.kontext'));
+
+                    var two = document.querySelector('.two');
+                    two.addEventListener('click', function (e) {
+                        k.prev();
+                        k.changed.remove();
+                    });
+
+                    // Update the bullets when the layer changes
+                    k.changed.add(function (layer, index) {
+                        var c = index;
+                    });
+                    k.show(1);
+
+                    //// Demo page JS
+
+                    //var bulletsContainer = document.body.querySelector('.bullets');
+
+                    //// Create one bullet per layer
+                    //for (var i = 0, len = k.getTotal() ; i < len; i++) {
+                    //    var bullet = document.createElement('li');
+                    //    bullet.className = i === 0 ? 'active' : '';
+                    //    bullet.setAttribute('index', i);
+                    //    bullet.onclick = function (event) { k.show(event.target.getAttribute('index')) };
+                    //    bullet.ontouchstart = function (event) { k.show(event.target.getAttribute('index')) };
+                    //    bulletsContainer.appendChild(bullet);
+                    //}
+
+
+
+                    //document.addEventListener('keyup', function (event) {
+                    //    if (event.keyCode === 37) k.prev();
+                    //    if (event.keyCode === 39) k.next();
+                    //}, false);
+
+
+
+                }
+            });
+
+            //https://uicookies.com/css-page-transition/
+            window.kontext = function (container) {
+
+                // Dispatched when the current layer changes
+                var changed = new kontext.Signal();
+
+                // All layers in this instance of kontext
+                var layers = Array.prototype.slice.call(container.querySelectorAll('.layer'));
+
+                // Flag if the browser is capable of handling our fancy transition
+                var capable = 'WebkitPerspective' in document.body.style ||
+                                'MozPerspective' in document.body.style ||
+                                'msPerspective' in document.body.style ||
+                                'OPerspective' in document.body.style ||
+                                'perspective' in document.body.style;
+
+                if (capable) {
+                    container.classList.add('capable');
+                }
+
+                // Create dimmer elements to fade out preceding slides
+                layers.forEach(function (el, i) {
+                    if (!el.querySelector('.dimmer')) el.innerHTML += '<div class="dimmer"></div>';
+                });
+
+                /**
+                 * Transitions to and shows the target layer.
+                 *
+                 * @param target index of layer or layer DOM element
+                 */
+                function show(target, direction) {
+
+                    // Make sure our listing of available layers is up to date
+                    layers = Array.prototype.slice.call(container.querySelectorAll('.layer'));
+
+                    // Flag to CSS that we're ready to animate transitions
+                    container.classList.add('animate');
+
+                    // Flag which direction
+                    direction = direction || (target > getIndex() ? 'right' : 'left');
+
+                    // Accept multiple types of targets
+                    if (typeof target === 'string') target = parseInt(target);
+                    if (typeof target !== 'number') target = getIndex(target);
+
+                    // Enforce index bounds
+                    target = Math.max(Math.min(target, layers.length), 0);
+
+                    // Only navigate if were able to locate the target
+                    if (layers[target] && !layers[target].classList.contains('show')) {
+
+                        layers.forEach(function (el, i) {
+                            el.classList.remove('left', 'right');
+                            el.classList.add(direction);
+                            if (el.classList.contains('show')) {
+                                el.classList.remove('show');
+                                el.classList.add('hide');
+                            }
+                            else {
+                                el.classList.remove('hide');
+                            }
+                        });
+
+                        layers[target].classList.add('show');
+
+                        changed.dispatch(layers[target], target);
+
+                    }
+
+                }
+
+                /**
+                 * Shows the previous layer.
+                 */
+                function prev() {
+
+                    var index = getIndex() - 1;
+                    show(index >= 0 ? index : layers.length + index, 'left');
+
+                }
+
+                /**
+                 * Shows the next layer.
+                 */
+                function next() {
+
+                    show((getIndex() + 1) % layers.length, 'right');
+
+                }
+
+                /**
+                 * Retrieves the index of the current slide.
+                 *
+                 * @param of [optional] layer DOM element which index is
+                 * to be returned
+                 */
+                function getIndex(of) {
+
+                    var index = 0;
+
+                    layers.forEach(function (layer, i) {
+                        if ((of && of == layer) || (!of && layer.classList.contains('show'))) {
+                            index = i;
+                            return;
+                        }
+                    });
+
+                    return index;
+
+                }
+
+                /**
+                 * Retrieves the total number of layers.
+                 */
+                function getTotal() {
+
+                    return layers.length;
+
+                }
+
+                // API
+                return {
+
+                    show: show,
+                    prev: prev,
+                    next: next,
+
+                    getIndex: getIndex,
+                    getTotal: getTotal,
+
+                    changed: changed
+
+                };
+
+            };
+
+            /**
+             * Minimal utility for dispatching signals (events).
+             */
+            kontext.Signal = function () {
+                this.listeners = [];
+            }
+
+            kontext.Signal.prototype.add = function (callback) {
+                this.listeners.push(callback);
+            }
+
+            kontext.Signal.prototype.remove = function (callback) {
+                var i = this.listeners.indexOf(callback);
+
+                if (i >= 0) this.listeners.splice(i, 1);
+            }
+
+            kontext.Signal.prototype.dispatch = function () {
+                var args = Array.prototype.slice.call(arguments);
+                this.listeners.forEach(function (f, i) {
+                    f.apply(null, args);
+                });
+            }
+
+
+
+
+
+
         })();
     </script>
 
