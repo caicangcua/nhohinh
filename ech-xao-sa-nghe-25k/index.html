@@ -1074,9 +1074,18 @@
                     //});
 
                     //k.next();
-
-                    //two.src = '../games/find02imgs/index.html';
-                    //gameitem.style.display =  'none' ;
+                    var back = document.querySelector('.back');
+                    back.onload = function () {
+                        setTimeout(function () {
+                            back.contentWindow.trochoi({
+                                cb: function () {
+                                    k.prev();
+                                }
+                            });
+                        }, 1000);
+                    };
+                    back.src = '../games/find02imgs/index.html';
+                    gameitem.style.display =  'none' ;
                 }
             });
 
