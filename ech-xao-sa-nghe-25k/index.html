@@ -446,7 +446,7 @@
                 -o-transform: rotateY(0deg);
                 -ms-transform: rotateY(0deg);
                 transform: rotateY(0deg);
-                 opacity: 1;
+
             }
 
             .flip-container.hoverx .front {
@@ -454,7 +454,6 @@
                 -moz-transform: rotateY(180deg);
                 -o-transform: rotateY(180deg);
                 transform: rotateY(180deg);
-                 opacity: 0.5;
             }
 
         /* END: Accommodating for IE */
@@ -525,7 +524,6 @@
             -o-transform: rotateY(-180deg);
             -ms-transform: rotateY(-180deg);
             transform: rotateY(-180deg);
-            opacity: 0.5;
         }
 
         /* vertical */
@@ -555,7 +553,6 @@
             -o-transform: rotateX(0deg);
             -ms-transform: rotateX(0deg);
             transform: rotateX(0deg);
-            opacity: 1;
         }
 
         .vertical.flip-container.hoverx .front {
@@ -563,7 +560,6 @@
             -moz-transform: rotateX(180deg);
             -o-transform: rotateX(180deg);
             transform: rotateX(180deg);
-            opacity: 0.5;
         }
         /* END: Accommodating for IE */
     </style>
@@ -735,6 +731,8 @@
         var galleryThumbs = new Swiper('.gallery-thumbs', {
             spaceBetween: 10,
             slidesPerView: 4,
+            preloadImages: false,
+            lazyLoading: true,
             loop: false,
             freeMode: false,
             loopedSlides: 5, //looped slides should be the same
@@ -744,6 +742,8 @@
         var galleryTop = new Swiper('.gallery-top', {
             spaceBetween: 10,
             loop: false,
+            preloadImages: false,
+            lazyLoading: true,
             loopedSlides: 5, //looped slides should be the same
             navigation: {
                 nextEl: '.swiper-button-next',
