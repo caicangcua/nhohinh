@@ -733,7 +733,196 @@
                 background: #64b9d2;
             }*/
     </style>
+    <style type="text/css">
+        /* simple */
+        .flip-container {
+            -webkit-perspective: 1000;
+            -moz-perspective: 1000;
+            -ms-perspective: 1000;
+            perspective: 1000;
+            -ms-transform: perspective(1000px);
+            -moz-transform: perspective(1000px);
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            border: 1px solid #ccc;
+        }
 
+
+
+            /* START: Accommodating for IE */
+            .flip-container.hoverx .back {
+                -webkit-transform: rotateY(0deg);
+                -moz-transform: rotateY(0deg);
+                -o-transform: rotateY(0deg);
+                -ms-transform: rotateY(0deg);
+                transform: rotateY(0deg);
+            }
+
+            .flip-container.hoverx .front {
+                -webkit-transform: rotateY(180deg);
+                -moz-transform: rotateY(180deg);
+                -o-transform: rotateY(180deg);
+                transform: rotateY(180deg);
+            }
+
+        /* END: Accommodating for IE */
+
+        .flip-container, .front, .back {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+        }
+
+        .flipper {
+            -webkit-transition: 0.6s;
+            -webkit-transform-style: preserve-3d;
+            -ms-transition: 0.6s;
+            -moz-transition: 0.6s;
+            -moz-transform: perspective(1000px);
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            transition: 0.6s;
+            transform-style: preserve-3d;
+            /*position: relative;*/
+                        position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+        }
+
+        .front, .back {
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transition: 0.6s;
+            -webkit-transform-style: preserve-3d;
+            -webkit-transform: rotateY(0deg);
+            -moz-transition: 0.6s;
+            -moz-transform-style: preserve-3d;
+            -moz-transform: rotateY(0deg);
+            -o-transition: 0.6s;
+            -o-transform-style: preserve-3d;
+            -o-transform: rotateY(0deg);
+            -ms-transition: 0.6s;
+            -ms-transform-style: preserve-3d;
+            -ms-transform: rotateY(0deg);
+            transition: 0.6s;
+            transform-style: preserve-3d;
+            transform: rotateY(0deg);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .front {
+            -webkit-transform: rotateY(0deg);
+            -ms-transform: rotateY(0deg);
+                      background: -webkit-radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
+                background: radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
+            z-index: 2;
+        }
+
+        .back {
+            background: lightblue;
+            -webkit-transform: rotateY(-180deg);
+            -moz-transform: rotateY(-180deg);
+            -o-transform: rotateY(-180deg);
+            -ms-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
+        }
+
+        .front .name {
+            font-size: 2em;
+            display: inline-block;
+            background: rgba(33, 33, 33, 0.9);
+            color: #f8f8f8;
+            font-family: Courier;
+            padding: 5px 10px;
+            border-radius: 5px;
+            bottom: 60px;
+            left: 25%;
+            position: absolute;
+            text-shadow: 0.1em 0.1em 0.05em #333;
+            display: none;
+            -webkit-transform: rotate(-20deg);
+            -moz-transform: rotate(-20deg);
+            -ms-transform: rotate(-20deg);
+            transform: rotate(-20deg);
+        }
+
+        .back-logo {
+            position: absolute;
+            top: 40px;
+            left: 90px;
+            width: 160px;
+            height: 117px;
+            background: url(logo.png) 0 0 no-repeat;
+        }
+
+        .back-title {
+            font-weight: bold;
+            color: #00304a;
+            position: absolute;
+            top: 180px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            text-shadow: 0.1em 0.1em 0.05em #acd7e5;
+            font-family: Courier;
+            font-size: 22px;
+        }
+
+        .back p {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 0 20px;
+            font-size: 18px;
+        }
+
+        /* vertical */
+        .vertical.flip-container {
+            position: relative;
+        }
+
+        .vertical .back {
+            -webkit-transform: rotateX(180deg);
+            -moz-transform: rotateX(180deg);
+            -ms-transform: rotateX(180deg);
+            transform: rotateX(180deg);
+        }
+
+        .vertical.flip-container .flipper {
+            -webkit-transform-origin: 100% 213.5px;
+            -moz-transform-origin: 100% 213.5px;
+            -ms-transform-origin: 100% 213.5px;
+            transform-origin: 100% 213.5px;
+        }
+
+
+        /* START: Accommodating for IE */
+        .vertical.flip-container.hoverx .back {
+            -webkit-transform: rotateX(0deg);
+            -moz-transform: rotateX(0deg);
+            -o-transform: rotateX(0deg);
+            -ms-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+        }
+
+        .vertical.flip-container.hoverx .front {
+            -webkit-transform: rotateX(180deg);
+            -moz-transform: rotateX(180deg);
+            -o-transform: rotateX(180deg);
+            transform: rotateX(180deg);
+        }
+        /* END: Accommodating for IE */
+    </style>
 
 
 </head>
@@ -743,69 +932,78 @@
     <!--https://codepen.io/arcs/pen/BodWvJ-->
     <!--https://codepen.io/violelune/pen/RKNaER-->
 
-    <div class="kontext">
+    <div class="flip-container" id="flip-toggle">
+        <div class="flipper">
+            <div class="front">
+                <div class="kmribbon noselect">
+                    <div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div>
+                    <span class="dis">
+                        GIÁ<div style="font-size: 30px">25.000đ</div>
+                        FREE SHIP
+                    </span>
+
+                </div>
+                <div class="wrapper" style="right:10px">
+                    <a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a>
+                </div>
+
+
+                <!-- Swiper -->
+                <div class="swiper-container gallery-top">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" style="background-image:url(0.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(1.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(2.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(3.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(4.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(5.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(6.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(7.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(8.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(9.jpg)"></div>
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next swiper-button-white"></div>
+                    <div class="swiper-button-prev swiper-button-white"></div>
+                </div>
+                <div class="swiper-container gallery-thumbs">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" style="background-image:url(0.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(1.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(2.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(3.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(4.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(5.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(6.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(7.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(8.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(9.jpg)"></div>
+                    </div>
+                </div>
+                <div class="wrapper" style="right:10px;top:unset;bottom:0px">
+                    <ul id="gameitem" style="display:none" class="my-nav my-nav--list">
+                        <div id="wrapper-templates">
+                            <!--<li class="my-nav__item"> <a class="my-nav__link my-nav__link--template">Home</a> </li>-->
+                            <li class="my-nav__item"><a id="openbox" class="my-nav__link my-nav__link--template">Mở hộp tìm quà</a> </li>
+                            <li class="my-nav__item"><a id="find02img" class="my-nav__link my-nav__link--template">Lật hình tìm 02 món ăn giống nhau</a> </li>
+                            <!--<li class="my-nav__item"> <a class="my-nav__link my-nav__link--new">Lật tìm hình 02 món ăn giống nhau</a> </li>-->
+                        </div>
+                    </ul>
+                    <a href="javascript:void(0)" id="gamemenu" class="fancy-button bg-gradient2"><span>GAME</span></a>
+                </div>
+
+            </div>
+            <iframe src="" class="back" frameborder="0" scrolling="no"></iframe>
+        </div>
+    </div>
+
+    <!--<div class="kontext">
         <div class="layer one show">
 
-            <div class="kmribbon noselect">
-                <div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div>
-                <span class="dis">
-                    GIÁ<div style="font-size: 30px">25.000đ</div>
-                    FREE SHIP
-                </span>
-
-            </div>
-            <div class="wrapper" style="right:10px">
-                <a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a>
-            </div>
-
-
-            <!-- Swiper -->
-            <div class="swiper-container gallery-top">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide" style="background-image:url(0.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(1.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(2.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(3.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(4.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(5.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(6.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(7.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(8.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(9.jpg)"></div>
-                </div>
-                <!-- Add Arrows -->
-                <div class="swiper-button-next swiper-button-white"></div>
-                <div class="swiper-button-prev swiper-button-white"></div>
-            </div>
-            <div class="swiper-container gallery-thumbs">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide" style="background-image:url(0.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(1.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(2.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(3.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(4.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(5.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(6.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(7.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(8.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url(9.jpg)"></div>
-                </div>
-            </div>
-            <div class="wrapper" style="right:10px;top:unset;bottom:0px">
-                <ul id="gameitem" style="display:none" class="my-nav my-nav--list">
-                    <div id="wrapper-templates">
-                        <!--<li class="my-nav__item"> <a class="my-nav__link my-nav__link--template">Home</a> </li>-->
-                        <li class="my-nav__item"><a id="openbox" class="my-nav__link my-nav__link--template">Mở hộp tìm quà</a> </li>
-                        <li class="my-nav__item"><a id="find02img" class="my-nav__link my-nav__link--template">Lật hình tìm 02 món ăn giống nhau</a> </li>
-                        <!--<li class="my-nav__item"> <a class="my-nav__link my-nav__link--new">Lật tìm hình 02 món ăn giống nhau</a> </li>-->
-                    </div>
-                </ul>
-                <a href="javascript:void(0)" id="gamemenu" class="fancy-button bg-gradient2"><span>GAME</span></a>
-            </div>
 
         </div>
         <iframe src="" class="layer two" frameborder="0" scrolling="no"></iframe>
-    </div>
+    </div>-->
 
 
     <!-- Swiper JS -->
@@ -853,7 +1051,7 @@
                 e.preventDefault();
                 e.stopPropagation();
                 if (e.target.id == 'find02img') {
-
+                    document.querySelector('#flip-toggle').classList.toggle('hoverx');
                     /* From Modernizr */
                     //function whichTransitionEvent() {
                     //    var t;
@@ -875,192 +1073,12 @@
   
                     //});
 
-                    k.next();
+                    //k.next();
 
-                    two.src = '../games/find02imgs/index.html';
-                    gameitem.style.display =  'none' ;
+                    //two.src = '../games/find02imgs/index.html';
+                    //gameitem.style.display =  'none' ;
                 }
             });
-
-            //https://uicookies.com/css-page-transition/
-            window.kontext = function (container) {
-
-                // Dispatched when the current layer changes
-                var changed = new kontext.Signal();
-
-                // All layers in this instance of kontext
-                var layers = Array.prototype.slice.call(container.querySelectorAll('.layer'));
-
-                // Flag if the browser is capable of handling our fancy transition
-                var capable = 'WebkitPerspective' in document.body.style ||
-                                'MozPerspective' in document.body.style ||
-                                'msPerspective' in document.body.style ||
-                                'OPerspective' in document.body.style ||
-                                'perspective' in document.body.style;
-
-                if (capable) {
-                    container.classList.add('capable');
-                }
-
-                // Create dimmer elements to fade out preceding slides
-                layers.forEach(function (el, i) {
-                    //if (!el.querySelector('.dimmer')) {
-                    //    var div = document.createElement("div");
-                    //    div.className = "dimmer";
-                    //    el.appendChild(div);
-                    //};
-                });
-
-                /**
-                 * Transitions to and shows the target layer.
-                 *
-                 * @param target index of layer or layer DOM element
-                 */
-                function show(target, direction) {
-
-                    // Make sure our listing of available layers is up to date
-                    layers = Array.prototype.slice.call(container.querySelectorAll('.layer'));
-
-                    // Flag to CSS that we're ready to animate transitions
-                    container.classList.add('animate');
-
-                    // Flag which direction
-                    direction = direction || (target > getIndex() ? 'right' : 'left');
-
-                    // Accept multiple types of targets
-                    if (typeof target === 'string') target = parseInt(target);
-                    if (typeof target !== 'number') target = getIndex(target);
-
-                    // Enforce index bounds
-                    target = Math.max(Math.min(target, layers.length), 0);
-
-                    // Only navigate if were able to locate the target
-                    if (layers[target] && !layers[target].classList.contains('show')) {
-
-                        layers.forEach(function (el, i) {
-                            el.classList.remove('left', 'right');
-                            el.classList.add(direction);
-                            if (el.classList.contains('show')) {
-                                el.classList.remove('show');
-                                el.classList.add('hide');
-                            }
-                            else {
-                                el.classList.remove('hide');
-                            }
-                        });
-
-                        layers[target].classList.add('show');
-
-                        changed.dispatch(layers[target], target);
-
-                    }
-
-                }
-
-                /**
-                 * Shows the previous layer.
-                 */
-                function prev() {
-
-                    var index = getIndex() - 1;
-                    show(index >= 0 ? index : layers.length + index, 'left');
-
-                }
-
-                /**
-                 * Shows the next layer.
-                 */
-                function next() {
-
-                    show((getIndex() + 1) % layers.length, 'right');
-
-                }
-
-                /**
-                 * Retrieves the index of the current slide.
-                 *
-                 * @param of [optional] layer DOM element which index is
-                 * to be returned
-                 */
-                function getIndex(of) {
-
-                    var index = 0;
-
-                    layers.forEach(function (layer, i) {
-                        if ((of && of == layer) || (!of && layer.classList.contains('show'))) {
-                            index = i;
-                            return;
-                        }
-                    });
-
-                    return index;
-
-                }
-
-                /**
-                 * Retrieves the total number of layers.
-                 */
-                function getTotal() {
-
-                    return layers.length;
-
-                }
-
-                // API
-                return {
-
-                    show: show,
-                    prev: prev,
-                    next: next,
-
-                    getIndex: getIndex,
-                    getTotal: getTotal,
-
-                    changed: changed
-
-                };
-
-            };
-
-            /**
-             * Minimal utility for dispatching signals (events).
-             */
-            kontext.Signal = function () {
-                this.listeners = [];
-            }
-
-            kontext.Signal.prototype.add = function (callback) {
-                this.listeners.push(callback);
-            }
-
-            kontext.Signal.prototype.remove = function (callback) {
-                var i = this.listeners.indexOf(callback);
-
-                if (i >= 0) this.listeners.splice(i, 1);
-            }
-
-            kontext.Signal.prototype.dispatch = function () {
-                var args = Array.prototype.slice.call(arguments);
-                this.listeners.forEach(function (f, i) {
-                    f.apply(null, args);
-                });
-            }
-
-
-
-            // Create a new instance of kontext
-            var k = kontext(document.querySelector('.kontext'));
-
-            var two = document.querySelector('.two');
-            two.onload = function () {
-                setTimeout(function () {
-                    two.contentWindow.trochoi({
-                        cb: function () {
-                            k.prev();
-                        }
-                    });
-                }, 1000);
-            }
 
 
         })();
