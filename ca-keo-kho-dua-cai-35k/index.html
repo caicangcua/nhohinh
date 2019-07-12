@@ -21,14 +21,6 @@
             margin: 0;
             padding: 0;
         }
-        .initbg {
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            width: 100%;
-            height: 100%;
-            position:fixed;
-        }
         .bx-loading {
             width: 100%;
             height: 100%;
@@ -36,9 +28,10 @@
             top: 0px;
             left: 0px;
             background: transparent url(../imgs/pattern.png) repeat top left;
-            z-index:-1;
         }
+
     </style>
+
 </head>
 <body>
     <div class="flip-container" id="flip-toggle">
@@ -65,5 +58,56 @@
     <div class="loading">
         <span>Loading ...</span>
     </div>
+
+    <script type="text/javascript">
+        function loadjscssfile(filename, filetype, cb) {
+            if (filetype == "js") { //if filename is a external JavaScript file
+                var fileref = document.createElement('script')
+                fileref.setAttribute("type", "text/javascript");
+                fileref.setAttribute("src", filename);
+            }
+            else if (filetype == "css") { //if filename is an external CSS file
+                var fileref = document.createElement("link")
+                fileref.setAttribute("rel", "stylesheet");
+                fileref.setAttribute("type", "text/css");
+                fileref.setAttribute("href", filename);
+            }
+            if (typeof fileref != "undefined") {
+                if (cb) fileref.onload = cb;
+                document.getElementsByTagName("head")[0].appendChild(fileref);
+            }
+        }
+        (function () {
+            loadjscssfile('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css', 'css', function () {
+                loadjscssfile('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js', 'js', function () {
+                    var galleryThumbs = new Swiper('.gallery-thumbs', {
+                        spaceBetween: 10,
+                        slidesPerView: 4,
+                        preloadImages: false,
+                        lazyLoading: true,
+                        loop: false,
+                        freeMode: false,
+                        loopedSlides: 5, //looped slides should be the same
+                        watchSlidesVisibility: true,
+                        watchSlidesProgress: true,
+                    });
+                    var galleryTop = new Swiper('.gallery-top', {
+                        spaceBetween: 10,
+                        loop: false,
+                        preloadImages: false,
+                        lazyLoading: true,
+                        loopedSlides: 5, //looped slides should be the same
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                        thumbs: {
+                            swiper: galleryThumbs,
+                        },
+                    });
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
