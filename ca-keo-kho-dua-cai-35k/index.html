@@ -80,7 +80,7 @@
             <div class="back iframe-wrapper"></div>
         </div>
     </div>
-    <div class="bx-loading"></div>
+    <!--<div class="bx-loading"></div>-->
     <div class="loading">
         <span>Loading ...</span>
     </div>
@@ -123,7 +123,11 @@
         (function () {
             loadjscssfile('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css', 'css', function () {
                 loadjscssfile('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js', 'js', function () {
-                    document.querySelector('.gallery-thumbs').innerHTML = '<div class="swiper-wrapper"><div class="swiper-slide" style="background-image:url(0.jpg)"></div></div>';
+                    var thumbs = document.querySelector('.gallery-thumbs'),placeOrder = document.createElement("div");
+                    placeOrder.innerHTML = '<div class="wrapper" style="right:10px"><a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a></div>';
+                    thumbs.parentNode.insertBefore(placeOrder.childNodes[0], thumbs.previousElementSibling);
+                    //
+                    thumbs.innerHTML = '<div class="swiper-wrapper"><div class="swiper-slide" style="background-image:url(0.jpg)"></div></div>';
                     var galleryThumbs = new Swiper('.gallery-thumbs', {
                         spaceBetween: 10,
                         slidesPerView: 4,
@@ -134,8 +138,7 @@
                         loopedSlides: 5, //looped slides should be the same
                         watchSlidesVisibility: true,
                         watchSlidesProgress: true,
-                    });
-                    var galleryTop = new Swiper('.gallery-top', {
+                    }), galleryTop = new Swiper('.gallery-top', {
                         spaceBetween: 10,
                         loop: false,
                         preloadImages: false,
@@ -148,17 +151,83 @@
                         thumbs: {
                             swiper: galleryThumbs,
                         },
-                    });
-                    var bx_loading = document.querySelector('.bx-loading');
-                    var loading = document.querySelector('.loading');
-                    var transname ='animationend', fadeEnd = function () {
-                        this.style.display = 'none';
-                        this.removeEventListener(transname, fadeEnd);
+                    }), ld = document.querySelector('.loading'), fadeEnd = function () {
+                        var pn = this.parentNode;
+                        pn.removeChild(this);
+
+
+                        var gamemenu = document.getElementById('gamemenu'), gameitem = document.getElementById('gameitem');
+                        document.addEventListener("click", function () {
+                            gameitem.style.display = 'none';
+                        });
+                        gamemenu.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            var ht = gameitem.style.display;
+                            gameitem.style.display = (ht == '') ? 'none' : '';
+                        });
+
+                        var back = document.querySelector('.back'), transTO,
+                            transname = whichTransitionEvent()
+                            , evtEnd = function () {
+                                clearTimeout(transTO);
+                                //
+                                var that = this;
+                                transTO = setTimeout(function () {
+                                    back.removeEventListener(transname, evtEnd);
+                                    if (that == '0') {
+                                        var iframe = back.appendChild(document.createElement('iframe'));
+                                        iframe.style.cssText = "border:none;background: linear-gradient(to left,dodgerblue,#345)";
+                                        iframe.scrolling = "no";
+                                        iframe.onload = function () {
+                                            setTimeout(function () {
+                                                iframe.contentWindow.trochoi({
+                                                    cb: function () {
+                                                        //back.previousElementSibling.style.display = '';
+                                                        back.addEventListener(transname, evtEnd.bind('1'));
+                                                        document.querySelector('#flip-toggle').classList.toggle('hoverx');
+                                                    }
+                                                });
+                                            }, 100);
+                                        };
+                                        iframe.src = '../games/find02imgs/index.html';
+                                        //back.previousElementSibling.style.display = 'none';
+                                    } else {
+                                        back.innerHTML = '';
+                                    }
+                                }, 300);
+                            }
+                        gameitem.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if (e.target.id == 'find02img') {
+                                back.addEventListener(transname, evtEnd.bind('0'));
+                                document.querySelector('#flip-toggle').classList.toggle('hoverx');
+                                gameitem.style.display = 'none';
+                            } else if (e.target.id == 'openbox') {
+                                galleryThumbs.appendSlide(['<div class="swiper-slide" style="background-image:url(1.jpg)"></div>']);
+                                galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(1.jpg)"></div>']);
+                            }
+                        });
+                        document.body.style.background = "#222"
+
                     };
-                    bx_loading.addEventListener(transname, fadeEnd);
-                    bx_loading.classList.add('fadeOut');
-                    loading.addEventListener(transname, fadeEnd);
-                    loading.classList.add('fadeOut');
+                    placeOrder.innerHTML = '<div class="kmribbon noselect"><div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div><span class="dis">GIÁ<div style="font-size: 30px">25.000đ</div>FREE SHIP</span></div>';
+                    thumbs.parentNode.appendChild(placeOrder.childNodes[0]);
+                    //
+                    placeOrder.innerHTML = '<div class="wrapper" style="right:10px;top:unset;bottom:0px">' +
+                                            '<ul id="gameitem" style="display:none" class="my-nav my-nav--list">' +
+                                                '<div id="wrapper-templates">' +
+                                                    '<li class="my-nav__item"><a id="openbox" class="my-nav__link my-nav__link--template">Mở hộp tìm quà</a> </li>' +
+                                                    '<li class="my-nav__item"><a id="find02img" class="my-nav__link my-nav__link--template">Lật hình tìm 02 món ăn giống nhau</a> </li>' +
+                                                '</div>' +
+                                            '</ul>' +
+                                            '<a href="javascript:void(0)" id="gamemenu" class="fancy-button bg-gradient2"><span>GAME</span></a>' +
+                                        '</div>';
+                    thumbs.parentNode.appendChild(placeOrder.childNodes[0]);
+                    //
+                    ld.addEventListener('animationend', fadeEnd);
+                    ld.classList.add('fadeOut');
                 });
             });
         })();
