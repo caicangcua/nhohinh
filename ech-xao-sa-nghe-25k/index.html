@@ -520,8 +520,8 @@
             transform-style: preserve-3d;
             transform: rotateY(0deg);
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 0px;      bottom: 0px;
+            left: 0px;      right: 0px;
         }
 
         .front {
@@ -625,11 +625,8 @@
                     </ul>
                     <a href="javascript:void(0)" id="gamemenu" class="fancy-button bg-gradient2"><span>GAME</span></a>
                 </div>
-
             </div>
-            <!--<iframe src="" class="back" frameborder="0" scrolling="no"></iframe>-->
-            <div class="back iframe-wrapper">
-            </div>
+            <div class="back iframe-wrapper"></div>
         </div>
     </div>
 
@@ -708,6 +705,7 @@
                             setTimeout(function () {
                                 iframe.contentWindow.trochoi({
                                     cb: function () {
+                                        back.previousElementSibling.style.display = '';
                                         back.addEventListener(transname, evtEnd.bind('1'));
                                         document.querySelector('#flip-toggle').classList.toggle('hoverx');
                                     }
@@ -715,6 +713,7 @@
                             }, 100);
                         };
                         iframe.src = '../games/find02imgs/index.html';
+                        back.previousElementSibling.style.display = 'none';
                     } else {
                         back.innerHTML = '';
                     }
