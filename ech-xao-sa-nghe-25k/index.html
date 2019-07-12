@@ -539,6 +539,7 @@
             -o-transform: rotateY(-180deg);
             -ms-transform: rotateY(-180deg);
             transform: rotateY(-180deg);
+            z-index:100;
         }
 
         /* vertical */
@@ -705,7 +706,7 @@
                             setTimeout(function () {
                                 iframe.contentWindow.trochoi({
                                     cb: function () {
-                                        back.previousElementSibling.style.display = '';
+                                        //back.previousElementSibling.style.display = '';
                                         back.addEventListener(transname, evtEnd.bind('1'));
                                         document.querySelector('#flip-toggle').classList.toggle('hoverx');
                                     }
@@ -713,7 +714,7 @@
                             }, 100);
                         };
                         iframe.src = '../games/find02imgs/index.html';
-                        back.previousElementSibling.style.display = 'none';
+                        //back.previousElementSibling.style.display = 'none';
                     } else {
                         back.innerHTML = '';
                     }
