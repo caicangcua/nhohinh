@@ -425,315 +425,6 @@
             margin-bottom: 0;
         }
 
-        .kontext {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            bottom: 0px;
-            right: 0px;
-        }
-
-            .kontext .layer {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                visibility: hidden;
-                /*box-shadow: 0px 0px 120px rgba( 0, 0, 0, 0.8 );*/
-            }
-
-                .kontext .layer.show {
-                    visibility: visible;
-                }
-
-            .kontext.capable {
-                -webkit-perspective: 1000px;
-                -moz-perspective: 1000px;
-                perspective: 1000px;
-                -webkit-transform-style: preserve-3d;
-                -moz-transform-style: preserve-3d;
-                transform-style: preserve-3d;
-            }
-
-                .kontext.capable .layer {
-                    -webkit-transform: translateZ( -100px );
-                    -moz-transform: translateZ( -100px );
-                    transform: translateZ( -100px );
-                }
-
-                    .kontext.capable .layer.show {
-                        -webkit-transform: translateZ( 0px );
-                        -moz-transform: translateZ( 0px );
-                        transform: translateZ( 0px );
-                    }
-
-                .kontext.capable.animate .layer.show.right {
-                    -webkit-animation: show-right 1s forwards ease;
-                    -moz-animation: show-right 1s forwards ease;
-                    animation: show-right 1s forwards ease;
-                }
-
-                .kontext.capable.animate .layer.hide.right {
-                    -webkit-animation: hide-right 1s forwards ease;
-                    -moz-animation: hide-right 1s forwards ease;
-                    animation: hide-right 1s forwards ease;
-                }
-
-                .kontext.capable.animate .layer.show.left {
-                    -webkit-animation: show-left 1s forwards ease;
-                    -moz-animation: show-left 1s forwards ease;
-                    animation: show-left 1s forwards ease;
-                }
-
-                .kontext.capable.animate .layer.hide.left {
-                    -webkit-animation: hide-left 1s forwards ease;
-                    -moz-animation: hide-left 1s forwards ease;
-                    animation: hide-left 1s forwards ease;
-                }
-
-
-        /* CSS animation keyframes */
-
-        @-webkit-keyframes show-right {
-            0% {
-                -webkit-transform: translateZ( -200px );
-            }
-
-            40% {
-                -webkit-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg );
-            }
-
-            100% {
-                -webkit-transform: translateZ( 0px );
-            }
-        }
-
-        @-webkit-keyframes hide-right {
-            0% {
-                -webkit-transform: translateZ( 0px );
-                visibility: visible;
-            }
-
-            40% {
-                -webkit-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg );
-            }
-
-            100% {
-                -webkit-transform: translateZ( -200px );
-                visibility: hidden;
-            }
-        }
-
-        @-moz-keyframes show-right {
-            0% {
-                -moz-transform: translateZ( -200px );
-            }
-
-            40% {
-                -moz-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg );
-            }
-
-            100% {
-                -moz-transform: translateZ( 0px );
-            }
-        }
-
-        @-moz-keyframes hide-right {
-            0% {
-                -moz-transform: translateZ( 0px );
-                visibility: visible;
-            }
-
-            40% {
-                -moz-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg );
-            }
-
-            100% {
-                -moz-transform: translateZ( -200px );
-                visibility: hidden;
-            }
-        }
-
-        @keyframes show-right {
-            0% {
-                transform: translateZ( -200px );
-            }
-
-            40% {
-                transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg );
-            }
-
-            100% {
-                transform: translateZ( 0px );
-            }
-        }
-
-        @keyframes hide-right {
-            0% {
-                transform: translateZ( 0px );
-                visibility: visible;
-            }
-
-            40% {
-                transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg );
-            }
-
-            100% {
-                transform: translateZ( -200px );
-                visibility: hidden;
-            }
-        }
-
-
-        @-webkit-keyframes show-left {
-            0% {
-                -webkit-transform: translateZ( -200px );
-            }
-
-            40% {
-                -webkit-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg );
-            }
-
-            100% {
-                -webkit-transform: translateZ( 0px );
-            }
-        }
-
-        @-webkit-keyframes hide-left {
-            0% {
-                -webkit-transform: translateZ( 0px );
-                visibility: visible;
-            }
-
-            40% {
-                -webkit-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg );
-            }
-
-            100% {
-                -webkit-transform: translateZ( -200px );
-                visibility: hidden;
-            }
-        }
-
-        @-moz-keyframes show-left {
-            0% {
-                -moz-transform: translateZ( -200px );
-            }
-
-            40% {
-                -moz-transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg );
-            }
-
-            100% {
-                -moz-transform: translateZ( 0px );
-            }
-        }
-
-        @-moz-keyframes hide-left {
-            0% {
-                -moz-transform: translateZ( 0px );
-                visibility: visible;
-            }
-
-            40% {
-                -moz-transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg );
-            }
-
-            100% {
-                -moz-transform: translateZ( -200px );
-                visibility: hidden;
-            }
-        }
-
-        @keyframes show-left {
-            0% {
-                transform: translateZ( -200px );
-            }
-
-            40% {
-                transform: translate( -40%, 0 ) scale( 0.8 ) rotateY( 20deg );
-            }
-
-            100% {
-                transform: translateZ( 0px );
-            }
-        }
-
-        @keyframes hide-left {
-            0% {
-                transform: translateZ( 0px );
-                visibility: visible;
-            }
-
-            40% {
-                transform: translate( 40%, 0 ) scale( 0.8 ) rotateY( -20deg );
-            }
-
-            100% {
-                transform: translateZ( -200px );
-                visibility: hidden;
-            }
-        }
-
-
-        /* Dimmer */
-
-        .kontext .layer .dimmer {
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            visibility: hidden;
-            background: transparent;
-        }
-
-        .kontext.capable.animate .layer .dimmer {
-            -webkit-transition: background 1s ease;
-            -moz-transition: background 1s ease;
-            transition: background 1s ease;
-        }
-
-        .kontext.capable.animate .layer.hide .dimmer {
-            visibility: visible;
-            background: rgba( 0, 0, 0, 0.7 );
-        }
-
-
-
-
-        .layer {
-            text-align: center;
-            text-shadow: 1px 1px 0px rgba( 0, 0, 0, 0.1 );
-        }
-
-            .layer h2 {
-                position: relative;
-                top: 20%;
-                margin: 0;
-                font-size: 6.25em;
-            }
-
-            .layer p {
-                position: relative;
-                top: 20%;
-                margin: 0;
-            }
-
-            .layer.one {
-                background: -webkit-radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
-                background: radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
-            }
-
-            /*.layer.two {
-                background: #64b9d2;
-            }*/
-    </style>
-    <style type="text/css">
         /* simple */
         .flip-container {
             -webkit-perspective: 1000;
@@ -755,7 +446,7 @@
                 -o-transform: rotateY(0deg);
                 -ms-transform: rotateY(0deg);
                 transform: rotateY(0deg);
-                                   visibility:visible;
+                visibility: visible;
             }
 
             .flip-container.hoverx .front {
@@ -763,17 +454,17 @@
                 -moz-transform: rotateY(180deg);
                 -o-transform: rotateY(180deg);
                 transform: rotateY(180deg);
-                    visibility: hidden;
+                visibility: hidden;
             }
 
         /* END: Accommodating for IE */
 
         .flip-container, .front, .back {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
         }
 
         .flipper {
@@ -787,11 +478,11 @@
             transition: 0.6s;
             transform-style: preserve-3d;
             /*position: relative;*/
-                        position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
         }
 
         .front, .back {
@@ -822,8 +513,8 @@
         .front {
             -webkit-transform: rotateY(0deg);
             -ms-transform: rotateY(0deg);
-                      background: -webkit-radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
-                background: radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
+            background: -webkit-radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
+            background: radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
             z-index: 2;
         }
 
@@ -834,7 +525,7 @@
             -o-transform: rotateY(-180deg);
             -ms-transform: rotateY(-180deg);
             transform: rotateY(-180deg);
-            visibility:hidden;
+            visibility: hidden;
         }
 
         /* vertical */
@@ -864,7 +555,7 @@
             -o-transform: rotateX(0deg);
             -ms-transform: rotateX(0deg);
             transform: rotateX(0deg);
-                        visibility:visible;
+            visibility: visible;
         }
 
         .vertical.flip-container.hoverx .front {
@@ -872,9 +563,90 @@
             -moz-transform: rotateX(180deg);
             -o-transform: rotateX(180deg);
             transform: rotateX(180deg);
-                visibility: hidden;
+            visibility: hidden;
         }
         /* END: Accommodating for IE */
+    </style>
+    <style type="text/css">
+        .loading {
+            font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+            text-transform: uppercase;
+            width: 150px;
+            text-align: center;
+            line-height: 50px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 45%;
+            margin: auto;
+            /*transform: translateY(-50%);*/
+            z-index: 99999999999;
+        }
+
+            .loading span {
+                position: relative;
+                z-index: 999;
+                color: #fff;
+            }
+
+            .loading:before {
+                content: '';
+                background: #61bdb6;
+                width: 128px;
+                height: 36px;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+                animation: 2s loadingBefore infinite ease-in-out;
+            }
+
+        @keyframes loadingBefore {
+            0% {
+                transform: translateX(-14px);
+            }
+
+            50% {
+                transform: translateX(14px);
+            }
+
+            100% {
+                transform: translateX(-14px);
+            }
+        }
+
+        .loading:after {
+            content: '';
+            background: #ff3600;
+            width: 14px;
+            height: 60px;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            opacity: .5;
+            animation: 2s loadingAfter infinite ease-in-out;
+        }
+
+        @keyframes loadingAfter {
+            0% {
+                transform: translateX(-50px);
+            }
+
+            50% {
+                transform: translateX(50px);
+            }
+
+            100% {
+                transform: translateX(-50px);
+            }
+        }
     </style>
 
 
@@ -884,7 +656,7 @@
     <!--https://codepen.io/fornyhucker/pen/wklrG-->
     <!--https://codepen.io/arcs/pen/BodWvJ-->
     <!--https://codepen.io/violelune/pen/RKNaER-->
-
+    <!--https://codepen.io/hakimel/pen/FAiKv lật page Kontext-->
     <div class="flip-container" id="flip-toggle">
         <div class="flipper">
             <div class="front">
@@ -946,17 +718,14 @@
                 </div>
 
             </div>
-            <iframe src="" class="back" frameborder="0" scrolling="no"></iframe>
+            <!--<iframe src="" class="back" frameborder="0" scrolling="no"></iframe>-->
+            <div class="back">
+                <div class="loading">
+                    <span>Loading ...</span>
+                </div>
+            </div>
         </div>
     </div>
-
-    <!--<div class="kontext">
-        <div class="layer one show">
-
-
-        </div>
-        <iframe src="" class="layer two" frameborder="0" scrolling="no"></iframe>
-    </div>-->
 
 
     <!-- Swiper JS -->
@@ -999,12 +768,15 @@
                 gameitem.style.display = (ht == '') ? 'none' : '';
             });
 
-
+            var back = document.querySelector('.back');
+            back.addEventListener('click', function (e) {
+                document.querySelector('#flip-toggle').classList.toggle('hoverx');
+            });
             gameitem.addEventListener('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
                 if (e.target.id == 'find02img') {
-                    var flip_toggle=document.querySelector('#flip-toggle');
+                    var flip_toggle = document.querySelector('#flip-toggle');
                     /* From Modernizr */
                     function whichTransitionEvent() {
                         var t;
@@ -1022,24 +794,26 @@
                             }
                         }
                     }
-                    var back = document.querySelector('.back'), transTO, transname = whichTransitionEvent(), evtEnd = function () {
+            var transTO, transname = whichTransitionEvent(), evtEnd = function () {
                         clearTimeout(transTO);
                         //
                         transTO = setTimeout(function () {
                             back.removeEventListener(transname, evtEnd);
-                            back.onload = function () {
-                                setTimeout(function () {
-                                    back.contentWindow.trochoi({
-                                        cb: function () {
-                                            document.querySelector('#flip-toggle').classList.toggle('hoverx');
-                                        }
-                                    });
-                                }, 100);
-                            };
-                            back.src = '../games/find02imgs/index.html';
+                            //back.onload = function () {
+                            //    setTimeout(function () {
+                            //        back.contentWindow.trochoi({
+                            //            cb: function () {
+                            //                document.querySelector('#flip-toggle').classList.toggle('hoverx');
+                            //            }
+                            //        });
+                            //    }, 100);
+                            //};
+                            //back.src = '../games/find02imgs/index.html';
                         }, 300);
                     }
                     back.addEventListener(transname, evtEnd);
+
+
                     flip_toggle.classList.toggle('hoverx');
                     gameitem.style.display = 'none';
                 }
