@@ -20,6 +20,7 @@
             top: 45%;
             margin: auto;
             /*transform: translateY(-50%);*/
+            z-index:99999999999;
         }
 
             .loading span {
@@ -131,10 +132,6 @@
 
         </div>
     </main>
-    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
-    <script src='//cdn.rawgit.com/nnattawat/flip/v1.0.19/dist/jquery.flip.min.js'></script>
-    <script type="text/javascript" src="https://cdn.rawgit.com/mgalante/jquery.redirect/master/jquery.redirect.js"></script>
-
     <script type="text/javascript">
 
         Node.prototype.hasClass = function (className) {
@@ -199,7 +196,7 @@
                 }
             }
         }
-        function loadjscssfile(filename, filetype) {
+        function loadjscssfile(filename, filetype,cb) {
             if (filetype == "js") { //if filename is a external JavaScript file
                 var fileref = document.createElement('script')
                 fileref.setAttribute("type", "text/javascript");
@@ -212,15 +209,17 @@
                 fileref.setAttribute("href", filename);
             }
             if (typeof fileref != "undefined") {
-                //document.getElementsByTagName("head")[0].appendChild(fileref)
-                jscss_addin.appendChild(fileref);
+                if (cb) fileref.onload = cb;
+                document.getElementsByTagName("head")[0].appendChild(fileref);
             }
         }
 
-        function checkloadjscssfile(filename, filetype) {
+        function checkloadjscssfile(filename, filetype,cb) {
             if (filesadded.indexOf("[" + filename + "]") == -1) {
-                loadjscssfile(filename, filetype)
+                loadjscssfile(filename, filetype, cb);
                 filesadded += "[" + filename + "]" //add to list of files already added, in the form of "[filename1],[filename2],etc"
+            } else {
+                if (cb) cb();
             }
         }
 
@@ -290,15 +289,23 @@
         function trochoi(params) {
             args = params;
             jscss_addin = document.querySelector('.loading');
-            setTimeout(function () {
-                checkloadjscssfile('index.css', 'css');
-                document.querySelector('.app.ng-scope').style.display = '';
-                checkloadjscssfile('index.js', 'js');
-                //
-                jscss_addin.removeClass('loading');
-                jscss_addin.style.display = 'none';
-            },1000);
+            (function () {
+                checkloadjscssfile('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js', 'js', function () {
+                    checkloadjscssfile('index.css', 'css');
+                    $('.app.ng-scope').fadeIn('slow', function () {
+                        checkloadjscssfile('https://cdn.rawgit.com/mgalante/jquery.redirect/master/jquery.redirect.js', 'js');
+                        checkloadjscssfile('//cdn.rawgit.com/nnattawat/flip/v1.0.19/dist/jquery.flip.min.js', 'js', function () {
+                            checkloadjscssfile('index.js', 'js', function () {
+                                $(jscss_addin).fadeOut('slow', function () { });
+                            });
+                        });
+                    });
+                });
+            })();
         }
+
+
+
     </script>
 
 

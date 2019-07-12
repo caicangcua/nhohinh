@@ -1052,12 +1052,14 @@
             var k = kontext(document.querySelector('.kontext'));
 
             var two = document.querySelector('.two');
-            two.onload = function() {
-                two.contentWindow.trochoi({
-                    cb: function () {
-                        k.prev();
-                    }
-                });
+            two.onload = function () {
+                setTimeout(function () {
+                    two.contentWindow.trochoi({
+                        cb: function () {
+                            k.prev();
+                        }
+                    });
+                }, 500);
             }
 
 
