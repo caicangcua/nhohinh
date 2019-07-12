@@ -289,19 +289,22 @@
         function trochoi(params) {
             args = params;
             jscss_addin = document.querySelector('.loading');
-            (function () {
-                checkloadjscssfile('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js', 'js', function () {
-                    checkloadjscssfile('index.css', 'css');
-                    $('.app.ng-scope').fadeIn('slow', function () {
-                        checkloadjscssfile('https://cdn.rawgit.com/mgalante/jquery.redirect/master/jquery.redirect.js', 'js');
-                        checkloadjscssfile('//cdn.rawgit.com/nnattawat/flip/v1.0.19/dist/jquery.flip.min.js', 'js', function () {
-                            checkloadjscssfile('index.js', 'js', function () {
-                                $(jscss_addin).fadeOut('slow', function () { });
+            checkloadjscssfile('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js', 'js', function () {
+                checkloadjscssfile('index.css', 'css');
+                $('.app.ng-scope').fadeIn('slow', function () {
+                    checkloadjscssfile('https://cdn.rawgit.com/mgalante/jquery.redirect/master/jquery.redirect.js', 'js');
+                    checkloadjscssfile('//cdn.rawgit.com/nnattawat/flip/v1.0.19/dist/jquery.flip.min.js', 'js', function () {
+                        checkloadjscssfile('index.js', 'js', function () {
+                            $(jscss_addin).fadeOut('slow', function () {
+                                $('.app__hud__btn-restart').click(function (e) {
+                                    document.documentElement.innerHTML += '';
+                                    if (args.cb) args.cb();
+                                });
                             });
                         });
                     });
                 });
-            })();
+            });
         }
 
 
