@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <link href="../loading.css" rel="stylesheet" />
     <style type="text/css">
-        html, body {
+         body {
             position: relative;
             height: 100%;
             overflow: hidden;
@@ -20,6 +20,8 @@
             font-size: 14px;
             margin: 0;
             padding: 0;
+                        background: -webkit-radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
+            background: radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
         }
 
         .bx-loading {
@@ -81,9 +83,9 @@
         </div>
     </div>
     <!--<div class="bx-loading"></div>-->
-    <div class="loading">
+    <!--<div class="loading">
         <span>Loading ...</span>
-    </div>
+    </div>-->
 
     <script type="text/javascript">
         function loadjscssfile(filename, filetype, cb) {
@@ -156,60 +158,7 @@
                         pn.removeChild(this);
 
 
-                        var gamemenu = document.getElementById('gamemenu'), gameitem = document.getElementById('gameitem');
-                        document.addEventListener("click", function () {
-                            gameitem.style.display = 'none';
-                        });
-                        gamemenu.addEventListener('click', function (e) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            var ht = gameitem.style.display;
-                            gameitem.style.display = (ht == '') ? 'none' : '';
-                        });
-
-                        var back = document.querySelector('.back'), transTO,
-                            transname = whichTransitionEvent()
-                            , evtEnd = function () {
-                                clearTimeout(transTO);
-                                //
-                                var that = this;
-                                transTO = setTimeout(function () {
-                                    back.removeEventListener(transname, evtEnd);
-                                    if (that == '0') {
-                                        var iframe = back.appendChild(document.createElement('iframe'));
-                                        iframe.style.cssText = "border:none;background: linear-gradient(to left,dodgerblue,#345)";
-                                        iframe.scrolling = "no";
-                                        iframe.onload = function () {
-                                            setTimeout(function () {
-                                                iframe.contentWindow.trochoi({
-                                                    cb: function () {
-                                                        //back.previousElementSibling.style.display = '';
-                                                        back.addEventListener(transname, evtEnd.bind('1'));
-                                                        document.querySelector('#flip-toggle').classList.toggle('hoverx');
-                                                    }
-                                                });
-                                            }, 100);
-                                        };
-                                        iframe.src = '../games/find02imgs/index.html';
-                                        //back.previousElementSibling.style.display = 'none';
-                                    } else {
-                                        back.innerHTML = '';
-                                    }
-                                }, 300);
-                            }
-                        gameitem.addEventListener('click', function (e) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            if (e.target.id == 'find02img') {
-                                back.addEventListener(transname, evtEnd.bind('0'));
-                                document.querySelector('#flip-toggle').classList.toggle('hoverx');
-                                gameitem.style.display = 'none';
-                            } else if (e.target.id == 'openbox') {
-                                galleryThumbs.appendSlide(['<div class="swiper-slide" style="background-image:url(1.jpg)"></div>']);
-                                galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(1.jpg)"></div>']);
-                            }
-                        });
-                        document.body.style.background = "#222"
+                        
 
                     };
                     placeOrder.innerHTML = '<div class="kmribbon noselect"><div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div><span class="dis">GIÁ<div style="font-size: 30px">25.000đ</div>FREE SHIP</span></div>';
@@ -226,8 +175,64 @@
                                         '</div>';
                     thumbs.parentNode.appendChild(placeOrder.childNodes[0]);
                     //
-                    ld.addEventListener('animationend', fadeEnd);
-                    ld.classList.add('fadeOut');
+                    //ld.addEventListener('animationend', fadeEnd);
+                    //ld.classList.add('fadeOut');
+
+                    var gamemenu = document.getElementById('gamemenu'), gameitem = document.getElementById('gameitem');
+                    document.addEventListener("click", function () {
+                        gameitem.style.display = 'none';
+                    });
+                    gamemenu.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        var ht = gameitem.style.display;
+                        gameitem.style.display = (ht == '') ? 'none' : '';
+                    });
+
+                    var back = document.querySelector('.back'), transTO,
+                        transname = whichTransitionEvent()
+                        , evtEnd = function () {
+                            clearTimeout(transTO);
+                            //
+                            var that = this;
+                            transTO = setTimeout(function () {
+                                back.removeEventListener(transname, evtEnd);
+                                if (that == '0') {
+                                    var iframe = back.appendChild(document.createElement('iframe'));
+                                    iframe.style.cssText = "border:none;background: linear-gradient(to left,dodgerblue,#345)";
+                                    iframe.scrolling = "no";
+                                    iframe.onload = function () {
+                                        setTimeout(function () {
+                                            iframe.contentWindow.trochoi({
+                                                cb: function () {
+                                                    //back.previousElementSibling.style.display = '';
+                                                    back.addEventListener(transname, evtEnd.bind('1'));
+                                                    document.querySelector('#flip-toggle').classList.toggle('hoverx');
+                                                }
+                                            });
+                                        }, 100);
+                                    };
+                                    iframe.src = '../games/find02imgs/index.html';
+                                    //back.previousElementSibling.style.display = 'none';
+                                } else {
+                                    back.innerHTML = '';
+                                }
+                            }, 300);
+                        }
+                    gameitem.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (e.target.id == 'find02img') {
+                            back.addEventListener(transname, evtEnd.bind('0'));
+                            document.querySelector('#flip-toggle').classList.toggle('hoverx');
+                            gameitem.style.display = 'none';
+                        } else if (e.target.id == 'openbox') {
+                            galleryThumbs.appendSlide(['<div class="swiper-slide" style="background-image:url(1.jpg)"></div>']);
+                            galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(1.jpg)"></div>']);
+                        }
+                    });
+                    document.body.style.background = "#222"
+
                 });
             });
         })();
