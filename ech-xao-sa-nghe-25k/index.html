@@ -86,7 +86,7 @@
         /* Starburst 3 */
         .kmribbon {
             position: absolute !important;
-            z-index: 2;
+            z-index: 1;
             top: 2em;
             left: 2em;
             font-family: Arial, sans-serif;
@@ -456,7 +456,9 @@
             -ms-transform-style: preserve-3d;
         }
 
-
+        .hoverx .kmribbon {
+            display:none!important;
+        }
 
             /* START: Accommodating for IE */
             .flip-container.hoverx .back {
@@ -591,16 +593,8 @@
     <!--https://codepen.io/violelune/pen/RKNaER-->
     <!--https://codepen.io/hakimel/pen/FAiKv lật page Kontext-->
     <div class="flip-container" id="flip-toggle">
-        <div class="flipper">
-            <div class="front">
-                <div class="kmribbon noselect">
-                    <div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div>
-                    <span class="dis">
-                        GIÁ<div style="font-size: 30px">25.000đ</div>
-                        FREE SHIP
-                    </span>
 
-                </div>
+            <div class="front">
                 <div class="wrapper" style="right:10px">
                     <a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a>
                 </div>
@@ -629,9 +623,17 @@
                     </ul>
                     <a href="javascript:void(0)" id="gamemenu" class="fancy-button bg-gradient2"><span>GAME</span></a>
                 </div>
-            </div>
+                <div class="kmribbon noselect">
+                    <div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div>
+                    <span class="dis">
+                        GIÁ<div style="font-size: 30px">25.000đ</div>
+                        FREE SHIP
+                    </span>
+
+                </div>
+             </div>
             <div class="back iframe-wrapper"></div>
-        </div>
+
     </div>
 
 
