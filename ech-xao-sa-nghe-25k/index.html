@@ -20,6 +20,24 @@
             height: 100%;
         }
 
+        .iframe-wrapper {
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            overflow: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+            .iframe-wrapper > iframe {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0px;
+                bottom: 0px;
+            }
+
         body {
             background-color: #222;
             overflow: hidden;
@@ -446,7 +464,6 @@
                 -o-transform: rotateY(0deg);
                 -ms-transform: rotateY(0deg);
                 transform: rotateY(0deg);
-
             }
 
             .flip-container.hoverx .front {
@@ -585,21 +602,10 @@
                 <div class="wrapper" style="right:10px">
                     <a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a>
                 </div>
-
-
                 <!-- Swiper -->
                 <div class="swiper-container gallery-top">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" style="background-image:url(0.jpg)"></div>
-                        <!--<div class="swiper-slide" style="background-image:url(1.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(2.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(3.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(4.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(5.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(6.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(7.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(8.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(9.jpg)"></div>-->
                     </div>
                     <!-- Add Arrows -->
                     <div class="swiper-button-next swiper-button-white"></div>
@@ -608,15 +614,6 @@
                 <div class="swiper-container gallery-thumbs">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" style="background-image:url(0.jpg)"></div>
-                        <!--<div class="swiper-slide" style="background-image:url(1.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(2.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(3.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(4.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(5.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(6.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(7.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(8.jpg)"></div>
-                        <div class="swiper-slide" style="background-image:url(9.jpg)"></div>-->
                     </div>
                 </div>
                 <div class="wrapper" style="right:10px;top:unset;bottom:0px">
@@ -633,10 +630,7 @@
 
             </div>
             <!--<iframe src="" class="back" frameborder="0" scrolling="no"></iframe>-->
-            <div class="back">
-                <div class="loading">
-                    <span>Loading ...</span>
-                </div>
+            <div class="back iframe-wrapper">
             </div>
         </div>
     </div>
@@ -672,9 +666,7 @@
             },
         });
 
-        (function () {
-            'use strict';
-
+        setTimeout(function () {
             var gamemenu = document.getElementById('gamemenu'), gameitem = document.getElementById('gameitem');
             document.addEventListener("click", function () {
                 gameitem.style.display = 'none';
@@ -686,59 +678,64 @@
                 gameitem.style.display = (ht == '') ? 'none' : '';
             });
 
-            var back = document.querySelector('.back');
-            back.addEventListener('click', function (e) {
-                document.querySelector('#flip-toggle').classList.toggle('hoverx');
-            });
+            var back = document.querySelector('.back'), transTO,
+                whichTransitionEvent=function () {
+                    var t;
+                    var el = document.createElement('fakeelement');
+                    var transitions = {
+                        'transition': 'transitionend',
+                        'OTransition': 'oTransitionEnd',
+                        'MozTransition': 'transitionend',
+                        'WebkitTransition': 'webkitTransitionEnd'
+                    }
+
+                    for (t in transitions) {
+                        if (el.style[t] !== undefined) {
+                            return transitions[t];
+                        }
+                    }
+                }
+                , transname = whichTransitionEvent()
+                , evtEnd = function () {
+                clearTimeout(transTO);
+                //
+                var that = this;
+                transTO = setTimeout(function () {
+                    back.removeEventListener(transname, evtEnd);
+                    if (that == '0') {
+                        var iframe = back.appendChild(document.createElement('iframe'));
+                        iframe.style.cssText = "border:none;";
+                        iframe.scrolling = "no";
+                        iframe.onload = function () {
+                            setTimeout(function () {
+                                iframe.contentWindow.trochoi({
+                                    cb: function () {
+                                        back.addEventListener(transname, evtEnd.bind('1'));
+                                        document.querySelector('#flip-toggle').classList.toggle('hoverx');
+                                    }
+                                });
+                            }, 100);
+                        };
+                        iframe.src = '../games/find02imgs/index.html';
+                    } else {
+                        back.innerHTML = '';
+                    }
+                }, 300);
+            }
             gameitem.addEventListener('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
                 if (e.target.id == 'find02img') {
-                    var flip_toggle = document.querySelector('#flip-toggle');
-                    /* From Modernizr */
-                    function whichTransitionEvent() {
-                        var t;
-                        var el = document.createElement('fakeelement');
-                        var transitions = {
-                            'transition': 'transitionend',
-                            'OTransition': 'oTransitionEnd',
-                            'MozTransition': 'transitionend',
-                            'WebkitTransition': 'webkitTransitionEnd'
-                        }
-
-                        for (t in transitions) {
-                            if (el.style[t] !== undefined) {
-                                return transitions[t];
-                            }
-                        }
-                    }
-            var transTO, transname = whichTransitionEvent(), evtEnd = function () {
-                        clearTimeout(transTO);
-                        //
-                        transTO = setTimeout(function () {
-                            back.removeEventListener(transname, evtEnd);
-                            //back.onload = function () {
-                            //    setTimeout(function () {
-                            //        back.contentWindow.trochoi({
-                            //            cb: function () {
-                            //                document.querySelector('#flip-toggle').classList.toggle('hoverx');
-                            //            }
-                            //        });
-                            //    }, 100);
-                            //};
-                            //back.src = '../games/find02imgs/index.html';
-                        }, 300);
-                    }
-                    back.addEventListener(transname, evtEnd);
-
-
-                    flip_toggle.classList.toggle('hoverx');
+                    back.addEventListener(transname, evtEnd.bind('0'));
+                    document.querySelector('#flip-toggle').classList.toggle('hoverx');
                     gameitem.style.display = 'none';
+                } else if (e.target.id == 'openbox') {
+                    galleryThumbs.appendSlide(['<div class="swiper-slide" style="background-image:url(1.jpg)"></div>']);
+                    galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(1.jpg)"></div>']);
                 }
             });
+        },500);
 
-
-        })();
     </script>
 
 </body>
