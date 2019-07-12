@@ -11,8 +11,38 @@
     <meta property="og:image" content="http://caunoi.dnd.vn/ca-keo-kho-dua-cai-35k/0.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <link href="../loading.css" rel="stylesheet" />
+    <style type="text/css">
+        html, body {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .initbg {
+            background-image: url(0.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            width: 100%;
+            height: 100%;
+        }
+        .bx-loading {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            background: transparent url(../imgs/pattern.png) repeat top left;
+            z-index:-1;
+        }
+    </style>
 </head>
-<body>
+<body class="initbg">
+    <div class="bx-loading "></div>
     <div class="loading">
         <span>Loading ...</span>
     </div>
