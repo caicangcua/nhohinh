@@ -297,7 +297,6 @@
                         checkloadjscssfile('index.js', 'js', function () {
                             $(jscss_addin).fadeOut('slow', function () {
                                 $('.app__hud__btn-restart').click(function (e) {
-                                    document.documentElement.innerHTML += '';
                                     if (args.cb) args.cb();
                                 });
                             });
