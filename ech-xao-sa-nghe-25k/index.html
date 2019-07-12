@@ -828,6 +828,7 @@
         }
 
         .back {
+            background: linear-gradient(to left,dodgerblue,#345);
             -webkit-transform: rotateY(-180deg);
             -moz-transform: rotateY(-180deg);
             -o-transform: rotateY(-180deg);
@@ -1003,41 +1004,44 @@
                 e.preventDefault();
                 e.stopPropagation();
                 if (e.target.id == 'find02img') {
-                    document.querySelector('#flip-toggle').classList.toggle('hoverx');
+                    var flip_toggle=document.querySelector('#flip-toggle');
                     /* From Modernizr */
-                    //function whichTransitionEvent() {
-                    //    var t;
-                    //    var el = document.createElement('fakeelement');
-                    //    var transitions = {
-                    //        'transition': 'transitionend',
-                    //        'OTransition': 'oTransitionEnd',
-                    //        'MozTransition': 'transitionend',
-                    //        'WebkitTransition': 'webkitTransitionEnd'
-                    //    }
+                    function whichTransitionEvent() {
+                        var t;
+                        var el = document.createElement('fakeelement');
+                        var transitions = {
+                            'transition': 'transitionend',
+                            'OTransition': 'oTransitionEnd',
+                            'MozTransition': 'transitionend',
+                            'WebkitTransition': 'webkitTransitionEnd'
+                        }
 
-                    //    for (t in transitions) {
-                    //        if (el.style[t] !== undefined) {
-                    //            return transitions[t];
-                    //        }
-                    //    }
-                    //}
-                    //document.querySelector('.kontext').addEventListener(whichTransitionEvent(), function () {
-  
-                    //});
-
-                    //k.next();
-                    var back = document.querySelector('.back');
-                    back.onload = function () {
-                        setTimeout(function () {
-                            back.contentWindow.trochoi({
-                                cb: function () {
-                                    document.querySelector('#flip-toggle').classList.toggle('hoverx');
-                                }
-                            });
-                        }, 500);
-                    };
-                    back.src = '../games/find02imgs/index.html';
-                    gameitem.style.display =  'none' ;
+                        for (t in transitions) {
+                            if (el.style[t] !== undefined) {
+                                return transitions[t];
+                            }
+                        }
+                    }
+                    var back = document.querySelector('.back'), transTO, transname = whichTransitionEvent(), evtEnd = function () {
+                        clearTimeout(transTO);
+                        //
+                        transTO = setTimeout(function () {
+                            back.removeEventListener(transname, evtEnd);
+                            back.onload = function () {
+                                setTimeout(function () {
+                                    back.contentWindow.trochoi({
+                                        cb: function () {
+                                            document.querySelector('#flip-toggle').classList.toggle('hoverx');
+                                        }
+                                    });
+                                }, 100);
+                            };
+                            back.src = '../games/find02imgs/index.html';
+                        }, 300);
+                    }
+                    back.addEventListener(transname, evtEnd);
+                    flip_toggle.classList.toggle('hoverx');
+                    gameitem.style.display = 'none';
                 }
             });
 
