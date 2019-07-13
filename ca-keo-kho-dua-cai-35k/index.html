@@ -91,8 +91,6 @@
         }
     </style>
 
-
-
 </head>
 <body>
     <div class="flip-container" id="flip-toggle">
@@ -166,12 +164,12 @@
                     //
                     var testLoad = '';
                     for (var i = 0; i < 5; i++) {
-                        testLoad += '<div class="swiper-slide"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>';
+                        testLoad += '<div data-src="' + i + '" class="swiper-slide"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>';
                     };
                     thumbs.innerHTML = '<div class="swiper-wrapper">' + testLoad + '</div>';
                     var galleryThumbs = new Swiper('.gallery-thumbs', {
                         spaceBetween: 10,
-                        slidesPerView: 4,
+                        slidesPerView: 5,
                         preloadImages: false,
                         lazyLoading: true,
                         loop: false,
@@ -266,12 +264,22 @@
                             document.querySelector('#flip-toggle').classList.toggle('hoverx');
                             gameitem.style.display = 'none';
                         } else if (e.target.id == 'openbox') {
-                            var downloadingImage = new Image();
-                            downloadingImage.onload = function () {
-                                galleryThumbs.appendSlide(['<div class="swiper-slide" style="background-image:url(1.jpg)"></div>']);
-                                galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(1.jpg)"></div>']);
-                            };
-                            downloadingImage.src = "1.jpg";
+                            var imgs = thumbs.querySelectorAll('.swiper-slide');
+                            for (var i = 0; i < imgs.length; i++) {
+
+                                (function (atthumb,index) {
+                                    var downloadingImage = new Image();
+                                    downloadingImage.onload = function () {
+                                        atthumb.innerHTML = '';
+                                        atthumb.style.background = 'url(' + this.src + ')';
+                                        if (index > 0) {
+                                            galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(' + this.src  + ')"></div>']);
+                                        };
+                                    };
+                                    downloadingImage.src = "../ech-xao-sa-nghe-25k/" + index + ".jpg";
+                                })(imgs[i],i);
+
+                            }
                         }
                     });
 
