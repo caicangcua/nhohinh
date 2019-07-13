@@ -265,22 +265,23 @@
                             document.querySelector('#flip-toggle').classList.toggle('hoverx');
                             gameitem.style.display = 'none';
                         } else if (e.target.id == 'openbox') {
-                            var imgs = thumbs.querySelectorAll('.swiper-slide');
-                            for (var i = 0; i < imgs.length; i++) {
+                            dosvr();
+                            //var imgs = thumbs.querySelectorAll('.swiper-slide');
+                            //for (var i = 0; i < imgs.length; i++) {
 
-                                (function (atthumb,index) {
-                                    var downloadingImage = new Image();
-                                    downloadingImage.onload = function () {
-                                        atthumb.innerHTML = '';
-                                        atthumb.style.background = 'url(' + this.src + ')';
-                                        if (index > 0) {
-                                            galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(' + this.src  + ')"></div>']);
-                                        };
-                                    };
-                                    downloadingImage.src = "../ech-xao-sa-nghe-25k/" + index + ".jpg";
-                                })(imgs[i],i);
+                            //    (function (atthumb,index) {
+                            //        var downloadingImage = new Image();
+                            //        downloadingImage.onload = function () {
+                            //            atthumb.innerHTML = '';
+                            //            atthumb.style.background = 'url(' + this.src + ')';
+                            //            if (index > 0) {
+                            //                galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(' + this.src  + ')"></div>']);
+                            //            };
+                            //        };
+                            //        downloadingImage.src = "../ech-xao-sa-nghe-25k/" + index + ".jpg";
+                            //    })(imgs[i],i);
 
-                            }
+                            //}
                         }
                     });
 
@@ -290,6 +291,35 @@
                 });
             });
         })();
-    </script>
+   
+        function dosvr(args, cb) {
+            //var xhr = new XMLHttpRequest();
+            //var url = "http://localhost:2432/api/githubcom/";
+            //xhr.open("POST", url, true);
+            //xhr.setRequestHeader("Content-Type", "application/json;charset=utf-8");
+            //xhr.onreadystatechange = function () {
+            //    if (xhr.readyState === 4 && xhr.status === 200) {
+            //        var json = JSON.parse(xhr.responseText);
+            //        console.log(json.email + ", " + json.password);
+            //    }
+            //};
+            //var data = JSON.stringify({ "act": "findthesameimg", "ncc": "phucky" });
+            //xhr.send(data);
+
+            var xhr = new XMLHttpRequest();
+            var url = "http://caunoi.dnd.vn/jdata/sp.json";//"url?data=" + encodeURIComponent(JSON.stringify({ "email": "hey@mail.com", "password": "101010" }));
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send();
+
+        }
+    
+     </script>
 </body>
 </html>
