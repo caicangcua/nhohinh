@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <link href="../loading.css" rel="stylesheet" />
     <style type="text/css">
-         html,body {
+        html, body {
             position: relative;
             height: 100%;
             overflow: hidden;
@@ -20,47 +20,78 @@
             font-size: 14px;
             margin: 0;
             padding: 0;
-                        background: -webkit-radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
-            background: radial-gradient(rgba(80,0,0,0.1) 0%, rgba(80,0,0,0.2) 30%, rgba(21,11,1,0.5) 100% ), url('http://caunoi.dnd.vn/imgs/bg.png');
-        }
-
-        .bx-loading {
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            top: 0px;
-            left: 0px;
             background: transparent url(../imgs/pattern.png) repeat top left;
         }
 
-        @keyframes fadeIn {
+        .lds-ellipsis {
+            display: inline-block;
+            position: relative;
+            width: 64px;
+            height: 64px;
+        }
+
+            .lds-ellipsis div {
+                position: absolute;
+                top: 27px;
+                width: 11px;
+                height: 11px;
+                border-radius: 50%;
+                background: #fff;
+                animation-timing-function: cubic-bezier(0, 1, 1, 0);
+            }
+
+                .lds-ellipsis div:nth-child(1) {
+                    left: 6px;
+                    animation: lds-ellipsis1 0.6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(2) {
+                    left: 6px;
+                    animation: lds-ellipsis2 0.6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(3) {
+                    left: 26px;
+                    animation: lds-ellipsis2 0.6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(4) {
+                    left: 45px;
+                    animation: lds-ellipsis3 0.6s infinite;
+                }
+
+        @keyframes lds-ellipsis1 {
             0% {
-                opacity: 0;
+                transform: scale(0);
             }
 
             100% {
-                opacity: 1;
+                transform: scale(1);
             }
         }
 
-        .fadeIn {
-            animation: fadeIn .5s ease-in-out;
-        }
-
-        @keyframes fadeOut {
+        @keyframes lds-ellipsis3 {
             0% {
-                opacity: 1;
+                transform: scale(1);
             }
 
             100% {
-                opacity: 0;
+                transform: scale(0);
             }
         }
 
-        .fadeOut {
-            animation: fadeOut .5s ease-in-out;
+        @keyframes lds-ellipsis2 {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(19px, 0);
+            }
         }
     </style>
+
+
 
 </head>
 <body>
@@ -86,8 +117,11 @@
     <!--<div class="loading">
         <span>Loading ...</span>
     </div>-->
+    <div class="lazy">
 
+    </div>
     <script type="text/javascript">
+
         function loadjscssfile(filename, filetype, cb) {
             if (filetype == "js") { //if filename is a external JavaScript file
                 var fileref = document.createElement('script')
@@ -122,14 +156,19 @@
             }
         }
 
+
         (function () {
             loadjscssfile('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css', 'css', function () {
                 loadjscssfile('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js', 'js', function () {
-                    var thumbs = document.querySelector('.gallery-thumbs'),placeOrder = document.createElement("div");
+                    var thumbs = document.querySelector('.gallery-thumbs'), placeOrder = document.createElement("div");
                     placeOrder.innerHTML = '<div class="wrapper" style="right:10px"><a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a></div>';
                     thumbs.parentNode.insertBefore(placeOrder.childNodes[0], thumbs.previousElementSibling);
                     //
-                    thumbs.innerHTML = '<div class="swiper-wrapper"><div class="swiper-slide" style="background-image:url(0.jpg)"></div></div>';
+                    var testLoad = '';
+                    for (var i = 0; i < 5; i++) {
+                        testLoad += '<div class="swiper-slide"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>';
+                    };
+                    thumbs.innerHTML = '<div class="swiper-wrapper"><div class="swiper-slide" style="background-image:url(0.jpg)"></div>' + testLoad + '</div>';
                     var galleryThumbs = new Swiper('.gallery-thumbs', {
                         spaceBetween: 10,
                         slidesPerView: 4,
@@ -157,8 +196,8 @@
                         var pn = this.parentNode;
                         pn.removeChild(this);
 
-                        
-                        
+
+
 
                     };
                     placeOrder.innerHTML = '<div class="kmribbon noselect"><div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div><span class="dis">GIÁ<div style="font-size: 30px">25.000đ</div>FREE SHIP</span></div>';
@@ -227,11 +266,17 @@
                             document.querySelector('#flip-toggle').classList.toggle('hoverx');
                             gameitem.style.display = 'none';
                         } else if (e.target.id == 'openbox') {
-                            galleryThumbs.appendSlide(['<div class="swiper-slide" style="background-image:url(1.jpg)"></div>']);
-                            galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(1.jpg)"></div>']);
+                            var downloadingImage = new Image();
+                            downloadingImage.onload = function () {
+                                galleryThumbs.appendSlide(['<div class="swiper-slide" style="background-image:url(1.jpg)"></div>']);
+                                galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(1.jpg)"></div>']);
+                            };
+                            downloadingImage.src = "1.jpg";
                         }
                     });
-                    document.body.style.background = "#222"
+
+                    thumbs.parentNode.classList.add('woodbg');
+                    document.body.style.background = "#222";
 
                 });
             });
