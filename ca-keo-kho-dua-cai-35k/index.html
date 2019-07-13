@@ -168,7 +168,7 @@
                     for (var i = 0; i < 5; i++) {
                         testLoad += '<div class="swiper-slide"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>';
                     };
-                    thumbs.innerHTML = '<div class="swiper-wrapper"><div class="swiper-slide" style="background-image:url(0.jpg)"></div>' + testLoad + '</div>';
+                    thumbs.innerHTML = '<div class="swiper-wrapper">' + testLoad + '</div>';
                     var galleryThumbs = new Swiper('.gallery-thumbs', {
                         spaceBetween: 10,
                         slidesPerView: 4,
