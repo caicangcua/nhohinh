@@ -23,7 +23,16 @@
             padding: 0;
             background: transparent url(../imgs/pattern.png) repeat top left;
         }
-
+        .nghiban {
+            right: 10px;
+            background-image: url(../imgs/nghiban.png);
+            width: 150px;
+            height: 150px;
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+            opacity: 0.8;
+        }
         .lds-ellipsis {
             display: inline-block;
             position: relative;
@@ -106,18 +115,11 @@
                     <div class="swiper-button-next swiper-button-white"></div>
                     <div class="swiper-button-prev swiper-button-white"></div>
                 </div>
-                <div class="swiper-container gallery-thumbs">
+                <div data-imgs="0.jpg,1.jpg,2.jpg,3.jpg,4.jpg,5.jpg,6.jpg" class="swiper-container gallery-thumbs">
                 </div>
             </div>
             <div class="back iframe-wrapper"></div>
         </div>
-    </div>
-    <!--<div class="bx-loading"></div>-->
-    <!--<div class="loading">
-        <span>Loading ...</span>
-    </div>-->
-    <div class="lazy">
-
     </div>
     <script type="text/javascript">
 
@@ -155,17 +157,18 @@
             }
         }
 
-
         (function () {
             loadjscssfile('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css', 'css', function () {
                 loadjscssfile('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js', 'js', function () {
-                    var thumbs = document.querySelector('.gallery-thumbs'), placeOrder = document.createElement("div");
+                    var thumbs = document.querySelector('.gallery-thumbs'),
+                        rawI = thumbs.getAttribute('data-imgs').split(',');
+                        placeOrder = document.createElement("div");
                     placeOrder.innerHTML = '<div class="wrapper" style="right:10px"><a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a></div>';
                     thumbs.parentNode.insertBefore(placeOrder.childNodes[0], thumbs.previousElementSibling);
                     //
                     var testLoad = '';
-                    for (var i = 0; i < 5; i++) {
-                        testLoad += '<div data-src="' + i + '" class="swiper-slide"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>';
+                    for (var i = 0; i < rawI.length; i++) {
+                        testLoad += '<div data-src="' + rawI[i] + '" class="swiper-slide"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>';
                     };
                     thumbs.innerHTML = '<div class="swiper-wrapper">' + testLoad + '</div>';
                     var galleryThumbs = new Swiper('.gallery-thumbs', {
@@ -191,12 +194,7 @@
                         thumbs: {
                             swiper: galleryThumbs,
                         },
-                    }), ld = document.querySelector('.loading'), fadeEnd = function () {
-                        var pn = this.parentNode;
-                        pn.removeChild(this);
-
-
-
+                    }), fadeEnd = function () {
 
                     };
                     placeOrder.innerHTML = '<div class="kmribbon noselect"><div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div><span class="dis">GIÁ<div style="font-size: 30px">25.000đ</div>FREE SHIP</span></div>';
@@ -265,29 +263,31 @@
                             document.querySelector('#flip-toggle').classList.toggle('hoverx');
                             gameitem.style.display = 'none';
                         } else if (e.target.id == 'openbox') {
-                            dosvr();
-                            //var imgs = thumbs.querySelectorAll('.swiper-slide');
-                            //for (var i = 0; i < imgs.length; i++) {
-
-                            //    (function (atthumb,index) {
-                            //        var downloadingImage = new Image();
-                            //        downloadingImage.onload = function () {
-                            //            atthumb.innerHTML = '';
-                            //            atthumb.style.background = 'url(' + this.src + ')';
-                            //            if (index > 0) {
-                            //                galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(' + this.src  + ')"></div>']);
-                            //            };
-                            //        };
-                            //        downloadingImage.src = "../ech-xao-sa-nghe-25k/" + index + ".jpg";
-                            //    })(imgs[i],i);
-
-                            //}
+                            dosvr(null, function (json) {
+                                e.target.innerHTML = json;
+                            });
                         }
                     });
-
+                    //
                     thumbs.parentNode.classList.add('woodbg');
                     document.body.style.background = "#222";
-
+                    setTimeout(function () {
+                        var imgs = thumbs.querySelectorAll('.swiper-slide');
+                        for (var i = 0; i < imgs.length; i++) {
+                            (function (atthumb, index) {
+                                var downloadingImage = new Image();
+                                downloadingImage.onload = function () {
+                                    atthumb.innerHTML = '';
+                                    atthumb.style.background = 'url(' + this.src + ')';
+                                    if (index > 0) {
+                                        galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(' + this.src + ')"></div>']);
+                                    };
+                                };
+                                downloadingImage.src = atthumb.getAttribute('data-src');
+                            })(imgs[i], i);
+                        }
+                    }, 1000);
+                    //
                 });
             });
         })();
@@ -313,11 +313,10 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var json = JSON.parse(xhr.responseText);
-                    console.log(xhr.responseText);
+                    cb(xhr.responseText);
                 }
             };
             xhr.send();
-
         }
     
      </script>
