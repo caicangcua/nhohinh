@@ -224,7 +224,7 @@
                         gameitem.style.display = (ht == '') ? 'none' : '';
                     });
 
-                    var back = document.querySelector('.back'), transTO,
+                    var back, transTO,
                         transname = whichTransitionEvent()
                         , evtEnd = function () {
                             clearTimeout(transTO);
@@ -268,8 +268,8 @@
                         }
                     });
                     //
-                    n$EL.innerHTML='<div class="back iframe-wrapper"></div>';
-                    var frnt=thumbs.parentNode;frnt.appendChild(n$EL.childNodes[0]); frnt.classList.add('woodbg');
+                    n$EL.innerHTML = '<div class="back iframe-wrapper"></div>'; back = n$EL.childNodes[0];
+                    var frnt = thumbs.parentNode; frnt.classList.add('woodbg'); frnt.parentNode.appendChild(back);
                     document.body.style.background = "#222";
                     setTimeout(function () {
                         var imgs = thumbs.querySelectorAll('.swiper-slide');
