@@ -118,7 +118,6 @@
                 <div data-imgs="0.jpg,1.jpg,2.jpg,3.jpg,4.jpg,5.jpg,6.jpg" class="swiper-container gallery-thumbs">
                 </div>
             </div>
-            <div class="back iframe-wrapper"></div>
         </div>
     </div>
     <script type="text/javascript">
@@ -162,9 +161,9 @@
                 loadjscssfile('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js', 'js', function () {
                     var thumbs = document.querySelector('.gallery-thumbs'),
                         rawI = thumbs.getAttribute('data-imgs').split(',');
-                        placeOrder = document.createElement("div");
-                    placeOrder.innerHTML = '<div class="wrapper" style="right:10px"><a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a></div>';
-                    thumbs.parentNode.insertBefore(placeOrder.childNodes[0], thumbs.previousElementSibling);
+                        n$EL = document.createElement("div");
+                    n$EL.innerHTML = '<div class="wrapper" style="right:10px"><a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a></div>';
+                    thumbs.parentNode.insertBefore(n$EL.childNodes[0], thumbs.previousElementSibling);
                     //
                     var testLoad = '';
                     for (var i = 0; i < rawI.length; i++) {
@@ -197,10 +196,10 @@
                     }), fadeEnd = function () {
 
                     };
-                    placeOrder.innerHTML = '<div class="kmribbon noselect"><div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div><span class="dis">GIÁ<div style="font-size: 30px">25.000đ</div>FREE SHIP</span></div>';
-                    thumbs.parentNode.appendChild(placeOrder.childNodes[0]);
+                    n$EL.innerHTML = '<div class="kmribbon noselect"><div class="starburst3"><span><span><span><span><span><span><span><span></span></span></span></span></span></span></span></span></div><span class="dis">GIÁ<div style="font-size: 30px">25.000đ</div>FREE SHIP</span></div>';
+                    thumbs.parentNode.appendChild(n$EL.childNodes[0]);
                     //
-                    placeOrder.innerHTML = '<div class="wrapper" style="right:10px;top:unset;bottom:0px">' +
+                    n$EL.innerHTML = '<div class="wrapper" style="right:10px;top:unset;bottom:0px">' +
                                             '<ul id="gameitem" style="display:none" class="my-nav my-nav--list">' +
                                                 '<div id="wrapper-templates">' +
                                                     '<li class="my-nav__item"><a id="openbox" class="my-nav__link my-nav__link--template">Mở hộp tìm quà</a> </li>' +
@@ -209,7 +208,7 @@
                                             '</ul>' +
                                             '<a href="javascript:void(0)" id="gamemenu" class="fancy-button bg-gradient2"><span>GAME</span></a>' +
                                         '</div>';
-                    thumbs.parentNode.appendChild(placeOrder.childNodes[0]);
+                    thumbs.parentNode.appendChild(n$EL.childNodes[0]);
                     //
                     //ld.addEventListener('animationend', fadeEnd);
                     //ld.classList.add('fadeOut');
@@ -269,7 +268,8 @@
                         }
                     });
                     //
-                    thumbs.parentNode.classList.add('woodbg');
+                    n$EL.innerHTML='<div class="back iframe-wrapper"></div>';
+                    var frnt=thumbs.parentNode;frnt.appendChild(n$EL.childNodes[0]); frnt.classList.add('woodbg');
                     document.body.style.background = "#222";
                     setTimeout(function () {
                         var imgs = thumbs.querySelectorAll('.swiper-slide');
