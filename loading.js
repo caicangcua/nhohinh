@@ -16,8 +16,8 @@
         }
     }
 
-    loadjscssfile('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css', 'css', function () {
-        loadjscssfile('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js', 'js', function () {
+    _xxug0b('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css', 'css', function () {
+        _xxug0b('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js', 'js', function () {
             var thumbs = document.querySelector('.gallery-thumbs'),
                 rawI = thumbs.getAttribute('data-imgs').split(',');
             n$EL = document.createElement("div");
