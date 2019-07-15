@@ -157,15 +157,15 @@
                 var imgs = thumbs.querySelectorAll('.swiper-slide');
                 for (var i = 0; i < imgs.length; i++) {
                     (function (atthumb, index) {
-                        var downloadingImage = new Image();
+                        var downloadingImage = new Image(),dummy = '?' + (new Date()).getTime();
                         downloadingImage.onload = function () {
                             atthumb.innerHTML = '';
                             atthumb.style.background = 'url(' + this.src + ')';
                             if (index > 0) {
-                                galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(' + this.src + ')"></div>']);
+                                galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(' + this.src + dummy + ')"></div>']);
                             };
                         };
-                        downloadingImage.src = atthumb.getAttribute('data-src');
+                        downloadingImage.src = atthumb.getAttribute('data-src') + dummy;
                     })(imgs[i], i);
                 }
             }, 1000);
