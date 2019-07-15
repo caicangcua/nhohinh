@@ -138,7 +138,7 @@
                 for (var i = 0; i < imgs.length; i++) {
                     (function (atthumb, index) {
                         var downloadingImage = new Image(), dummy = '?v=' + (new Date()).getTime();
-                        if (index == 0) dummy = _xxug0a;
+                        if (index == 0) dummy = '';
                         downloadingImage.onload = function () {
                             atthumb.innerHTML = '';
                             atthumb.style.background = 'url(' + this.src + ')';
