@@ -1,22 +1,4 @@
 ﻿(function () {
-
-    function loadjscssfile(filename, filetype, cb) {
-        if (filetype == "js") { //if filename is a external JavaScript file
-            var fileref = document.createElement('script')
-            fileref.setAttribute("type", "text/javascript");
-            fileref.setAttribute("src", filename);
-        }
-        else if (filetype == "css") { //if filename is an external CSS file
-            var fileref = document.createElement("link")
-            fileref.setAttribute("rel", "stylesheet");
-            fileref.setAttribute("type", "text/css");
-            fileref.setAttribute("href", filename);
-        }
-        if (typeof fileref != "undefined") {
-            if (cb) fileref.onload = cb;
-            document.getElementsByTagName("head")[0].appendChild(fileref);
-        }
-    }
     function whichTransitionEvent() {
         var t;
         var el = document.createElement('fakeelement');
@@ -33,8 +15,6 @@
             }
         }
     }
-
-
 
     loadjscssfile('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css', 'css', function () {
         loadjscssfile('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js', 'js', function () {
@@ -157,7 +137,7 @@
                 var imgs = thumbs.querySelectorAll('.swiper-slide');
                 for (var i = 0; i < imgs.length; i++) {
                     (function (atthumb, index) {
-                        var downloadingImage = new Image(),dummy = '?' + (new Date()).getTime();
+                        var downloadingImage = new Image(),dummy = '?v=' + (new Date()).getTime();
                         downloadingImage.onload = function () {
                             atthumb.innerHTML = '';
                             atthumb.style.background = 'url(' + this.src + ')';
