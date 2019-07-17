@@ -61,8 +61,8 @@
             n$EL.innerHTML = '<div class="wrapper" style="right:10px;top:unset;bottom:0px">' +
                                     '<ul id="gameitem" style="display:none" class="my-nav my-nav--list">' +
                                         '<div id="wrapper-templates">' +
-                                            '<li class="my-nav__item"><a id="openbox" class="my-nav__link my-nav__link--template">Mở hộp tìm quà</a> </li>' +
-                                            '<li class="my-nav__item"><a id="find02img" class="my-nav__link my-nav__link--template">Lật hình tìm 02 món ăn giống nhau</a> </li>' +
+                                            '<li class="my-nav__item"><a id="giftbox" class="my-nav__link my-nav__link--template">Mở hộp tìm quà</a> </li>' +
+                                            '<li class="my-nav__item"><a id="find02imgs" class="my-nav__link my-nav__link--template">Lật hình tìm 02 món ăn giống nhau</a> </li>' +
                                         '</div>' +
                                     '</ul>' +
                                     '<a href="javascript:void(0)" id="gamemenu" class="fancy-button bg-gradient2"><span>GAME</span></a>' +
@@ -88,10 +88,10 @@
                 , evtEnd = function () {
                     clearTimeout(transTO);
                     //
-                    var that = this;
+                    var that = this.split('|');
                     transTO = setTimeout(function () {
                         back.removeEventListener(transname, evtEnd);
-                        if (that == '0') {
+                        if (that[0] == '0') {
                             var iframe = back.appendChild(document.createElement('iframe'));
                             iframe.style.cssText = "border:none;background: linear-gradient(to left,dodgerblue,#345)";
                             iframe.scrolling = "no";
@@ -106,7 +106,7 @@
                                     });
                                 }, 100);
                             };
-                            iframe.src = '../games/find02imgs/index.html';
+                            iframe.src = '../games/' + that[1] + '/index.html';
                             //back.previousElementSibling.style.display = 'none';
                         } else {
                             back.innerHTML = '';
@@ -116,14 +116,17 @@
             gameitem.addEventListener('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                if (e.target.id == 'find02img') {
-                    back.addEventListener(transname, evtEnd.bind('0'));
+                if (e.target.id == 'find02imgs') {
+                    back.addEventListener(transname, evtEnd.bind('0|find02imgs'));
                     document.querySelector('#flip-toggle').classList.toggle('hoverx');
                     gameitem.style.display = 'none';
-                } else if (e.target.id == 'openbox') {
-                    dosvr(null, function (json) {
-                        e.target.innerHTML = json;
-                    });
+                } else if (e.target.id == 'giftbox') {
+                    back.addEventListener(transname, evtEnd.bind('0|giftbox'));
+                    document.querySelector('#flip-toggle').classList.toggle('hoverx');
+                    gameitem.style.display = 'none';
+                    //dosvr(null, function (json) {
+                    //    e.target.innerHTML = json;
+                    //});
                 }
             });
             //

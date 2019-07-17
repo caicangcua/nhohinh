@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -36,8 +36,27 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        var _0xacef = ["\x6A\x73", "\x73\x63\x72\x69\x70\x74", "\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74", "\x74\x79\x70\x65", "\x74\x65\x78\x74\x2F\x6A\x61\x76\x61\x73\x63\x72\x69\x70\x74", "\x73\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65", "\x73\x72\x63", "\x63\x73\x73", "\x6C\x69\x6E\x6B", "\x72\x65\x6C", "\x73\x74\x79\x6C\x65\x73\x68\x65\x65\x74", "\x74\x65\x78\x74\x2F\x63\x73\x73", "\x68\x72\x65\x66", "\x75\x6E\x64\x65\x66\x69\x6E\x65\x64", "\x6F\x6E\x6C\x6F\x61\x64", "\x61\x70\x70\x65\x6E\x64\x43\x68\x69\x6C\x64", "\x68\x65\x61\x64", "\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x73\x42\x79\x54\x61\x67\x4E\x61\x6D\x65", "\x3F\x76\x3D", "\x67\x65\x74\x54\x69\x6D\x65", "\x2E\x2E\x2F\x6C\x6F\x61\x64\x69\x6E\x67\x2E\x63\x73\x73", "\x2E\x2E\x2F\x6C\x6F\x61\x64\x69\x6E\x67\x2E\x6A\x73"]; function _xxug0b(_0xe938x2, _0xe938x3, _0xe938x4) { if (_0xe938x3 == _0xacef[0]) { var _0xe938x5 = document[_0xacef[2]](_0xacef[1]); _0xe938x5[_0xacef[5]](_0xacef[3], _0xacef[4]); _0xe938x5[_0xacef[5]](_0xacef[6], _0xe938x2) } else { if (_0xe938x3 == _0xacef[7]) { var _0xe938x5 = document[_0xacef[2]](_0xacef[8]); _0xe938x5[_0xacef[5]](_0xacef[9], _0xacef[10]); _0xe938x5[_0xacef[5]](_0xacef[3], _0xacef[11]); _0xe938x5[_0xacef[5]](_0xacef[12], _0xe938x2) } }; if (typeof _0xe938x5 != _0xacef[13]) { if (_0xe938x4) { _0xe938x5[_0xacef[14]] = _0xe938x4 }; document[_0xacef[17]](_0xacef[16])[0][_0xacef[15]](_0xe938x5) } } var dummy = _0xacef[18] + (new Date())[_0xacef[19]](); _xxug0b(_0xacef[20] + dummy, _0xacef[7]); _xxug0b(_0xacef[21] + dummy, _0xacef[0])
+    <script type="text/javascript">       
+        function _xxug0b(filename, filetype, cb) {
+            if (filetype == "js") { //if filename is a external JavaScript file
+                var fileref = document.createElement('script')
+                fileref.setAttribute("type", "text/javascript");
+                fileref.setAttribute("src", filename);
+            }
+            else if (filetype == "css") { //if filename is an external CSS file
+                var fileref = document.createElement("link")
+                fileref.setAttribute("rel", "stylesheet");
+                fileref.setAttribute("type", "text/css");
+                fileref.setAttribute("href", filename);
+            }
+            if (typeof fileref != "undefined") {
+                if (cb) fileref.onload = cb;
+                document.getElementsByTagName("head")[0].appendChild(fileref);
+            }
+        }
+        var dummy = '?v=' + (new Date()).getTime();
+        _xxug0b('../loading.css' + dummy, 'css');
+        _xxug0b('../loading.js' + dummy, 'js');
     </script>
 </body>
 </html>

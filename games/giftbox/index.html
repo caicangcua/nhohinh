@@ -1,0 +1,904 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+    <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+    <title>CodePen - Christmas minigame</title>
+    <!--<link href="https://fonts.googleapis.com/css?family=Nunito:400,800" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">-->
+
+
+    <style>
+        @charset "UTF-8";
+
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizelegibility;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            background:-webkit-radial-gradient(rgba(80,0,0,0.1) 0%,rgba(80,0,0,0.2) 30%,rgba(21,11,1,0.5) 100%),url(http://caunoi.dnd.vn/imgs/bg.png);
+            background:radial-gradient(rgba(80,0,0,0.1) 0%,rgba(80,0,0,0.2) 30%,rgba(21,11,1,0.5) 100%),url(http://caunoi.dnd.vn/imgs/bg.png);
+            color: #778899;
+            font-family: "Nunito", sans-serif;
+            margin:0px; padding:0px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        h1 {
+            margin: 0 0 24px 0;
+        }
+
+        .text {
+            text-align: center;
+            padding-top: 32px;
+            width: 100%;
+            height: 80px;
+        }
+
+            .text .text-main,
+            .text .title {
+                color: #778899;
+                font-weight: 400;
+            }
+
+            .text .title {
+                font-size: 32px;
+            }
+
+                .text .title #number {
+                    color: #708090;
+                    font-weight: 800;
+                }
+
+        .help {
+            text-align: center;
+            position: fixed;
+            top: 0px;
+            right: 0px;
+            width: 100px;
+            height: 100px;
+        }
+
+            .help input {
+                margin-top: 20px;
+                margin-bottom: 12px;
+            }
+
+            .help p {
+                margin: 0 20px;
+            }
+
+        .container {
+            -webkit-transform: translateZ(0px);
+            transform: translateZ(0px);
+        }
+
+        .wrapper {
+             -webkit-justify-content: center;
+              -webkit-align-items:center;
+              -webkit-align-content: center;
+              display: -webkit-flex;
+              -webkit-flex-flow: row wrap;
+               margin: 0px auto;
+        }
+
+        .hover-cube:hover {
+            -webkit-transform: rotate3d(-1.5, 3.5, -0.4, 26deg);
+            transform: rotate3d(-1.5, 3.5, -0.4, 26deg);
+        }
+
+        .static-cube {
+            -webkit-transform: rotate3d(-1.5, 3.5, -0.5, 45deg);
+            transform: rotate3d(-1.5, 3.5, -0.5, 45deg);
+        }
+
+        .no-ribbon > .cube-front::after,
+        .no-ribbon > .cube-back::after {
+            opacity: 0 !important;
+        }
+
+        .off {
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .win::after {
+            display: none;
+            content: "☞";
+            color: #e74c3c;
+            font-size: 42px;
+            position: absolute;
+            top: -85px;
+            left: 14px;
+            -webkit-transform: rotateY(0deg) rotateZ(90deg) translateX(0px);
+            transform: rotateY(0deg) rotateZ(90deg) translateX(0px);
+            -webkit-animation: arrow 1s ease-in-out infinite;
+            animation: arrow 1s ease-in-out infinite;
+        }
+
+        .pseudo-block::after {
+            display: block !important;
+        }
+
+        @-webkit-keyframes arrow {
+            50% {
+                -webkit-transform: rotateY(0deg) rotateZ(90deg) translateX(12px);
+                transform: rotateY(0deg) rotateZ(90deg) translateX(12px);
+            }
+        }
+
+        @keyframes arrow {
+            50% {
+                -webkit-transform: rotateY(0deg) rotateZ(90deg) translateX(12px);
+                transform: rotateY(0deg) rotateZ(90deg) translateX(12px);
+            }
+        }
+
+        .gift {
+            background: transparent !important;
+            position: absolute;
+            font-size: 42px;
+            left: 24px;
+            top: 12px;
+            -webkit-transform: rotate3d(0, -1, 0, 45deg) translateZ(0px) translateY(0px);
+            transform: rotate3d(0, -1, 0, 45deg) translateZ(0px) translateY(0px);
+            -webkit-animation: up 1s ease-in-out infinite;
+            animation: up 1s ease-in-out infinite;
+        }
+
+        @-webkit-keyframes up {
+            50% {
+                -webkit-transform: rotate3d(0, -1, 0, 45deg) translateZ(0px) translateY(12px);
+                transform: rotate3d(0, -1, 0, 45deg) translateZ(0px) translateY(12px);
+            }
+        }
+
+        @keyframes up {
+            50% {
+                -webkit-transform: rotate3d(0, -1, 0, 45deg) translateZ(0px) translateY(12px);
+                transform: rotate3d(0, -1, 0, 45deg) translateZ(0px) translateY(12px);
+            }
+        }
+
+        .cube {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transform-origin: center;
+            -ms-transform-origin: center;
+                transform-origin: center;
+            width: 250px;
+            height: 250px;
+            transition: -webkit-transform 250ms ease-out;
+            -webkit-transition: -webkit-transform 250ms ease-out;
+            -o-transition: transform 250ms ease-out;
+            transition: transform 250ms ease-out;
+            transition: transform 250ms ease-out, -webkit-transform 250ms ease-out;
+        }
+
+        .cube-contain {
+            cursor: pointer;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transform: translate3d(0, 0, 0) scale3d(0, 0, 0);
+            transform: translate3d(0, 0, 0) scale3d(0, 0, 0);
+            -webkit-transform-origin: center;
+            -ms-transform-origin: center;
+                transform-origin: center;
+            width: 80px;
+            height: 80px;
+        }
+
+            .cube-contain:hover > .cube-front::after {
+                -webkit-transform: translateX(-100%) translateZ(-40px) rotate(25deg);
+                transform: translateX(-100%) translateZ(-40px) rotate(25deg);
+            }
+
+            .cube-contain:hover > .cube-back::after {
+                -webkit-transform: translateX(100%) translateZ(40px) rotate(-25deg);
+                transform: translateX(100%) translateZ(40px) rotate(-25deg);
+            }
+
+        .cube-top, .cube-front, .cube-back, .cube-left, .cube-right, .cube-bottom {
+            -webkit-box-sizing: content-box;
+                    box-sizing: content-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-transform-origin: center;
+            -ms-transform-origin: center;
+                transform-origin: center;
+        }
+
+            .cube-top::after, .cube-bottom::after {
+                -webkit-filter: brightness(0.8);
+                filter: brightness(0.8);
+                background-color: #e74c3c;
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 50%;
+                -webkit-transform: translateX(-50%) rotate(90deg);
+                -ms-transform: translateX(-50%) rotate(90deg);
+                    transform: translateX(-50%) rotate(90deg);
+                width: 16px;
+                height: 100%;
+                z-index: 1;
+            }
+
+            .cube-top::before, .cube-bottom::before {
+                background-color: #e74c3c;
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+                -ms-transform: translateX(-50%);
+                    transform: translateX(-50%);
+                width: 16px;
+                height: 100%;
+                z-index: 1;
+            }
+
+        .cube-front, .cube-back {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+            .cube-front::after, .cube-back::after {
+                background-color: transparent;
+                border: 8px solid #e74c3c;
+                border-radius: 100%;
+                content: "";
+                position: absolute;
+                top: -21.3333333333px;
+                left: 50%;
+                width: 26.6666666667px;
+                height: 13.3333333333px;
+                transition: -webkit-transform 250ms 250ms ease-in-out;
+                -webkit-transition: -webkit-transform 250ms 250ms ease-in-out;
+                -o-transition: transform 250ms 250ms ease-in-out;
+                transition: transform 250ms 250ms ease-in-out;
+                transition: transform 250ms 250ms ease-in-out, -webkit-transform 250ms 250ms ease-in-out;
+            }
+
+            .cube-front::before, .cube-back::before {
+                background-color: #e74c3c;
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+                -ms-transform: translateX(-50%);
+                    transform: translateX(-50%);
+                width: 16px;
+                height: 100%;
+            }
+
+        .cube-top {
+            -webkit-transform: rotateX(90deg) translateZ(40px);
+            transform: rotateX(90deg) translateZ(40px);
+        }
+
+        .cube-front {
+            -webkit-transform: rotateX(0deg) translateZ(40px);
+            transform: rotateX(0deg) translateZ(40px);
+        }
+
+            .cube-front::after {
+                -webkit-filter: brightness(0.9);
+                filter: brightness(0.9);
+                left: 40px;
+                -webkit-transform-origin: bottom right;
+                -ms-transform-origin: bottom right;
+                    transform-origin: bottom right;
+                -webkit-transform: translateX(-100%) translateZ(-40px) rotate(15deg);
+                transform: translateX(-100%) translateZ(-40px) rotate(15deg);
+            }
+
+        .cube-back {
+            -webkit-transform: rotateX(0deg) translateZ(-40px);
+            transform: rotateX(0deg) translateZ(-40px);
+        }
+
+            .cube-back::after {
+                -webkit-filter: brightness(0.85);
+                filter: brightness(0.85);
+                left: 0;
+                -webkit-transform-origin: bottom left;
+                -ms-transform-origin: bottom left;
+                    transform-origin: bottom left;
+                -webkit-transform: translateX(100%) translateZ(40px) rotate(-15deg);
+                transform: translateX(100%) translateZ(40px) rotate(-15deg);
+            }
+
+        .cube-left::before, .cube-right::before {
+            background-color: #e74c3c;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+                transform: translateX(-50%);
+            width: 16px;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .cube-left {
+            -webkit-transform: rotateY(90deg) translateZ(-40px);
+            transform: rotateY(90deg) translateZ(-40px);
+            -webkit-filter: brightness(0.8);
+            filter: brightness(0.8);
+        }
+
+        .cube-right {
+            -webkit-transform: rotateY(90deg) translateZ(40px);
+            transform: rotateY(90deg) translateZ(40px);
+            -webkit-filter: brightness(0.95);
+            filter: brightness(0.95);
+        }
+
+        .cube-bottom {
+            -webkit-transform: rotateX(-90deg) translateZ(40px);
+            transform: rotateX(-90deg) translateZ(40px);
+            -webkit-filter: brightness(0.65);
+            filter: brightness(0.65);
+        }
+
+        .gradiant-0 > .cube-contain > div {
+            background: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0) 0), #aacc00;
+            background: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0) 0), #aacc00;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0) 0), #aacc00;
+            background-position: auto auto;
+            background-origin: padding-box;
+            -webkit-background-clip: border-box;
+            background-clip: border-box;
+            background-size: 50px 50px;
+        }
+
+        .container-modal {
+            visibility: hidden;
+            opacity: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+            .container-modal .modal {
+                background-color: #ffffe0;
+                text-align: center;
+                padding: 64px 0px;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100vw;
+                height: auto;
+                -webkit-transform: translateY(100%);
+                transform: translateY(100%);
+            }
+
+            .container-modal .modal-close {
+                color: #ccc;
+                display: block;
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                font-size: 14px;
+                font-weight: 800;
+                letter-spacing: 1px;
+            }
+
+        .refresh {
+            background-color: #e74c3c;
+            border-radius: 20px;
+            color: #fff;
+            padding: 8px 24px;
+        }
+
+            .refresh:hover {
+                background-color: #ed7669;
+            }
+
+
+    </style>
+</head>
+<body translate="no">
+    <div  class="container">
+        <div class="text" style="display:none">
+            <div class="text-main">Find the Christmas gift</div>
+            <div class="title">Pick <span id="number">3</span> gifts</div>
+        </div>
+        <div class="help" style="display:none">
+            <input id="pickWin" type="checkbox" name="see" />
+            <p>See result?</p>
+        </div>
+        <div class="wrapper auto-grid">
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+            <div class="cube gradiant-0">
+                <div class="cube-contain">
+                    <div class="cube-top"></div>
+                    <div class="cube-front"></div>
+                    <div class="cube-back"></div>
+                    <div class="cube-left"></div>
+                    <div class="cube-right"></div>
+                    <div class="cube-bottom"></div>
+                    <div class="gift">😢</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-modal">
+        <div class="modal">
+            <a class="modal-close" href="#">close</a>
+            <h1 class="modal-tilte"></h1><a class="refresh" href="#">Try Again</a>
+        </div>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.6/howler.js'></script>
+    <script id="rendered-js">
+        "use strict";
+        function trochoi() {
+        }
+
+        (function () {
+            // VAR
+            var cw = document.querySelectorAll('.cube');
+            var c = document.querySelectorAll('.cube-contain');
+            var overall = document.querySelector('input[id="pickWin"]');
+            var refreshButton = document.querySelector('.refresh');
+            var modalContainer = document.querySelector('.container-modal');
+            var modalClose = document.querySelector('.modal-close');
+            var containerMs = document.querySelector('.modal-tilte');
+            var messageWin = 'You got it. Merry Christmas';
+            var messageLose = 'Come on, you can find the gift';
+            var clicks = 0;
+            var N = 180; // SOUND
+
+            //http://www.knowstack.com/flexbox-responsive-layout/
+            var factor = 0.5; //1. 4x4 // 1.5 3x6 // 2 2x8 // 3 2x10 // 4 1x16
+            var resizeTimeout, adjustsize = function () {
+                var _W = window.innerWidth, _H = window.innerHeight, row=0, col=0;
+                var dt = parseInt(Math.sqrt(_W * _H / 16));
+                var phandu = (_W % dt);
+                var phannguyen = (_W - phandu) / dt;
+                dt = Math.floor(_W / (phannguyen + 1));
+                if (dt < 150) dt = 150;
+                if (dt <= 250) {
+                    for (var i = 0 ; i < cw.length; i++) {
+                        cw[i].style.cssText = 'width:' + dt + 'px;height:' + dt + 'px';
+                    }
+                };
+            }
+            adjustsize();
+            window.addEventListener('resize', function (event) {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function () {
+                    adjustsize();
+                }, 500);
+            });
+
+
+
+
+            //http://showcase.codethislab.com/games/sweety_memory/sounds/game_over.mp3
+            //http://showcase.codethislab.com/games/sweety_memory/sounds/win.mp3
+            //http://showcase.codethislab.com/games/sweety_memory/sounds/right.mp3
+            //http://showcase.codethislab.com/games/sweety_memory/sounds/card.mp3
+            //http://showcase.codethislab.com/games/sweety_memory/
+            var soundError = new Howl({
+                src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/151309__tcpp__beep1-resonant-error-beep.wav']
+            });
+            var soundWin = new Howl({
+                src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/391539__mativve__electro-win-sound.wav']
+            });
+            var soundJingle = new Howl({
+                src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/411420__ihaksi__deck-the-halls-christmas-jingle-played-with-bells.wav']
+            });
+
+            function init() {
+                addGift();
+                startAnimation();
+                eventInit();
+            }
+
+            function eventInit() {
+                [].forEach.call(c, function (item) {
+                    item.addEventListener('click', function (e) {
+                        clicks++;
+
+                        if (clicks < 4) {
+                            openGift(item);
+                            document.getElementById('number').innerHTML = 3 - clicks;
+                        }
+
+                        if (clicks == 3 && !item.classList.contains('win')) {
+                            offSelect();
+                            setTimeout(function () {
+                                openModal(messageLose, false);
+                            }, 800);
+                        }
+
+                        if (item.classList.contains('win')) {
+                            offSelect();
+                            setTimeout(function () {
+                                soundWin.play();
+                            }, 500);
+                            setTimeout(function () {
+                                openModal(messageWin, true);
+                            }, 1000);
+                        } else {
+                            setTimeout(function () {
+                                soundError.play();
+                            }, 500);
+                        }
+                    }, false);
+                });
+                overall.addEventListener('change', function () {
+                    if (overall.checked) {
+                        document.querySelector('.win').classList.add('pseudo-block');
+                    } else {
+                        document.querySelector('.win').classList.remove('pseudo-block');
+                    }
+                }, false);
+                refreshButton.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    resetTodo();
+                }, false);
+                modalClose.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    closeModal();
+                }, false);
+            }
+
+            function startAnimation() {
+                TweenMax.staggerTo(c, 1, {
+                    rotationX: "-=" + N,
+                    rotationY: "+=" + N,
+                    rotationZ: "+=" + N,
+                    scaleX: 1,
+                    scaleY: 1,
+                    scaleZ: 1,
+                    force3D: true,
+                    ease: Back.easeOut.config(1.7),
+                    onComplete: function onComplete() {
+                        for (var i = 0; i < cw.length; i++) {
+                            cw[i].classList.add('hover-cube');
+                        }
+                    }
+                }, 0.1);
+            }
+
+            function addGift() {
+                var rd = Math.round(Math.random() * (c.length - 1));
+                var selectionGift = c[rd - 1].querySelector('.gift');
+                var WINGIFT = '<div>😎</div>';
+                var TGIFT = '<div>😢</div>';
+
+                for (var i = 0; i < c.length; i++) {
+                    var allGift = c[i].querySelector('.gift');
+
+                    while (allGift.firstChild) {
+                        allGift.removeChild(allGift.firstChild);
+                    }
+                    allGift.innerHTML = TGIFT;
+                }
+                setTimeout(function () {
+                    c[rd - 1].classList.add('win');
+
+                    while (selectionGift.firstChild) {
+                        selectionGift.removeChild(selectionGift.firstChild);
+                    }
+                    selectionGift.innerHTML = WINGIFT;
+                    console.log('You are a curious boy, this is the result ' + rd);
+                }, 500);
+            }
+
+            function openGift(elem) {
+                var tl = new TimelineMax();
+                elem.parentElement.classList.add('static-cube');
+                elem.parentElement.classList.remove('hover-cube');
+                elem.classList.add('no-ribbon');
+                tl.to(elem.querySelector('.cube-top'), 1, {
+                    transformOrigin: 'right',
+                    rotationZ: 90,
+                    autoAlpha: 0,
+                    ease: Power2.easeOut
+                });
+                tl.to(elem.querySelector('.cube-right'), 0.5, {
+                    transformOrigin: '50% 100%',
+                    rotationX: -90,
+                    rotationY: 90,
+                    z: 0,
+                    ease: Power2.easeOut
+                }, "-=0.3");
+                tl.to(elem.querySelector('.cube-front'), 0.5, {
+                    transformOrigin: '100% 100%',
+                    rotationX: -90,
+                    ease: Power2.easeOut
+                }, "-=0.3");
+                tl.to(elem.querySelector('.cube-back'), 0.5, {
+                    transformOrigin: '100% 100%',
+                    rotationX: 90,
+                    ease: Power2.easeOut
+                }, "-=0.3");
+                tl.to(elem.querySelector('.cube-left'), 0.5, {
+                    transformOrigin: '50% 100%',
+                    rotationX: 90,
+                    rotationY: 90,
+                    z: 0,
+                    ease: Power2.easeOut
+                }, "-=0.3");
+                tl.timeScale(2);
+            }
+
+            function offSelect() {
+                for (var i = 0; i < c.length; i++) {
+                    c[i].classList.add('off');
+                    c[i].parentElement.style.cursor = 'not-allowed';
+                }
+                [].forEach.call(c, function (item) {
+                    item.removeEventListener('click', function (e) {
+                        e.preventDefault();
+                    }, false);
+                });
+            }
+
+            function resetTodo() {
+                closeModal();
+                clicks = 0;
+                document.getElementById('number').innerHTML = 3;
+
+                for (var i = 0; i < c.length; i++) {
+                    c[i].classList.remove('off');
+                    c[i].classList.remove('win');
+                    c[i].parentElement.style.cursor = 'pointer';
+                    c[i].parentElement.classList.remove('static-cube');
+                    c[i].classList.remove('no-ribbon');
+                    c[i].parentElement.classList.add('hover-cube');
+                    TweenMax.set(c[i].querySelector('.cube-top'), {
+                        clearProps: 'all'
+                    });
+                    TweenMax.set(c[i].querySelector('.cube-right'), {
+                        clearProps: 'all'
+                    });
+                    TweenMax.set(c[i].querySelector('.cube-front'), {
+                        clearProps: 'all'
+                    });
+                    TweenMax.set(c[i].querySelector('.cube-back'), {
+                        clearProps: 'all'
+                    });
+                    TweenMax.set(c[i].querySelector('.cube-left'), {
+                        clearProps: 'all'
+                    });
+                }
+                addGift();
+                startAnimation();
+            }
+
+            function openModal(ms, t) {
+                while (containerMs.firstChild) {
+                    containerMs.removeChild(containerMs.firstChild);
+                }
+                containerMs.innerHTML = ms;
+                var tl = new TimelineMax();
+                tl.to(modalContainer, 0.5, {
+                    autoAlpha: 1
+                }).to(modalContainer.querySelector('.modal'), 0.5, {
+                    y: 0 + '%'
+                });
+
+                if (t === true) {
+                    soundJingle.play();
+                }
+            }
+
+            function closeModal() {
+                containerMs.innerHTML = '';
+                overall.checked = false;
+                document.querySelector('.win').classList.remove('pseudo-block');
+                var tl = new TimelineMax();
+                tl.to(modalContainer.querySelector('.modal'), 0.5, {
+                    y: 100 + '%'
+                }).to(modalContainer, 0.5, {
+                    autoAlpha: 0
+                });
+            }
+
+            init();
+        })();
+      //# sourceURL=pen.js
+    </script>
+</body>
+</html>
