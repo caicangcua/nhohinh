@@ -83,6 +83,10 @@
         .container {
             -webkit-transform: translateZ(0px);
             transform: translateZ(0px);
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            overflow: auto;
         }
 
         .wrapper {
@@ -149,9 +153,9 @@
         .gift {
             background: transparent !important;
             position: absolute;
-            font-size: 42px;
-            left: 24px;
-            top: 12px;
+            font-size: 36px;
+            left: 5px;
+            top: 0px;
             -webkit-transform: rotate3d(0, -1, 0, 45deg) translateZ(0px) translateY(0px);
             transform: rotate3d(0, -1, 0, 45deg) translateZ(0px) translateY(0px);
             -webkit-animation: up 1s ease-in-out infinite;
@@ -204,18 +208,18 @@
             -webkit-transform-origin: center;
             -ms-transform-origin: center;
                 transform-origin: center;
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
         }
 
             .cube-contain:hover > .cube-front::after {
-                -webkit-transform: translateX(-100%) translateZ(-40px) rotate(25deg);
-                transform: translateX(-100%) translateZ(-40px) rotate(25deg);
+                -webkit-transform: translateX(-100%) translateZ(-30px) rotate(25deg);
+                transform: translateX(-100%) translateZ(-30px) rotate(25deg);
             }
 
             .cube-contain:hover > .cube-back::after {
-                -webkit-transform: translateX(100%) translateZ(40px) rotate(-25deg);
-                transform: translateX(100%) translateZ(40px) rotate(-25deg);
+                -webkit-transform: translateX(100%) translateZ(30px) rotate(-25deg);
+                transform: translateX(100%) translateZ(30px) rotate(-25deg);
             }
 
         .cube-top, .cube-front, .cube-back, .cube-left, .cube-right, .cube-bottom {
@@ -297,29 +301,29 @@
             }
 
         .cube-top {
-            -webkit-transform: rotateX(90deg) translateZ(40px);
-            transform: rotateX(90deg) translateZ(40px);
+            -webkit-transform: rotateX(90deg) translateZ(30px);
+            transform: rotateX(90deg) translateZ(30px);
         }
 
         .cube-front {
-            -webkit-transform: rotateX(0deg) translateZ(40px);
-            transform: rotateX(0deg) translateZ(40px);
+            -webkit-transform: rotateX(0deg) translateZ(30px);
+            transform: rotateX(0deg) translateZ(30px);
         }
 
             .cube-front::after {
                 -webkit-filter: brightness(0.9);
                 filter: brightness(0.9);
-                left: 40px;
+                left: 30px;
                 -webkit-transform-origin: bottom right;
                 -ms-transform-origin: bottom right;
                     transform-origin: bottom right;
-                -webkit-transform: translateX(-100%) translateZ(-40px) rotate(15deg);
-                transform: translateX(-100%) translateZ(-40px) rotate(15deg);
+                -webkit-transform: translateX(-100%) translateZ(-30px) rotate(15deg);
+                transform: translateX(-100%) translateZ(-30px) rotate(15deg);
             }
 
         .cube-back {
-            -webkit-transform: rotateX(0deg) translateZ(-40px);
-            transform: rotateX(0deg) translateZ(-40px);
+            -webkit-transform: rotateX(0deg) translateZ(-30px);
+            transform: rotateX(0deg) translateZ(-30px);
         }
 
             .cube-back::after {
@@ -329,8 +333,8 @@
                 -webkit-transform-origin: bottom left;
                 -ms-transform-origin: bottom left;
                     transform-origin: bottom left;
-                -webkit-transform: translateX(100%) translateZ(40px) rotate(-15deg);
-                transform: translateX(100%) translateZ(40px) rotate(-15deg);
+                -webkit-transform: translateX(100%) translateZ(30px) rotate(-15deg);
+                transform: translateX(100%) translateZ(30px) rotate(-15deg);
             }
 
         .cube-left::before, .cube-right::before {
@@ -348,22 +352,22 @@
         }
 
         .cube-left {
-            -webkit-transform: rotateY(90deg) translateZ(-40px);
-            transform: rotateY(90deg) translateZ(-40px);
+            -webkit-transform: rotateY(90deg) translateZ(-30px);
+            transform: rotateY(90deg) translateZ(-30px);
             -webkit-filter: brightness(0.8);
             filter: brightness(0.8);
         }
 
         .cube-right {
-            -webkit-transform: rotateY(90deg) translateZ(40px);
-            transform: rotateY(90deg) translateZ(40px);
+            -webkit-transform: rotateY(90deg) translateZ(30px);
+            transform: rotateY(90deg) translateZ(30px);
             -webkit-filter: brightness(0.95);
             filter: brightness(0.95);
         }
 
         .cube-bottom {
-            -webkit-transform: rotateX(-90deg) translateZ(40px);
-            transform: rotateX(-90deg) translateZ(40px);
+            -webkit-transform: rotateX(-90deg) translateZ(30px);
+            transform: rotateX(-90deg) translateZ(30px);
             -webkit-filter: brightness(0.65);
             filter: brightness(0.65);
         }
@@ -440,7 +444,7 @@
             <input id="pickWin" type="checkbox" name="see" />
             <p>See result?</p>
         </div>
-        <div class="wrapper auto-grid">
+        <div class="wrapper">
             <div class="cube gradiant-0">
                 <div class="cube-contain">
                     <div class="cube-top"></div>
@@ -654,7 +658,7 @@
                 var phandu = (_W % dt);
                 var phannguyen = (_W - phandu) / dt;
                 dt = Math.floor(_W / (phannguyen + 1));
-                if (dt < 150) dt = 150;
+                if (dt < 100) dt = 100;
                 if (dt <= 250) {
                     for (var i = 0 ; i < cw.length; i++) {
                         cw[i].style.cssText = 'width:' + dt + 'px;height:' + dt + 'px';
