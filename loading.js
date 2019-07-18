@@ -106,7 +106,7 @@
                                     });
                                 }, 100);
                             };
-                            iframe.src = '../games/' + that[1] + '/index.html';
+                            iframe.src = '../games/' + that[1] + '/index.html?v=' + (new Date()).getTime();
                             //back.previousElementSibling.style.display = 'none';
                         } else {
                             back.innerHTML = '';
