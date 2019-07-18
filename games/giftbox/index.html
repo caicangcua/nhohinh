@@ -27,7 +27,7 @@
         body {
             background: -webkit-radial-gradient(rgba(80,0,0,0.1) 0%,rgba(80,0,0,0.2) 30%,rgba(21,11,1,0.5) 100%),url(http://caunoi.dnd.vn/imgs/bg.png);
             background: radial-gradient(rgba(80,0,0,0.1) 0%,rgba(80,0,0,0.2) 30%,rgba(21,11,1,0.5) 100%),url(http://caunoi.dnd.vn/imgs/bg.png);
-            color: #778899;
+            /*color: #778899;*/
             font-family: "Nunito", sans-serif;
             margin: 0px;
             padding: 0px;
@@ -65,17 +65,10 @@
 
         .help {
             text-align: center;
-            position: fixed;
-            top: 0px;
-            right: 0px;
-            width: 100px;
-            height: 100px;
+            float: right;
+            display:inline-block;
         }
 
-            .help input {
-                margin-top: 20px;
-                margin-bottom: 12px;
-            }
 
             .help p {
                 margin: 0 20px;
@@ -122,7 +115,7 @@
         .win::after {
             display: none;
             content: "☞";
-            color: #e74c3c;
+            color: blue;
             font-size: 42px;
             position: absolute;
             top: -85px;
@@ -166,7 +159,7 @@
                 width:60px;
                 height:60px;
                 text-align:center;
-                line-height:60px;
+                /*line-height:60px;*/
             }
 
         @-webkit-keyframes up {
@@ -441,16 +434,20 @@
     </style>
 </head>
 <body translate="no">
-    <a class="refresh" href="javascript:void(0)" style="position:fixed;bottom:20px;right:40px;z-index: 2;" onclick="args.cb();">Thoát</a>
+    <div style="position:fixed;bottom:20px;right:40px;z-index: 2;">
+        <a class="refresh" href="javascript:void(0)" style="float:right" onclick="args.cb();">Thoát</a>
+        <div class="help">
+            <input id="pickWin" type="checkbox" name="see" />
+            <p>Quyền trợ giúp?</p>
+        </div>
+    </div>
+
     <div class="container">
         <div class="text" style="display:none">
             <div class="text-main">Find the Christmas gift</div>
             <div class="title">Pick <span id="number">3</span> gifts</div>
         </div>
-        <div class="help" style="display:none">
-            <input id="pickWin" type="checkbox" name="see" />
-            <p>See result?</p>
-        </div>
+
         <div class="wrapper">
             <div class="cube gradiant-0">
                 <div class="cube-contain">
