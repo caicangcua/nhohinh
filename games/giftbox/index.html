@@ -165,9 +165,8 @@
             .gift div {
                 width:60px;
                 height:60px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                text-align:center;
+                line-height:60px;
             }
 
         @-webkit-keyframes up {
@@ -439,69 +438,6 @@
             }
 
 
-
-        .fancy-button {
-            display: inline-block;
-            margin: 20px;
-            font-family: 'Heebo', Helvetica, Arial, sans-serif;
-            font-weight: 500;
-            font-size: 16px;
-            letter-spacing: 0.07em;
-            text-transform: uppercase;
-            line-height: 24px;
-            color: #ffffff;
-            position: relative;
-        }
-.fancy-button.bg-gradient3 {
-    text-shadow: 0 0 1px #546082;
-    position:fixed;
-    bottom:0px;
-    right:0px;
-    z-index:1;
-}
-.fancy-button.pop-onhover:before {
-    opacity: 0;
-    bottom: 10px;
-}
-.pop-onhover.bg-gradient3 span, .pop-onhover.bg-gradient3:before {
-    background: #B9AEF0;
-    background: linear-gradient(180deg, #B9AEF0 0%, #ADA1EB 80%, #ADA1EB 100%);
-}
-.fancy-button:before {
-    content: '';
-    display: inline-block;
-    height: 40px;
-    position: absolute;
-    bottom: -1px;
-    left: 10px;
-    right: 10px;
-    z-index: -1;
-    border-radius: 2em;
-    -webkit-filter: blur(14px) brightness(0.9);
-    filter: blur(14px) brightness(0.9);
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    transition: all 0.3s ease-out;
-}
-
-.fancy-button.pop-onhover span {
-    border-radius: 4px;
-}
-.pop-onhover.bg-gradient3 span, .pop-onhover.bg-gradient3:before {
-    background: #B9AEF0;
-    background: linear-gradient(180deg, #B9AEF0 0%, #ADA1EB 80%, #ADA1EB 100%);
-}
-.fancy-button span {
-    cursor:pointer;
-    display: inline-block;
-    padding: 10px;
-    position: relative;
-    z-index: 2;
-    will-change: transform, filter;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    transition: all 0.3s ease-out;
-}
     </style>
 </head>
 <body translate="no">
