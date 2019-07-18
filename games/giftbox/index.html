@@ -708,7 +708,7 @@
             var cw = document.querySelectorAll('.cube');
             var c = document.querySelectorAll('.cube-contain');
             var overall = document.querySelector('input[id="pickWin"]');
-            var refreshButton = document.querySelector('.refresh');
+            var refreshButton = document.querySelector('.modal .refresh');
             var modalContainer = document.querySelector('.container-modal');
             var modalClose = document.querySelector('.modal-close');
             var containerMs = document.querySelector('.modal-tilte');
@@ -794,8 +794,6 @@
                             }, 1000);
                         } else {
                             setTimeout(function () {
-                                alert('here1');
-
                                 soundError.play();
                             }, 500);
                         }
