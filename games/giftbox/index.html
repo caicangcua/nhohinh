@@ -794,6 +794,8 @@
                             }, 1000);
                         } else {
                             setTimeout(function () {
+                                alert('here1');
+
                                 soundError.play();
                             }, 500);
                         }
@@ -943,7 +945,7 @@
             function openModal(ms, t) {
                 while (containerMs.firstChild) {
                     containerMs.removeChild(containerMs.firstChild);
-                }
+                };
                 containerMs.innerHTML = ms;
                 var tl = new TimelineMax();
                 tl.to(modalContainer, 0.5, {
@@ -953,8 +955,6 @@
                 });
 
                 if (t === true) {
-                    alert('here1');
-
                     soundJingle.play();
                 }
             }
