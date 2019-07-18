@@ -485,9 +485,9 @@
     background: linear-gradient(180deg, #B9AEF0 0%, #ADA1EB 80%, #ADA1EB 100%);
 }
 .fancy-button span {
+    cursor:pointer;
     display: inline-block;
-    padding: 16px 20px;
-    border-radius: 50em;
+    padding: 10px;
     position: relative;
     z-index: 2;
     will-change: transform, filter;
@@ -498,7 +498,7 @@
     </style>
 </head>
 <body translate="no">
-    <a href="#" class="fancy-button pop-onhover bg-gradient3"><span><i class="fa fa-pencil"></i>Thoát</span></a>
+    <a class="refresh" href="javascript:void(0)" onclick="args.cb();">Thoát</a>
     <div class="container">
         <div class="text" style="display:none">
             <div class="text-main">Find the Christmas gift</div>
@@ -697,7 +697,9 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.6/howler.js'></script>
     <script id="rendered-js">
         "use strict";
-        function trochoi() {
+        var args;
+        function trochoi(params) {
+            args = params;
         }
 
         (function () {
