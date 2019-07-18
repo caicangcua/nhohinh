@@ -694,7 +694,7 @@
         </div>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.6/howler.js'></script>
+    <!--<script src='https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.6/howler.js'></script>-->
     <script id="rendered-js">
         "use strict";
         var args;
@@ -719,27 +719,27 @@
             var N = 180; // SOUND
 
             //http://www.knowstack.com/flexbox-responsive-layout/
-            //var factor = 0.5; //1. 4x4 // 1.5 3x6 // 2 2x8 // 3 2x10 // 4 1x16
-            //var resizeTimeout, adjustsize = function () {
-            //    var _W = window.innerWidth, _H = window.innerHeight, row = 0, col = 0;
-            //    var dt = parseInt(Math.sqrt(_W * _H / 16));
-            //    var phandu = (_W % dt);
-            //    var phannguyen = (_W - phandu) / dt;
-            //    dt = Math.floor(_W / (phannguyen + 1));
-            //    if (dt < 100) dt = 100;
-            //    if (dt <= 250) {
-            //        for (var i = 0 ; i < cw.length; i++) {
-            //            cw[i].style.cssText = 'width:' + dt + 'px;height:' + dt + 'px';
-            //        }
-            //    };
-            //}
-            //adjustsize();
-            //window.addEventListener('resize', function (event) {
-            //    clearTimeout(resizeTimeout);
-            //    resizeTimeout = setTimeout(function () {
-            //        adjustsize();
-            //    }, 500);
-            //});
+            var factor = 0.5; //1. 4x4 // 1.5 3x6 // 2 2x8 // 3 2x10 // 4 1x16
+            var resizeTimeout, adjustsize = function () {
+                var _W = window.innerWidth, _H = window.innerHeight, row = 0, col = 0;
+                var dt = parseInt(Math.sqrt(_W * _H / 16));
+                var phandu = (_W % dt);
+                var phannguyen = (_W - phandu) / dt;
+                dt = Math.floor(_W / (phannguyen + 1));
+                if (dt < 100) dt = 100;
+                if (dt <= 250) {
+                    for (var i = 0 ; i < cw.length; i++) {
+                        cw[i].style.cssText = 'width:' + dt + 'px;height:' + dt + 'px';
+                    }
+                };
+            }
+            adjustsize();
+            window.addEventListener('resize', function (event) {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function () {
+                    adjustsize();
+                }, 500);
+            });
 
 
             alert('here2');
