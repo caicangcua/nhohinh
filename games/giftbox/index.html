@@ -431,11 +431,27 @@
                 background-color: #ed7669;
             }
 
-
+        .backbtn {
+                position: absolute;
+    width: 27px;
+    height: 44px;
+    left: 10px;
+    top: 10px;
+    z-index: 10;
+    cursor: pointer;
+    background-size: 27px 44px;
+    background-position: center;
+    background-repeat: no-repeat;
+            background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E")
+        }
     </style>
 </head>
 <body translate="no">
+   
     <div  class="container">
+        <div class="backbtn">
+           <div  style="font-size: 32px;margin-left: 30px;line-height: 45px;color: darkblue;">Thoát</div> 
+        </div>
         <div class="text" style="display:none">
             <div class="text-main">Find the Christmas gift</div>
             <div class="title">Pick <span id="number">3</span> gifts</div>
@@ -692,6 +708,9 @@
             });
 
             function init() {
+                setTimeout(function () {
+                    openModal(messageLose, false);
+                }, 800);
                 addGift();
                 startAnimation();
                 eventInit();
