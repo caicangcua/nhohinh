@@ -749,15 +749,15 @@
             //http://showcase.codethislab.com/games/sweety_memory/sounds/right.mp3
             //http://showcase.codethislab.com/games/sweety_memory/sounds/card.mp3
             //http://showcase.codethislab.com/games/sweety_memory/
-            var soundError = new Howl({
-                src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/151309__tcpp__beep1-resonant-error-beep.wav']
-            });
-            var soundWin = new Howl({
-                src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/391539__mativve__electro-win-sound.wav']
-            });
-            var soundJingle = new Howl({
-                src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/411420__ihaksi__deck-the-halls-christmas-jingle-played-with-bells.wav']
-            });
+            //var soundError = new Howl({
+            //    src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/151309__tcpp__beep1-resonant-error-beep.wav']
+            //});
+            //var soundWin = new Howl({
+            //    src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/391539__mativve__electro-win-sound.wav']
+            //});
+            //var soundJingle = new Howl({
+            //    src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/411420__ihaksi__deck-the-halls-christmas-jingle-played-with-bells.wav']
+            //});
 
             function init() {
                 alert('here4');
@@ -769,54 +769,54 @@
                 eventInit();
             }
 
-            //function eventInit() {
-            //    [].forEach.call(c, function (item) {
-            //        item.addEventListener('click', function (e) {
-            //            clicks++;
+            function eventInit() {
+                [].forEach.call(c, function (item) {
+                    item.addEventListener('click', function (e) {
+                        clicks++;
 
-            //            if (clicks < 4) {
-            //                openGift(item);
-            //                document.getElementById('number').innerHTML = 3 - clicks;
-            //            }
+                        if (clicks < 4) {
+                            openGift(item);
+                            document.getElementById('number').innerHTML = 3 - clicks;
+                        }
 
-            //            if (clicks == 3 && !item.classList.contains('win')) {
-            //                offSelect();
-            //                setTimeout(function () {
-            //                    openModal(messageLose, false);
-            //                }, 800);
-            //            }
+                        if (clicks == 3 && !item.classList.contains('win')) {
+                            offSelect();
+                            setTimeout(function () {
+                                openModal(messageLose, false);
+                            }, 800);
+                        }
 
-            //            if (item.classList.contains('win')) {
-            //                offSelect();
-            //                setTimeout(function () {
-            //                    soundWin.play();
-            //                }, 500);
-            //                setTimeout(function () {
-            //                    openModal(messageWin, true);
-            //                }, 1000);
-            //            } else {
-            //                setTimeout(function () {
-            //                    soundError.play();
-            //                }, 500);
-            //            }
-            //        }, false);
-            //    });
-            //    overall.addEventListener('change', function () {
-            //        if (overall.checked) {
-            //            document.querySelector('.win').classList.add('pseudo-block');
-            //        } else {
-            //            document.querySelector('.win').classList.remove('pseudo-block');
-            //        }
-            //    }, false);
-            //    refreshButton.addEventListener('click', function (e) {
-            //        e.preventDefault();
-            //        resetTodo();
-            //    }, false);
-            //    modalClose.addEventListener('click', function (e) {
-            //        e.preventDefault();
-            //        closeModal();
-            //    }, false);
-            //}
+                        if (item.classList.contains('win')) {
+                            offSelect();
+                            setTimeout(function () {
+                                soundWin.play();
+                            }, 500);
+                            setTimeout(function () {
+                                openModal(messageWin, true);
+                            }, 1000);
+                        } else {
+                            setTimeout(function () {
+                                soundError.play();
+                            }, 500);
+                        }
+                    }, false);
+                });
+                overall.addEventListener('change', function () {
+                    if (overall.checked) {
+                        document.querySelector('.win').classList.add('pseudo-block');
+                    } else {
+                        document.querySelector('.win').classList.remove('pseudo-block');
+                    }
+                }, false);
+                refreshButton.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    resetTodo();
+                }, false);
+                modalClose.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    closeModal();
+                }, false);
+            }
             alert('here3');
             function startAnimation() {
                 TweenMax.staggerTo(c, 1, {
