@@ -703,7 +703,6 @@
         }
 
         (function () {
-            alert('here1');
 
             // VAR
             var cw = document.querySelectorAll('.cube');
@@ -742,8 +741,7 @@
             });
 
 
-            alert('here2');
-
+     
             //http://showcase.codethislab.com/games/sweety_memory/sounds/game_over.mp3
             //http://showcase.codethislab.com/games/sweety_memory/sounds/win.mp3
             //http://showcase.codethislab.com/games/sweety_memory/sounds/right.mp3
@@ -761,7 +759,6 @@
             });
 
             function init() {
-                alert('here4');
                 //setTimeout(function () {
                 //    openModal(messageLose, false);
                 //}, 800);
@@ -818,7 +815,6 @@
                     closeModal();
                 }, false);
             }
-            alert('here3');
             function startAnimation() {
                 TweenMax.staggerTo(c, 1, {
                     rotationX: "-=" + N,
@@ -957,6 +953,8 @@
                 });
 
                 if (t === true) {
+                    alert('here1');
+
                     soundJingle.play();
                 }
             }
