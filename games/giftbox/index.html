@@ -162,9 +162,10 @@
             -webkit-animation: up 1s ease-in-out infinite;
             animation: up 1s ease-in-out infinite;
         }
-
             .gift div {
-                font-size:50pt;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
         @-webkit-keyframes up {
@@ -502,7 +503,7 @@
     </style>
 </head>
 <body translate="no">
-    <a class="refresh" href="javascript:void(0)" onclick="args.cb();">Thoát</a>
+    <a class="refresh" href="javascript:void(0)" style="position:fixed;bottom:20px;right:40px;z-index: 2;" onclick="args.cb();">Thoát</a>
     <div class="container">
         <div class="text" style="display:none">
             <div class="text-main">Find the Christmas gift</div>
