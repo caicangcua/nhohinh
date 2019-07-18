@@ -25,11 +25,12 @@
         }
 
         body {
-            background:-webkit-radial-gradient(rgba(80,0,0,0.1) 0%,rgba(80,0,0,0.2) 30%,rgba(21,11,1,0.5) 100%),url(http://caunoi.dnd.vn/imgs/bg.png);
-            background:radial-gradient(rgba(80,0,0,0.1) 0%,rgba(80,0,0,0.2) 30%,rgba(21,11,1,0.5) 100%),url(http://caunoi.dnd.vn/imgs/bg.png);
+            background: -webkit-radial-gradient(rgba(80,0,0,0.1) 0%,rgba(80,0,0,0.2) 30%,rgba(21,11,1,0.5) 100%),url(http://caunoi.dnd.vn/imgs/bg.png);
+            background: radial-gradient(rgba(80,0,0,0.1) 0%,rgba(80,0,0,0.2) 30%,rgba(21,11,1,0.5) 100%),url(http://caunoi.dnd.vn/imgs/bg.png);
             color: #778899;
             font-family: "Nunito", sans-serif;
-            margin:0px; padding:0px;
+            margin: 0px;
+            padding: 0px;
         }
 
         a {
@@ -90,12 +91,12 @@
         }
 
         .wrapper {
-             -webkit-justify-content: center;
-              -webkit-align-items:center;
-              -webkit-align-content: center;
-              display: -webkit-flex;
-              -webkit-flex-flow: row wrap;
-               margin: 0px auto;
+            -webkit-justify-content: center;
+            -webkit-align-items: center;
+            -webkit-align-content: center;
+            display: -webkit-flex;
+            -webkit-flex-flow: row wrap;
+            margin: 0px auto;
         }
 
         .hover-cube:hover {
@@ -184,12 +185,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-
             -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
             -webkit-transform-origin: center;
             -ms-transform-origin: center;
-                transform-origin: center;
+            transform-origin: center;
             width: 250px;
             height: 250px;
             transition: -webkit-transform 250ms ease-out;
@@ -207,7 +207,7 @@
             transform: translate3d(0, 0, 0) scale3d(0, 0, 0);
             -webkit-transform-origin: center;
             -ms-transform-origin: center;
-                transform-origin: center;
+            transform-origin: center;
             width: 60px;
             height: 60px;
         }
@@ -224,7 +224,7 @@
 
         .cube-top, .cube-front, .cube-back, .cube-left, .cube-right, .cube-bottom {
             -webkit-box-sizing: content-box;
-                    box-sizing: content-box;
+            box-sizing: content-box;
             position: absolute;
             top: 0;
             left: 0;
@@ -232,7 +232,7 @@
             height: 100%;
             -webkit-transform-origin: center;
             -ms-transform-origin: center;
-                transform-origin: center;
+            transform-origin: center;
         }
 
             .cube-top::after, .cube-bottom::after {
@@ -245,7 +245,7 @@
                 left: 50%;
                 -webkit-transform: translateX(-50%) rotate(90deg);
                 -ms-transform: translateX(-50%) rotate(90deg);
-                    transform: translateX(-50%) rotate(90deg);
+                transform: translateX(-50%) rotate(90deg);
                 width: 16px;
                 height: 100%;
                 z-index: 1;
@@ -259,7 +259,7 @@
                 left: 50%;
                 -webkit-transform: translateX(-50%);
                 -ms-transform: translateX(-50%);
-                    transform: translateX(-50%);
+                transform: translateX(-50%);
                 width: 16px;
                 height: 100%;
                 z-index: 1;
@@ -295,7 +295,7 @@
                 left: 50%;
                 -webkit-transform: translateX(-50%);
                 -ms-transform: translateX(-50%);
-                    transform: translateX(-50%);
+                transform: translateX(-50%);
                 width: 16px;
                 height: 100%;
             }
@@ -316,7 +316,7 @@
                 left: 30px;
                 -webkit-transform-origin: bottom right;
                 -ms-transform-origin: bottom right;
-                    transform-origin: bottom right;
+                transform-origin: bottom right;
                 -webkit-transform: translateX(-100%) translateZ(-30px) rotate(15deg);
                 transform: translateX(-100%) translateZ(-30px) rotate(15deg);
             }
@@ -332,7 +332,7 @@
                 left: 0;
                 -webkit-transform-origin: bottom left;
                 -ms-transform-origin: bottom left;
-                    transform-origin: bottom left;
+                transform-origin: bottom left;
                 -webkit-transform: translateX(100%) translateZ(30px) rotate(-15deg);
                 transform: translateX(100%) translateZ(30px) rotate(-15deg);
             }
@@ -345,7 +345,7 @@
             left: 50%;
             -webkit-transform: translateX(-50%);
             -ms-transform: translateX(-50%);
-                transform: translateX(-50%);
+            transform: translateX(-50%);
             width: 16px;
             height: 100%;
             z-index: 1;
@@ -431,27 +431,75 @@
                 background-color: #ed7669;
             }
 
-        .backbtn {
-                position: absolute;
-    width: 27px;
-    height: 44px;
-    left: 10px;
-    top: 10px;
-    z-index: 10;
-    cursor: pointer;
-    background-size: 27px 44px;
-    background-position: center;
-    background-repeat: no-repeat;
-            background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E")
+
+
+        .fancy-button {
+            display: inline-block;
+            margin: 20px;
+            font-family: 'Heebo', Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            line-height: 24px;
+            color: #ffffff;
+            position: relative;
         }
+.fancy-button.bg-gradient3 {
+    text-shadow: 0 0 1px #546082;
+    position:fixed;
+    bottom:0px;
+    right:0px;
+    z-index:1;
+}
+.fancy-button.pop-onhover:before {
+    opacity: 0;
+    bottom: 10px;
+}
+.pop-onhover.bg-gradient3 span, .pop-onhover.bg-gradient3:before {
+    background: #B9AEF0;
+    background: linear-gradient(180deg, #B9AEF0 0%, #ADA1EB 80%, #ADA1EB 100%);
+}
+.fancy-button:before {
+    content: '';
+    display: inline-block;
+    height: 40px;
+    position: absolute;
+    bottom: -1px;
+    left: 10px;
+    right: 10px;
+    z-index: -1;
+    border-radius: 2em;
+    -webkit-filter: blur(14px) brightness(0.9);
+    filter: blur(14px) brightness(0.9);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease-out;
+}
+
+.fancy-button.pop-onhover span {
+    border-radius: 4px;
+}
+.pop-onhover.bg-gradient3 span, .pop-onhover.bg-gradient3:before {
+    background: #B9AEF0;
+    background: linear-gradient(180deg, #B9AEF0 0%, #ADA1EB 80%, #ADA1EB 100%);
+}
+.fancy-button span {
+    display: inline-block;
+    padding: 16px 20px;
+    border-radius: 50em;
+    position: relative;
+    z-index: 2;
+    will-change: transform, filter;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease-out;
+}
     </style>
 </head>
 <body translate="no">
-   
-    <div  class="container">
-        <div class="backbtn">
-           <div  style="font-size: 32px;margin-left: 30px;line-height: 45px;color: darkblue;">Thoát</div> 
-        </div>
+    <a href="#" class="fancy-button pop-onhover bg-gradient3"><span><i class="fa fa-pencil"></i>Thoát</span></a>
+    <div class="container">
         <div class="text" style="display:none">
             <div class="text-main">Find the Christmas gift</div>
             <div class="title">Pick <span id="number">3</span> gifts</div>
@@ -669,7 +717,7 @@
             //http://www.knowstack.com/flexbox-responsive-layout/
             var factor = 0.5; //1. 4x4 // 1.5 3x6 // 2 2x8 // 3 2x10 // 4 1x16
             var resizeTimeout, adjustsize = function () {
-                var _W = window.innerWidth, _H = window.innerHeight, row=0, col=0;
+                var _W = window.innerWidth, _H = window.innerHeight, row = 0, col = 0;
                 var dt = parseInt(Math.sqrt(_W * _H / 16));
                 var phandu = (_W % dt);
                 var phannguyen = (_W - phandu) / dt;
@@ -921,7 +969,7 @@
 
             init();
         })();
-      //# sourceURL=pen.js
+        //# sourceURL=pen.js
     </script>
 </body>
 </html>
