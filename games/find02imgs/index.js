@@ -180,8 +180,8 @@
         stargameTime = date + ' ' + time;
     };
 
-    var stargameTime = '', selected1 = undefined, orderapi = 'http://localhost:10996/phucky'// "http://phucky.dnd.vn",// ;
-    selected2 = undefined, api = 'http://192.168.1.91:2432/api'// "http://brickapi.dnd.vn/api",// ;
+    var stargameTime = '', selected1 = undefined, orderapi = 'http://localhost:10996/phucky',// "http://phucky.dnd.vn",// ;
+    selected2 = undefined, api = 'http://192.168.1.91:2432/api',// "http://brickapi.dnd.vn/api",// ;
     clickCount = 0, list = [],
     cardsLeft = 0,
     gameCompleted = false,
@@ -193,7 +193,6 @@
     var iconFruits = ['🍇', '🍈', '🍉', '🍊', '🍋', '🍌', '🍍', '🍎', '🍏', '🍑', '🍒', '🍓'];
 
     var icons = iconAnimals;
-
     var resizeTimeout, adjustsize = function () {
         if (!gameCompleted) {
             var _W = window.innerWidth, _H = window.innerHeight;
@@ -371,27 +370,27 @@
             var c = e;
         });
         adjustsize();
-        //dosvr(JSON.stringify({ "act": "findthesameimg","ncc":"phucky"}), function (kq, rst) {
-        //    if (kq == 'ok') {
-        //        if (rst.kq == 'OK') {
-        //            $app__hud.data('gamekey', rst.gamekey);
-        //        } else {
-        //            $app__hud.data('gamekey','-1');
-        //            var msg = $(rst.gamekey);
-        //            $('.app').prepend(msg);
-        //            var cover = $('.cover');
-        //            $('.buttonx.OK').click(function (e) {
-        //                cover.slideUp(350, function (e) {
-        //                    cover.remove();
-        //                });
-        //            });
-        //            cover.slideDown(350);
-        //        }
-        //    } else {
-        //        //se trigger thang vao web dat hang ..
-        //        triggertoOrder({});
-        //    };
-        //});
+        dosvr(JSON.stringify({ "act": "findthesameimg", "ncc": "phucky" }), function (kq, rst) {
+            if (kq == 'ok') {
+                if (rst.kq == 'OK') {
+                    $app__hud.data('gamekey', rst.gamekey);
+                } else {
+                    $app__hud.data('gamekey','-1');
+                    var msg = $(rst.gamekey);
+                    $('.app').prepend(msg);
+                    var cover = $('.cover');
+                    $('.buttonx.OK').click(function (e) {
+                        cover.slideUp(350, function (e) {
+                            cover.remove();
+                        });
+                    });
+                    cover.slideDown(350);
+                }
+            } else {
+                //se trigger thang vao web dat hang ..
+                triggertoOrder({});
+            };
+        });
     }
 
     clickCount = 0;
@@ -433,15 +432,15 @@
         //}
 
 
-        //////////var chil = $('.app__cards-container').children();
-        //////////for (var i = chil.length - 1; i > 0; i--) {
-        //////////    $(chil[i]).remove();
+        //var chil = $('.app__cards-container').children();
+        //for (var i = chil.length - 1; i > 0; i--) {
+        //    $(chil[i]).remove();
 
-        //////////};
-        //////////list = [];
-        //////////cardsLeft = 0;
-        //////////adjustsize();
-        //////////finishgame();
+        //};
+        //list = [];
+        //cardsLeft = 0;
+        //adjustsize();
+        //finishgame();
 
         //if (args.cb) args.cb();
 

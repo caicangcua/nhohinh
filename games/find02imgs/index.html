@@ -22,8 +22,10 @@
 
             </div>
             <div class="app__hud__game-status">Số lần: 0, Món: 16</div>
-            <button class="app__hud__btn-restart">Restart</button>
-
+            <!--<button class="app__hud__btn-restart">Restart</button>-->
+            <div class="exitbtn">
+                <div class="buttonx" style="padding: 0px 10px;cursor: pointer;margin: 0px;">Thoát</div>
+            </div>
         </div>
         <div class="app__cards-container">
             <div class="app__cards-container__card" role="button">
@@ -46,8 +48,6 @@
                 <p><a href="javascript:void(0)">FB Fanpage</a><span>&middot;</span>Com Phuc Ky</p>
                 <p><a href="javascript:void(0)">Địa chỉ</a><span>&middot;</span>376 CMT8, phường Bùi Hữu Nghĩa, Quận Bình Thủy, TP.Cần Thơ</p>
             </div>
-
-
         </div>
     </main>
     <script type="text/javascript">
@@ -65,7 +65,7 @@
                         checkloadjscssfile('index.js', 'js', function () {
                             $('.loading').fadeOut('slow', function () {
                                 $('.app.ng-scope').fadeIn('slow', function () {
-                                    $('.app__hud__btn-restart').click(function (e) {
+                                    $('.exitbtn .buttonx').click(function (e) {
                                         if (args.cb) args.cb();
                                     });
                                 });
