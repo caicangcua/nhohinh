@@ -206,8 +206,10 @@
                     comsvr({}, function (data) {
                         if (fh <= atD && atD <= th) {
                             btnDatHang.classList.remove('nghiban');
-                            btnDatHang.innerHTML = '<a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a>';
-                            btnDatHang.addEventListener('click', dathangClick);
+                            if (!btnDatHang.querySelector('#placeorder')) {
+                                btnDatHang.innerHTML = '<a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:8px 12px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a>';
+                                btnDatHang.addEventListener('click', dathangClick);
+                            };
                         } else {
                             btnDatHang.innerHTML = '';
                             btnDatHang.classList.add('nghiban');
