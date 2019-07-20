@@ -202,7 +202,7 @@
                     e.stopPropagation();
                     redirect('http://phucky.dnd.vn', 'post');// http://localhost:10996/phucky;
                 }, trackhwnd, dotrack = function () {
-                    clearTimeout(trackhwnd); btnDatHang.removeEventListener('click',dathangClick );
+                    clearTimeout(trackhwnd); 
                     comsvr({}, function (data) {
                         if (fh <= atD && atD <= th) {
                             btnDatHang.classList.remove('nghiban');
@@ -211,6 +211,7 @@
                                 btnDatHang.addEventListener('click', dathangClick);
                             };
                         } else {
+                            btnDatHang.removeEventListener('click', dathangClick);
                             btnDatHang.innerHTML = '';
                             btnDatHang.classList.add('nghiban');
                         };
