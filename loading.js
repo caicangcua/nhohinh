@@ -197,20 +197,25 @@
                 var t = lcDB['gio'][atD.getDay()], tu = t[0].split(':'), den = t[1].split(':');
                 fh = fh.setMinutes(60 * parseInt(tu[0]) + parseInt(tu[1])); fh = new Date(fh);
                 th = th.setMinutes(60 * parseInt(den[0]) + parseInt(den[1])); th = new Date(th);
-                var btnDatHang = document.getElementById('btnDatHang');
-                if (fh <= atD && atD <= th) {
-                    dosvr({}, function (data) {
-                        btnDatHang.innerHTML = '<a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a>';
-                        btnDatHang.addEventListener('click', function (e) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            redirect('http://phucky.dnd.vn', 'post');// http://localhost:10996/phucky;
-                        });
+                var btnDatHang = document.getElementById('btnDatHang'),dathangClick=function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    redirect('http://phucky.dnd.vn', 'post');// http://localhost:10996/phucky;
+                }, trackhwnd, dotrack = function () {
+                    clearTimeout(trackhwnd); btnDatHang.removeEventListener('click',dathangClick );
+                    comsvr({}, function (data) {
+                        if (fh <= atD && atD <= th) {
+                            btnDatHang.classList.remove('nghiban');
+                            btnDatHang.innerHTML = '<a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a>';
+                            btnDatHang.addEventListener('click', dathangClick);
+                        } else {
+                            btnDatHang.innerHTML = '';
+                            btnDatHang.classList.add('nghiban');
+                        };
+                        trackhwnd = setTimeout(function () { dotrack(); console.log('dotrack()'); }, 30000);
                     });
-                } else {
-                    btnDatHang.innerHTML = '';
-                    btnDatHang.classList.add('nghiban');
                 };
+                dotrack();
             }
         });
     });
@@ -240,6 +245,27 @@
             }
         };
         xhr.send();
+    }
+
+    function comsvr(args, cb) {
+        var xhr = new XMLHttpRequest(),url = "http://caunoi.dnd.vn/jdata/sp.json";//http://localhost:3165 "url?data=" + encodeURIComponent(JSON.stringify({ "email": "hey@mail.com", "password": "101010" }));
+        xhr.open('GET', url);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send();
+
+        // 4. This will be called after the response is received
+        xhr.onload = function () {
+            if (xhr.status != 200) { // analyze HTTP status of the response
+                cb({ 'kq': 'ng', 'status': xhr.status, 'statusTex': xhr.statusText });// e.g. 404: Not Found
+            } else { // show the result
+                var json = JSON.parse(xhr.responseText);
+                json['kq'] = 'ok';
+                cb(json);
+            }
+        };
+        xhr.onerror = function () {
+            cb({'kq':'err'});
+        };
     }
 
 })();
