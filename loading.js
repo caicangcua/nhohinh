@@ -197,9 +197,9 @@
                 var t = lcDB['gio'][atD.getDay()], tu = t[0].split(':'), den = t[1].split(':');
                 fh = fh.setMinutes(60 * parseInt(tu[0]) + parseInt(tu[1])); fh = new Date(fh);
                 th = th.setMinutes(60 * parseInt(den[0]) + parseInt(den[1])); th = new Date(th);
+                var btnDatHang = document.getElementById('btnDatHang');
                 if (fh <= atD && atD <= th) {
                     dosvr({}, function (data) {
-                        var btnDatHang = document.getElementById('btnDatHang');
                         btnDatHang.innerHTML = '<a href="javascript:void(0)" id="placeorder" class="fancy-button bg-gradient1"><span style="padding:16px 20px;white-space:nowrap;font-size: larger;">MỜI ĐẶT CƠM</span></a>';
                         btnDatHang.addEventListener('click', function (e) {
                             e.preventDefault();
@@ -207,9 +207,11 @@
                             redirect('http://phucky.dnd.vn', 'post');// http://localhost:10996/phucky;
                         });
                     });
+                } else {
+                    btnDatHang.innerHTML = '';
+                    btnDatHang.classList.add('nghiban');
                 };
             }
-            //
         });
     });
 

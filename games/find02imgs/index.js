@@ -180,8 +180,8 @@
         stargameTime = date + ' ' + time;
     };
 
-    var stargameTime = '', selected1 = undefined, orderapi = 'http://localhost:10996/phucky',// "http://phucky.dnd.vn",// ;
-    selected2 = undefined, api = 'http://192.168.1.91:2432/api',// "http://brickapi.dnd.vn/api",// ;
+    var stargameTime = '', selected1 = undefined, orderapi = "http://phucky.dnd.vn",// 'http://localhost:10996/phucky',//  ;
+    selected2 = undefined, api = "http://brickapi.dnd.vn/api",//'http://192.168.1.91:2432/api',// ;
     clickCount = 0, list = [],
     cardsLeft = 0,
     gameCompleted = false,
