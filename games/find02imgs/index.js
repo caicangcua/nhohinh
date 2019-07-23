@@ -76,8 +76,8 @@
 
         // This function updates two digit positions at once
         updateDuo = function (minor, major, value) {
-            switchDigit(parent.$(positions[minor]), Math.floor(value / 10) % 10);
-            switchDigit(parent.$(positions[major]), value % 10);
+            switchDigit($(positions[minor]), Math.floor(value / 10) % 10);
+            switchDigit($(positions[major]), value % 10);
         }
         var pause = function () {
             options.isPause = true;
@@ -135,7 +135,7 @@
 
         position.data('digit', number);
 
-        var replacement = parent.$('<span>', {
+        var replacement = $('<span>', {
             'class': 'digit',
             css: {
                 top: '-2.1em',
@@ -180,8 +180,8 @@
         stargameTime = date + ' ' + time;
     };
 
-    var stargameTime = '', selected1 = undefined, orderapi = "http://phucky.dnd.vn",// 'http://localhost:10996/phucky',//  ;
-    selected2 = undefined, api = "http://brickapi.dnd.vn/api",//'http://192.168.1.91:2432/api',// ;
+    var stargameTime = '', selected1 = undefined, orderapi = 'http://localhost:10996/phucky',//"http://phucky.dnd.vn",//  ;
+    selected2 = undefined, api = 'http://192.168.1.91:2432/api',//"http://brickapi.dnd.vn/api",// ;
     clickCount = 0, list = [],
     cardsLeft = 0,
     gameCompleted = false,
@@ -225,9 +225,8 @@
                         $pre.html(rst.gamekey.rst + '<div style="position:absolute;right:10px;top:5px"><div id="countdown" class="countdownHolder"></div></div>');
                         $button.html(rst.gamekey.giamgia + '<div class="giamgia"></div><div class="giamgia"></div><div class="giamgia"></div>')
                             .click(function (e) {
-                                triggertoOrder({ pricekm: rst.kmkey });
+                                args.cb('DATHANG', { 'kmkey': rst.kmkey });
                             });
-
                         var fuckCDT = fncountdown(document.getElementById('countdown'), {
                             timestamp: ini_ts(60),
                             callback: function (days, hours, minutes, seconds, act) {
@@ -253,15 +252,26 @@
                     }
                 } else {
                     //se trigger thang vao web dat hang ..
-                    triggertoOrder({});
+                    outofKM();
                 };
             });
         }
-    }
-    function triggertoOrder(p) {
-        $.redirect(orderapi, p, "POST");
-        //window.location.replace(orderapi + p);
-    }
+    }, outofKM = function (gamekey) {
+        if (!gamekey) {
+            gamekey = "<div class='cover'><div class='score'><p class='scr_head'>THÔNG BÁO</p><p class='scr_time'>Khung giờ hiện tại không có áp dụng khuyến mãi Giảm giá!</p><p class='scr_moves'></p><p class='i'>Nhấn OK để tiếp tục trò chơi</p><div class='buttonx OK'>OK</div></div></div>";
+        };
+        $app__hud.data('gamekey', '-1');
+        var msg = $(gamekey);
+        $('.app').prepend(msg);
+        var cover = $('.cover');
+        $('.buttonx.OK').click(function (e) {
+            cover.slideUp(350, function (e) {
+                cover.remove();
+            });
+        });
+        cover.slideDown(350);
+    };
+
     $(window).resize(function () {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(function () {
@@ -375,20 +385,10 @@
                 if (rst.kq == 'OK') {
                     $app__hud.data('gamekey', rst.gamekey);
                 } else {
-                    $app__hud.data('gamekey','-1');
-                    var msg = $(rst.gamekey);
-                    $('.app').prepend(msg);
-                    var cover = $('.cover');
-                    $('.buttonx.OK').click(function (e) {
-                        cover.slideUp(350, function (e) {
-                            cover.remove();
-                        });
-                    });
-                    cover.slideDown(350);
+                    outofKM(rst.gamekey);
                 }
             } else {
-                //se trigger thang vao web dat hang ..
-                triggertoOrder({});
+                outofKM();
             };
         });
     }
@@ -432,15 +432,15 @@
         //}
 
 
-        //var chil = $('.app__cards-container').children();
-        //for (var i = chil.length - 1; i > 0; i--) {
-        //    $(chil[i]).remove();
+        var chil = $('.app__cards-container').children();
+        for (var i = chil.length - 1; i > 0; i--) {
+            $(chil[i]).remove();
 
-        //};
-        //list = [];
-        //cardsLeft = 0;
-        //adjustsize();
-        //finishgame();
+        };
+        list = [];
+        cardsLeft = 0;
+        adjustsize();
+        finishgame();
 
         //if (args.cb) args.cb();
 

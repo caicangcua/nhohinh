@@ -3,6 +3,7 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <style type="text/css">
         body {
             background: linear-gradient(to left,dodgerblue,#345);
@@ -22,7 +23,7 @@
 
             </div>
             <div class="app__hud__game-status">Số lần: 0, Món: 16</div>
-            <!--<button class="app__hud__btn-restart">Restart</button>-->
+            <button class="app__hud__btn-restart">Restart</button>
             <div class="exitbtn">
                 <div class="buttonx" style="padding: 0px 10px;cursor: pointer;margin: 0px;">Thoát</div>
             </div>
@@ -59,14 +60,14 @@
         function trochoi(params) {
             args = params;
             checkloadjscssfile('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js', 'js', function () {
-                checkloadjscssfile('index.css', 'css', function () {
-                    checkloadjscssfile('https://cdn.rawgit.com/mgalante/jquery.redirect/master/jquery.redirect.js', 'js');
+                checkloadjscssfile('index.css' + '?v=' + (new Date()).getTime(), 'css', function () {
+                    //checkloadjscssfile('https://cdn.rawgit.com/mgalante/jquery.redirect/master/jquery.redirect.js', 'js');
                     checkloadjscssfile('//cdn.rawgit.com/nnattawat/flip/v1.0.19/dist/jquery.flip.min.js', 'js', function () {
-                        checkloadjscssfile('index.js', 'js', function () {
+                        checkloadjscssfile('index.js' + '?v=' + (new Date()).getTime(), 'js', function () {
                             $('.loading').fadeOut('slow', function () {
                                 $('.app.ng-scope').fadeIn('slow', function () {
                                     $('.exitbtn .buttonx').click(function (e) {
-                                        if (args.cb) args.cb();
+                                        if (args.cb) args.cb('BACK');
                                     });
                                 });
                             });

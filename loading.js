@@ -32,15 +32,17 @@
             }
         }
     }
-    function redirect(url, method) {
+    function redirect(url, method,exData) {
         var form = document.createElement('form');
         form.method = method;
         form.action = url;
         //
-        var input = document.createElement('input');
+        var input = document.createElement('input'), postData = exData || {};
         input.type = "hidden";
         input.name = "pricekm";
-        input.value = JSON.stringify({ 'ncc': 'phucky', 'id': encodeURIComponent(window.location.href) });
+        //
+        postData['ncc'] = 'phucky'; postData['id'] = encodeURIComponent(window.location.href);
+        input.value = JSON.stringify(postData);
         //
         form.appendChild(input);
         document.body.appendChild(form);
@@ -93,7 +95,7 @@
             gamelist += '<div class="wrapper" style="right:10px;top:unset;bottom:0px">' +
                         '<ul id="gameitem" style="display:none" class="my-nav my-nav--list">' +
                             '<div id="wrapper-templates">';
-            if (version === false || version >= 12) {
+            if (true||version === false || version >= 12) {
                 gamelist += '<li class="my-nav__item"><a id="giftbox" class="my-nav__link my-nav__link--template">Mở hộp tìm quà</a> </li>';
             };
             gamelist += '<li class="my-nav__item"><a id="find02imgs" class="my-nav__link my-nav__link--template">Lật hình tìm 02 món ăn giống nhau</a> </li>' +
@@ -133,9 +135,13 @@
                             iframe.onload = function () {
                                 setTimeout(function () {
                                     iframe.contentWindow.trochoi({
-                                        cb: function () {
-                                            back.addEventListener(transname, evtEnd.bind('1'));
-                                            document.querySelector('#flip-toggle').classList.toggle('hoverx');
+                                        cb: function (act,jData) {
+                                            if (act == 'BACK') {
+                                                back.addEventListener(transname, evtEnd.bind('1'));
+                                                document.querySelector('#flip-toggle').classList.toggle('hoverx');
+                                            } else {
+                                                redirect('http://localhost:10996/phucky', 'post', jData);// 'http://phucky.dnd.vn';
+                                            }
                                         }
                                     });
                                 }, 100);
@@ -157,9 +163,6 @@
                     back.addEventListener(transname, evtEnd.bind('0|giftbox'));
                     document.querySelector('#flip-toggle').classList.toggle('hoverx');
                     gameitem.style.display = 'none';
-                    //dosvr(null, function (json) {
-                    //    e.target.innerHTML = json;
-                    //});
                 }
             });
             //
@@ -200,10 +203,11 @@
                 var btnDatHang = document.getElementById('btnDatHang'),dathangClick=function (e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    redirect('http://phucky.dnd.vn', 'post');// http://localhost:10996/phucky;
+                    redirect( 'http://localhost:10996/phucky', 'post');// 'http://phucky.dnd.vn';
                 }, trackhwnd, dotrack = function () {
                     clearTimeout(trackhwnd); 
                     comsvr({}, function (data) {
+                        atD = new Date();
                         if (fh <= atD && atD <= th) {
                             btnDatHang.classList.remove('nghiban');
                             if (!btnDatHang.querySelector('#placeorder')) {
@@ -215,40 +219,13 @@
                             btnDatHang.innerHTML = '';
                             btnDatHang.classList.add('nghiban');
                         };
-                        trackhwnd = setTimeout(function () { dotrack(); console.log('dotrack()'); }, 30000);
+                        trackhwnd = setTimeout(function () { dotrack(); console.log('dotrack()' + atD); }, 30000);
                     });
                 };
                 dotrack();
             }
         });
     });
-
-    function dosvr(args, cb) {
-        //var xhr = new XMLHttpRequest();
-        //var url = "http://localhost:2432/api/githubcom/";
-        //xhr.open("POST", url, true);
-        //xhr.setRequestHeader("Content-Type", "application/json;charset=utf-8");
-        //xhr.onreadystatechange = function () {
-        //    if (xhr.readyState === 4 && xhr.status === 200) {
-        //        var json = JSON.parse(xhr.responseText);
-        //        console.log(json.email + ", " + json.password);
-        //    }
-        //};
-        //var data = JSON.stringify({ "act": "findthesameimg", "ncc": "phucky" });
-        //xhr.send(data);
-
-        var xhr = new XMLHttpRequest();
-        var url = "http://caunoi.dnd.vn/jdata/sp.json";//http://localhost:3165 "url?data=" + encodeURIComponent(JSON.stringify({ "email": "hey@mail.com", "password": "101010" }));
-        xhr.open("GET", url, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                var json = JSON.parse(xhr.responseText);
-                cb(xhr.responseText);
-            }
-        };
-        xhr.send();
-    }
 
     function comsvr(args, cb) {
         var xhr = new XMLHttpRequest(),url = "http://caunoi.dnd.vn/jdata/sp.json";//http://localhost:3165 "url?data=" + encodeURIComponent(JSON.stringify({ "email": "hey@mail.com", "password": "101010" }));

@@ -37,7 +37,29 @@
         </div>
     </div>
     <script type="text/javascript">
-        var _0x58c8 = ["\x30\x39\x3A\x30\x30", "\x31\x32\x3A\x30\x30", "\x30\x30\x3A\x30\x39", "\x31\x39\x3A\x30\x30", "\x6A\x73", "\x73\x63\x72\x69\x70\x74", "\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74", "\x74\x79\x70\x65", "\x74\x65\x78\x74\x2F\x6A\x61\x76\x61\x73\x63\x72\x69\x70\x74", "\x73\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65", "\x73\x72\x63", "\x63\x73\x73", "\x6C\x69\x6E\x6B", "\x72\x65\x6C", "\x73\x74\x79\x6C\x65\x73\x68\x65\x65\x74", "\x74\x65\x78\x74\x2F\x63\x73\x73", "\x68\x72\x65\x66", "\x75\x6E\x64\x65\x66\x69\x6E\x65\x64", "\x6F\x6E\x6C\x6F\x61\x64", "\x61\x70\x70\x65\x6E\x64\x43\x68\x69\x6C\x64", "\x68\x65\x61\x64", "\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x73\x42\x79\x54\x61\x67\x4E\x61\x6D\x65", "\x3F\x76\x3D", "\x67\x65\x74\x54\x69\x6D\x65", "\x2E\x2E\x2F\x6C\x6F\x61\x64\x69\x6E\x67\x2E\x63\x73\x73", "\x2E\x2E\x2F\x6C\x6F\x61\x64\x69\x6E\x67\x2E\x6A\x73"]; var lcDB = { "\x67\x69\x6F": { "\x31": [_0x58c8[0], _0x58c8[1]], "\x32": [_0x58c8[0], _0x58c8[1]], "\x33": [_0x58c8[0], _0x58c8[1]], "\x34": [_0x58c8[0], _0x58c8[1]], "\x35": [_0x58c8[2], _0x58c8[3]], "\x36": [_0x58c8[0], _0x58c8[1]], "\x30": [_0x58c8[0], _0x58c8[1]] } }; function _xxug0b(_0x63eex3, _0x63eex4, _0x63eex5) { if (_0x63eex4 == _0x58c8[4]) { var _0x63eex6 = document[_0x58c8[6]](_0x58c8[5]); _0x63eex6[_0x58c8[9]](_0x58c8[7], _0x58c8[8]); _0x63eex6[_0x58c8[9]](_0x58c8[10], _0x63eex3) } else { if (_0x63eex4 == _0x58c8[11]) { var _0x63eex6 = document[_0x58c8[6]](_0x58c8[12]); _0x63eex6[_0x58c8[9]](_0x58c8[13], _0x58c8[14]); _0x63eex6[_0x58c8[9]](_0x58c8[7], _0x58c8[15]); _0x63eex6[_0x58c8[9]](_0x58c8[16], _0x63eex3) } }; if (typeof _0x63eex6 != _0x58c8[17]) { if (_0x63eex5) { _0x63eex6[_0x58c8[18]] = _0x63eex5 }; document[_0x58c8[21]](_0x58c8[20])[0][_0x58c8[19]](_0x63eex6) } } var dummy = _0x58c8[22] + (new Date())[_0x58c8[23]](); _xxug0b(_0x58c8[24] + dummy, _0x58c8[11]); _xxug0b(_0x58c8[25] + dummy, _0x58c8[4])
+        var lcDB = {
+            'gio': { '1': ['09:00', '22:00'], '2': ['08:00', '12:00'], '3': ['09:00', '12:00'], '4': ['09:00', '12:00'], '5': ['00:09', '19:00'], '6': ['09:00', '12:00'], '0': ['09:00', '12:00'] }
+        };
+        function _xxug0b(filename, filetype, cb) {
+            if (filetype == "js") { //if filename is a external JavaScript file
+                var fileref = document.createElement('script')
+                fileref.setAttribute("type", "text/javascript");
+                fileref.setAttribute("src", filename);
+            }
+            else if (filetype == "css") { //if filename is an external CSS file
+                var fileref = document.createElement("link")
+                fileref.setAttribute("rel", "stylesheet");
+                fileref.setAttribute("type", "text/css");
+                fileref.setAttribute("href", filename);
+            }
+            if (typeof fileref != "undefined") {
+                if (cb) fileref.onload = cb;
+                document.getElementsByTagName("head")[0].appendChild(fileref);
+            }
+        }
+        var dummy = '?v=' + (new Date()).getTime();
+        _xxug0b('../loading.css' + dummy, 'css');
+        _xxug0b('../loading.js' + dummy, 'js');
     </script>
 </body>
 </html>
