@@ -243,7 +243,7 @@
                 checkloadjscssfile('index.css' + '?v=' + (new Date()).getTime(), 'css', function () {
                     checkloadjscssfile('https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.min.js', 'js', function () {
                         checkloadjscssfile('index.js' + '?v=' + (new Date()).getTime(), 'js', function () {
-                            var loading = document.querySelector('.loading'), duration = 2,from = {
+                            var loading = document.querySelector('.loading'), duration = 1,from = {
                                 opacity: 0, ease: Linear.ease, onComplete: function (e) {
                                     var gamebody = document.querySelector('#gamebody');
                                     TweenMax.fromTo(gamebody, duration, {display:'', opacity: 0, ease: Linear.ease }, to);

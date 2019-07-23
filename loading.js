@@ -228,7 +228,7 @@
     });
 
     function comsvr(args, cb) {
-        var xhr = new XMLHttpRequest(),url = "http://caunoi.dnd.vn/jdata/sp.json";//http://localhost:3165 "url?data=" + encodeURIComponent(JSON.stringify({ "email": "hey@mail.com", "password": "101010" }));
+        var xhr = new XMLHttpRequest(),url = "jdata/sp.json";//http://localhost:3165 "url?data=" + encodeURIComponent(JSON.stringify({ "email": "hey@mail.com", "password": "101010" }));
         xhr.open('GET', url);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send();
