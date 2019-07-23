@@ -1,4 +1,4 @@
-﻿(function () {
+﻿//(function () {
 
     // VAR
     var cw = document.querySelectorAll('.cube');
@@ -294,12 +294,11 @@
         });
     }
 
-    function dosvr(args, cb) {
+    function dosvr(postData, cb) {
         var xhr = new XMLHttpRequest();
-        var url = "http://192.168.1.91:2432/api/githubcom/";
-        xhr.open("POST", url, true);
+        xhr.open("POST", args.apiURI, true);
         xhr.setRequestHeader("Content-Type", "application/json;charset=utf-8");
-        var data = JSON.stringify(args);
+        var data = JSON.stringify(postData);
         xhr.send(data);
 
         // 4. This will be called after the response is received
@@ -339,7 +338,13 @@
         });
     }
     notKM(function () {
+        var loading = document.querySelector('.loading'), duration = 1, from = {
+            opacity: 0, ease: Linear.ease, onComplete: function (e) {
+                var gamebody = document.querySelector('#gamebody');
+                TweenMax.fromTo(gamebody, duration, { display: '', opacity: 0, ease: Linear.ease }, to);
+            }
+        }, to = { opacity: 1 };
+        TweenMax.fromTo(loading, duration, to, from);
         init();
     });
-    //
-})();
+//})();

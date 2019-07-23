@@ -52,7 +52,7 @@
     _xxug0b('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css', 'css', function () {
         _xxug0b('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js', 'js', function () {
             var thumbs = document.querySelector('.gallery-thumbs'),
-                rawI = thumbs.getAttribute('data-imgs').split(',');
+                rawI = thumbs.getAttribute('data-imgs').split(','), orderURL = 'http://localhost:10996/phucky';// 'http://phucky.dnd.vn';
             n$EL = document.createElement("div");
             n$EL.innerHTML = '<div id="btnDatHang" class="wrapper" style="right:10px"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>';//
             thumbs.parentNode.insertBefore(n$EL.childNodes[0], thumbs.previousElementSibling);
@@ -140,9 +140,10 @@
                                                 back.addEventListener(transname, evtEnd.bind('1'));
                                                 document.querySelector('#flip-toggle').classList.toggle('hoverx');
                                             } else {
-                                                redirect('http://localhost:10996/phucky', 'post', jData);// 'http://phucky.dnd.vn';
+                                                redirect(orderURL, 'post', jData);
                                             }
                                         }
+                                        ,apiURI:"http://192.168.1.91:2432/api/githubcom/"//
                                     });
                                 }, 100);
                             };
@@ -203,7 +204,7 @@
                 var btnDatHang = document.getElementById('btnDatHang'),dathangClick=function (e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    redirect( 'http://localhost:10996/phucky', 'post');// 'http://phucky.dnd.vn';
+                    redirect(orderURL, 'post');
                 }, trackhwnd, dotrack = function () {
                     clearTimeout(trackhwnd); 
                     comsvr({}, function (data) {
