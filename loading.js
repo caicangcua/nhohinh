@@ -184,8 +184,7 @@
                             atthumb.style.background = 'url(' + this.src + ')';
                             loadcount += 1;
                             if (loadcount == imgs.length) {
-                                var test = "<div class='button-parrot'>" +
-"<div class='button'>Bat dau choi!" +
+                                var playgame = "<div class='button'>Chơi Game!" +
 "<div class='parrot'>Mini game</div>" +
 "<div class='parrot'>Giam gia!</div>" +
 "<div class='parrot'>Tro choi</div>" +
@@ -195,7 +194,18 @@
 "</div>" +
 "</div>";
                                 for (var i = 1; i < imgs.length; i++) {
-                                    galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(' + imgs[i].getAttribute('data-src') + '?v=' + (new Date()).getTime() + ')">' + test + '</div>']);
+                                    var hinh = imgs[i].getAttribute('data-src'), nut = '', gamename = '';
+                                    if (hinh.indexOf('find02imgs') != -1) {
+                                        gamename = 'find02imgs';
+                                    } else if (hinh.indexOf('giftbox') != -1) {
+                                        if (version === false || version >= 12) {
+                                            gamename = 'giftbox';
+                                        };
+                                    };
+                                    if (gamename != '') {
+                                        nut = "<div class='button-parrot' onclick=document.getElementById('" + gamename + "').click()>" + playgame;
+                                    };
+                                    galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(' + hinh + '?v=' + (new Date()).getTime() + ')">' + nut + '</div>']);
                                 }
                             }
                         };
