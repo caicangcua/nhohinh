@@ -339,6 +339,9 @@
         });
     }
     notKM(function () {
+        setTimeout(function () {
+            init();
+        }, 1);
         var loading = document.querySelector('.loading'), duration = 1, from = {
             opacity: 0, ease: Linear.ease, onComplete: function (e) {
                 var gamebody = document.querySelector('#gamebody');
@@ -346,6 +349,5 @@
             }
         }, to = { opacity: 1 };
         TweenMax.fromTo(loading, duration, to, from);
-        init();
     });
 //})();
