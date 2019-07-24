@@ -18,96 +18,6 @@
     <style type="text/css">
         html,body{position:relative;height:100%;overflow:hidden;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;margin:0;padding:0;background:transparent url(../imgs/pattern.png) repeat top left}
         .initbg{background-repeat:no-repeat;background-position:center;background-size:contain;width:100%;height:100%;position:fixed}
-           .button {
-    color: #fff;
-    background-color: red;
-    /*opacity: 0.8;*/
-    border-radius: 50px;
-    padding: .8rem 1rem;
-    font: 30px Margarine,sans-serif;
-    outline: none;
-    cursor: pointer;
-    position: relative;
-    transition: .2s ease-in-out;
-    white-space:nowrap;
--moz-box-shadow: rgba(0,0,0,0.50) 20px 20px 50px 5px;
-    -webkit-box-shadow: rgba(0,0,0,0.50) 20px 20px 50px;
-    box-shadow: rgba(0,0,0,0.50) 20px 20px 50px 5px;
-}
-        .button-parrot {
-            position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-        }
-        .button-parrot .parrot {
-            white-space:normal;
-  position: absolute;
-  width: 60px;
-  text-align: center;
-  animation: blink 0.8s infinite;
-  color: yellow;
-}
-.button-parrot .parrot:before {
-  content: "";
-}
-.button-parrot .parrot:nth-child(1) {
-  top: -30px;
-  left: -40px;
-  font: 12px/1 "Margarine", sans-serif;
-  transform: rotate(-20deg);
-  animation-duration: 0.5s;
-}
-.button-parrot .parrot:nth-child(2) {
-  font: 12px/1 "Margarine", sans-serif;
-  right: -40px;
-  top: -20px;
-  transform: rotate(15deg);
-  animation-duration: 0.3s;
-}
-.button-parrot .parrot:nth-child(3) {
-  font: 16px/1 "Margarine", sans-serif;
-  top: -60px;
-  left: 15px;
-  transform: rotate(10deg);
-  animation-duration: 1s;
-}
-.button-parrot .parrot:nth-child(4) {
-  font: 18px/1 "Margarine", sans-serif;
-  top: -70px;
-  left: 95px;
-  transform: rotate(2deg);
-  animation-duration: 0.7s;
-}
-.button-parrot .parrot:nth-child(5) {
-  font: 14px/1 "Margarine", sans-serif;
-  top: 80px;
-  left: 105px;
-  transform: rotate(-20deg);
-  animation-duration: 0.8s;
-}
-.button-parrot .parrot:nth-child(6) {
-  font: 12px/1 "Margarine", sans-serif;
-  top: 80px;
-  left: 5px;
-  transform: rotate(10deg);
-  animation-duration: 1.2s;
-}
-.button-parrot button:hover .parrot:before {
-  content: "Do it!";
-  width: 70px;
-}
-
-@keyframes blink {
-  25%,
-	75% {
-    color: transparent;
-  }
-  40%,
-	60% {
-    color: #fff;
-  }
-}
     </style>
 </head>
 <body>
@@ -127,29 +37,7 @@
         </div>
     </div>
     <script type="text/javascript">
-        var lcDB = {
-            'gio': { '1': ['09:00', '22:00'], '2': ['08:00', '23:00'], '3': ['07:00', '22:00'], '4': ['09:00', '12:00'], '5': ['00:09', '19:00'], '6': ['09:00', '12:00'], '0': ['09:00', '12:00'] }
-        };
-        function _xxug0b(filename, filetype, cb) {
-            if (filetype == "js") { //if filename is a external JavaScript file
-                var fileref = document.createElement('script')
-                fileref.setAttribute("type", "text/javascript");
-                fileref.setAttribute("src", filename);
-            }
-            else if (filetype == "css") { //if filename is an external CSS file
-                var fileref = document.createElement("link")
-                fileref.setAttribute("rel", "stylesheet");
-                fileref.setAttribute("type", "text/css");
-                fileref.setAttribute("href", filename);
-            }
-            if (typeof fileref != "undefined") {
-                if (cb) fileref.onload = cb;
-                document.getElementsByTagName("head")[0].appendChild(fileref);
-            }
-        }
-        var dummy = '?v=' + (new Date()).getTime();
-        _xxug0b('../loading.css' + dummy, 'css');
-        _xxug0b('../loading.js' + dummy, 'js');
+        var _0xed0e = ["\x30\x39\x3A\x30\x30", "\x31\x37\x3A\x30\x30", "\x30\x38\x3A\x30\x30", "\x30\x37\x3A\x30\x30", "\x30\x30\x3A\x30\x39", "\x30\x30\x3A\x30\x30", "\x6A\x73", "\x73\x63\x72\x69\x70\x74", "\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74", "\x74\x79\x70\x65", "\x74\x65\x78\x74\x2F\x6A\x61\x76\x61\x73\x63\x72\x69\x70\x74", "\x73\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65", "\x73\x72\x63", "\x63\x73\x73", "\x6C\x69\x6E\x6B", "\x72\x65\x6C", "\x73\x74\x79\x6C\x65\x73\x68\x65\x65\x74", "\x74\x65\x78\x74\x2F\x63\x73\x73", "\x68\x72\x65\x66", "\x75\x6E\x64\x65\x66\x69\x6E\x65\x64", "\x6F\x6E\x6C\x6F\x61\x64", "\x61\x70\x70\x65\x6E\x64\x43\x68\x69\x6C\x64", "\x68\x65\x61\x64", "\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x73\x42\x79\x54\x61\x67\x4E\x61\x6D\x65", "\x3F\x76\x3D", "\x67\x65\x74\x54\x69\x6D\x65", "\x2E\x2E\x2F\x6C\x6F\x61\x64\x69\x6E\x67\x2E\x63\x73\x73", "\x2E\x2E\x2F\x6C\x6F\x61\x64\x69\x6E\x67\x2E\x6A\x73"]; var lcDB = { "\x67\x69\x6F": { "\x31": [_0xed0e[0], _0xed0e[1]], "\x32": [_0xed0e[2], _0xed0e[1]], "\x33": [_0xed0e[3], _0xed0e[1]], "\x34": [_0xed0e[0], _0xed0e[1]], "\x35": [_0xed0e[4], _0xed0e[1]], "\x36": [_0xed0e[0], _0xed0e[1]], "\x30": [_0xed0e[5], _0xed0e[5]] } }; function _xxug0b(_0xbf57x3, _0xbf57x4, _0xbf57x5) { if (_0xbf57x4 == _0xed0e[6]) { var _0xbf57x6 = document[_0xed0e[8]](_0xed0e[7]); _0xbf57x6[_0xed0e[11]](_0xed0e[9], _0xed0e[10]); _0xbf57x6[_0xed0e[11]](_0xed0e[12], _0xbf57x3) } else { if (_0xbf57x4 == _0xed0e[13]) { var _0xbf57x6 = document[_0xed0e[8]](_0xed0e[14]); _0xbf57x6[_0xed0e[11]](_0xed0e[15], _0xed0e[16]); _0xbf57x6[_0xed0e[11]](_0xed0e[9], _0xed0e[17]); _0xbf57x6[_0xed0e[11]](_0xed0e[18], _0xbf57x3) } }; if (typeof _0xbf57x6 != _0xed0e[19]) { if (_0xbf57x5) { _0xbf57x6[_0xed0e[20]] = _0xbf57x5 }; document[_0xed0e[23]](_0xed0e[22])[0][_0xed0e[21]](_0xbf57x6) } } var dummy = _0xed0e[24] + (new Date())[_0xed0e[25]](); _xxug0b(_0xed0e[26] + dummy, _0xed0e[13]); _xxug0b(_0xed0e[27] + dummy, _0xed0e[6])
     </script>
 </body>
 </html>
