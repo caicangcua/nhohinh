@@ -432,15 +432,15 @@
         //}
 
 
-        var chil = $('.app__cards-container').children();
-        for (var i = chil.length - 1; i > 0; i--) {
-            $(chil[i]).remove();
+        //var chil = $('.app__cards-container').children();
+        //for (var i = chil.length - 1; i > 0; i--) {
+        //    $(chil[i]).remove();
 
-        };
-        list = [];
-        cardsLeft = 0;
-        adjustsize();
-        finishgame();
+        //};
+        //list = [];
+        //cardsLeft = 0;
+        //adjustsize();
+        //finishgame();
 
         //if (args.cb) args.cb();
 
