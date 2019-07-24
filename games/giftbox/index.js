@@ -154,6 +154,7 @@
 
     function addGift() {
         var rd = Math.round(Math.random() * (c.length - 1));
+        if (rd <= 0) rd = 1;
         var selectionGift = c[rd - 1].querySelector('.gift');
         var WINGIFT = '<div>😎</div>';
         var TGIFT = '<div>😢</div>';
