@@ -184,8 +184,18 @@
                             atthumb.style.background = 'url(' + this.src + ')';
                             loadcount += 1;
                             if (loadcount == imgs.length) {
+                                var test = "<div class='button-parrot'>" +
+"<div class='button'>Bat dau choi!" +
+"<div class='parrot'>Mini game</div>" +
+"<div class='parrot'>Giam gia!</div>" +
+"<div class='parrot'>Tro choi</div>" +
+"<div class='parrot'>Giam gia!</div>" +
+"<div class='parrot'>Khuyen mai</div>" +
+"<div class='parrot'>Giai tri</div>" +
+"</div>" +
+"</div>";
                                 for (var i = 1; i < imgs.length; i++) {
-                                    galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(' + imgs[i].getAttribute('data-src') + '?v=' + (new Date()).getTime() + ')"></div>']);
+                                    galleryTop.appendSlide(['<div class="swiper-slide" style="background-image:url(' + imgs[i].getAttribute('data-src') + '?v=' + (new Date()).getTime() + ')">' + test + '</div>']);
                                 }
                             }
                         };
