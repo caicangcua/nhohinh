@@ -32,7 +32,7 @@
             }
         }
     }
-    function redirect(url, method,exData) {
+    function redirect(url, method, exData) {
         var form = document.createElement('form');
         form.method = method;
         form.action = url;
@@ -52,7 +52,7 @@
     _xxug0b('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css', 'css', function () {
         _xxug0b('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js', 'js', function () {
             var thumbs = document.querySelector('.gallery-thumbs'),
-                rawI = thumbs.getAttribute('data-imgs').split(','), orderURL = 'http://192.168.1.91:10996/phucky';// 'http://phucky.dnd.vn';
+                rawI = thumbs.getAttribute('data-imgs').split(','), orderURL = 'http://phucky.dnd.vn';// 'http://192.168.1.91:10996/phucky'; 
             n$EL = document.createElement("div");
             n$EL.innerHTML = '<div id="btnDatHang" class="wrapper" style="right:10px"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>';//
             thumbs.parentNode.insertBefore(n$EL.childNodes[0], thumbs.previousElementSibling);
@@ -95,7 +95,7 @@
             gamelist += '<div class="wrapper" style="right:10px;top:unset;bottom:0px">' +
                         '<ul id="gameitem" style="display:none" class="my-nav my-nav--list">' +
                             '<div id="wrapper-templates">';
-            if (true||version === false || version >= 12) {
+            if (true || version === false || version >= 12) {
                 gamelist += '<li class="my-nav__item"><a id="giftbox" class="my-nav__link my-nav__link--template">Mở hộp tìm quà</a> </li>';
             };
             gamelist += '<li class="my-nav__item"><a id="find02imgs" class="my-nav__link my-nav__link--template">Lật hình tìm 02 món ăn giống nhau</a> </li>' +
@@ -135,7 +135,7 @@
                             iframe.onload = function () {
                                 setTimeout(function () {
                                     iframe.contentWindow.trochoi({
-                                        cb: function (act,jData) {
+                                        cb: function (act, jData) {
                                             if (act == 'BACK') {
                                                 back.addEventListener(transname, evtEnd.bind('1'));
                                                 document.querySelector('#flip-toggle').classList.toggle('hoverx');
@@ -143,7 +143,7 @@
                                                 redirect(orderURL, 'post', jData);
                                             }
                                         }
-                                        ,apiURI:"http://192.168.1.91:2432/api/githubcom/"//
+                                        , apiURI: "http://brickapi.dnd.vn/api/githubcom/"// http://192.168.1.91:2432/api
                                     });
                                 }, 100);
                             };
@@ -221,12 +221,12 @@
                 var t = lcDB['gio'][atD.getDay()], tu = t[0].split(':'), den = t[1].split(':');
                 fh = fh.setMinutes(60 * parseInt(tu[0]) + parseInt(tu[1])); fh = new Date(fh);
                 th = th.setMinutes(60 * parseInt(den[0]) + parseInt(den[1])); th = new Date(th);
-                var btnDatHang = document.getElementById('btnDatHang'),dathangClick=function (e) {
+                var btnDatHang = document.getElementById('btnDatHang'), dathangClick = function (e) {
                     e.preventDefault();
                     e.stopPropagation();
                     redirect(orderURL, 'post');
                 }, trackhwnd, dotrack = function () {
-                    clearTimeout(trackhwnd); 
+                    clearTimeout(trackhwnd);
                     comsvr({}, function (data) {
                         atD = new Date();
                         if (fh <= atD && atD <= th) {
@@ -249,7 +249,7 @@
     });
 
     function comsvr(args, cb) {
-        var xhr = new XMLHttpRequest(),url = "jdata/sp.json";//http://localhost:3165 "url?data=" + encodeURIComponent(JSON.stringify({ "email": "hey@mail.com", "password": "101010" }));
+        var xhr = new XMLHttpRequest(), url = "jdata/sp.json";//http://localhost:3165 "url?data=" + encodeURIComponent(JSON.stringify({ "email": "hey@mail.com", "password": "101010" }));
         xhr.open('GET', url);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send();
@@ -265,7 +265,7 @@
             }
         };
         xhr.onerror = function () {
-            cb({'kq':'err'});
+            cb({ 'kq': 'err' });
         };
     }
 
