@@ -1,4 +1,4 @@
-﻿$(function () {
+﻿//$(function () {
 
     // Number of seconds in every time division
     var days = 24 * 60 * 60,
@@ -400,7 +400,7 @@
         startNewGame();
     }, 100);
 
-    function dosvr(args, cb) {
+    function dosvr(dataPost, cb) {
         $.ajax({
             retryLimit: 0,
             tryCount: 3,
@@ -410,7 +410,7 @@
             dataType: 'json',
             cache: false,
             timeout: 7000,
-            data: args
+            data: dataPost
             , success: function (result, textStatus, xhr) {
                 cb('ok', result);
             }, error: function (xhr, textStatus, errorThrown) {
@@ -449,5 +449,5 @@
 
 
 
-});
+//});
 
