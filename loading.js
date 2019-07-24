@@ -52,7 +52,7 @@
     _xxug0b('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css', 'css', function () {
         _xxug0b('https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js', 'js', function () {
             var thumbs = document.querySelector('.gallery-thumbs'),
-                rawI = thumbs.getAttribute('data-imgs').split(','), orderURL = 'http://localhost:10996/phucky';// 'http://phucky.dnd.vn';
+                rawI = thumbs.getAttribute('data-imgs').split(','), orderURL = 'http://192.168.1.91:10996/phucky';// 'http://phucky.dnd.vn';
             n$EL = document.createElement("div");
             n$EL.innerHTML = '<div id="btnDatHang" class="wrapper" style="right:10px"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>';//
             thumbs.parentNode.insertBefore(n$EL.childNodes[0], thumbs.previousElementSibling);
