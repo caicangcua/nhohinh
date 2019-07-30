@@ -140,7 +140,7 @@
         <div class="container-fluid">
             <div id="map-result-section" class="map-result-wrapper">
                 <div id="sticky-anchor"></div>
-                <div id="sticky" class="widget clearfix">
+                <div id="sticky" class="widget clearfix" style="display:none">
                     <div class="widget-heading">
                         <button type="button" class="btn btn-danger" onclick="args.cb('BACK');">THOÁT</button>
                         <select id="selPRICE" class="custom-select pull-right">
@@ -213,6 +213,7 @@
             //
             sticky[$q]('#selPRICE')[$evt]('change', function (e) {
             });
+            sticky.style.display = 'block';
             //
             sticky_relocate();
             loading.nextElementSibling[$evt]("scroll", sticky_relocate)//gl-page-content-section
