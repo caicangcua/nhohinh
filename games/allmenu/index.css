@@ -767,6 +767,8 @@ a[aria-expanded=false] .fa-angle-down {
 #sticky.stick {
     position: fixed;
     top: 0;
+    left: 0px;
+    width: 100%;
     z-index: 10000;
     -moz-box-shadow: rgba(0,0,0,0.30) 10px 10px 50px 5px;
     -webkit-box-shadow: rgba(0,0,0,0.30) 10px 10px 50px;
