@@ -1,0 +1,242 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="#">
+    <title>Cơm Phúc Ký</title><!--http://codenpixel.com/demo/foodpicky/food_results.html#-->
+    <!-- Bootstrap core CSS -->
+    <!--<link href="bootstrap.min.css" rel="stylesheet">-->
+    <!--<link href="index.css" rel="stylesheet">-->
+    <!-- Custom styles for this template -->
+    <style type="text/css">
+        .loading{text-transform:uppercase;width:150px;text-align:center;line-height:50px;position:absolute;left:0;right:0;top:45%;margin:auto;z-index:99999999999}.loading span{position:relative;z-index:999;color:#fff}.loading:before{content:'';background:#61bdb6;width:128px;height:36px;display:block;position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;animation:2s loadingBefore infinite ease-in-out}@keyframes loadingBefore{0%{transform:translateX(-14px)}50%{transform:translateX(14px)}100%{transform:translateX(-14px)}}.loading:after{content:'';background:#ff3600;width:14px;height:60px;display:block;position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;opacity:.5;animation:2s loadingAfter infinite ease-in-out}@keyframes loadingAfter{0%{transform:translateX(-50px)}50%{transform:translateX(50px)}100%{transform:translateX(-50px)}}
+        .lds-ellipsis {
+            display: inline-block;
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+            .lds-ellipsis div {
+                position: absolute;
+                top: 27px;
+                width: 11px;
+                height: 11px;
+                border-radius: 50%;
+                background: #fff;
+                animation-timing-function: cubic-bezier(0,1,1,0);
+            }
+
+                .lds-ellipsis div:nth-child(1) {
+                    left: 6px;
+                    animation: lds-ellipsis1 .6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(2) {
+                    left: 6px;
+                    animation: lds-ellipsis2 .6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(3) {
+                    left: 26px;
+                    animation: lds-ellipsis2 .6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(4) {
+                    left: 45px;
+                    animation: lds-ellipsis3 .6s infinite;
+                }
+
+        @keyframes lds-ellipsis1 {
+            0% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes lds-ellipsis3 {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(0);
+            }
+        }
+
+        @keyframes lds-ellipsis2 {
+            0% {
+                transform: translate(0,0);
+            }
+
+            100% {
+                transform: translate(19px,0);
+            }
+        }
+
+        .srcfade {
+          opacity: 1;
+          transition: opacity 1s; 
+        }
+
+        .srcfade.fade {
+          opacity: 0;
+        }
+        .nghiban {
+        right: 50px;
+        background-image: url(../../imgs/nghiban.png);
+        width: 80px;
+        height: 70px;
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: cover;
+        margin-top: -55px;
+        position: absolute;
+    }
+    </style>
+</head>
+
+<body class="home">
+    <div class="loading srcfade">
+        <div style="display:none" class="col-xs-12 col-sm-12 col-md-6 col-lg-4 food-item">
+            <div class="food-item-wrap">
+                <div class="figure-wrap bg-image">
+                    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                    <!--<div class="distance"><i class="fa fa-pin"></i>1240m</div>
+                    <div class="review pull-right"><a href="#">198 reviews</a> </div>-->
+                </div>
+                <div class="content">
+                    <h5><a href="#">Ếch Xào Sả Nghệ</a></h5>
+                    <div class="product-name">Cơm hộp - Cơm trưa văn phòng</div>
+                    <div class="price-btn-block"> <span class="price">25.000đ</span> <div class="nghiban"></div></div>
+                </div>
+            </div>
+        </div>
+        <span>Loading ...</span>
+    </div>
+    <section class="gl-page-content-section">
+        <div class="container-fluid">
+            <div id="map-result-section" class="map-result-wrapper">
+                <div id="sticky-anchor"></div>
+                <div id="sticky" class="widget clearfix">
+                    <div class="widget-heading">
+                        <button type="button" class="btn btn-danger" onclick="args.cb('BACK');">THOÁT</button>
+                        <select id="selPRICE" class="custom-select pull-right">
+                            <option selected="">(Tất cả )</option>
+                            <option value="1">Giá 25 K</option>
+                            <option value="2">Giá 35 K</option>
+                        </select>
+                        <span style="color: black;line-height: 38px;padding-right: 10px;float:right">
+                            Chọn theo giá:
+                        </span>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="search-result-wrapper">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        Node.prototype.hasClass = function (e) { return this.classList ? this.classList.contains(e) : -1 < this.className.indexOf(e) }, Node.prototype.addClass = function (e) { if (this.classList) this.classList.add(e); else if (!this.hasClass(e)) { var t = this.className.split(" "); t.push(e), this.className = t.join(" ") } return this }, Node.prototype.removeClass = function (e) { if (this.classList) this.classList.remove(e); else { var t = this.className.split(" "); t.splice(t.indexOf(e), 1), this.className = t.join(" ") } return this }; var jscss_addin, filesadded = ""; function loadjscssfile(e, t, s) { if ("js" == t) (i = document.createElement("script")).setAttribute("type", "text/javascript"), i.setAttribute("src", e); else if ("css" == t) { var i; (i = document.createElement("link")).setAttribute("rel", "stylesheet"), i.setAttribute("type", "text/css"), i.setAttribute("href", e) } void 0 !== i && (s && (i.onload = s), document.getElementsByTagName("head")[0].appendChild(i)) } function checkloadjscssfile(e, t, s) { -1 == filesadded.indexOf("[" + e + "]") ? (loadjscssfile(e, t, s), filesadded += "[" + e + "]") : s && s() } function removejscssfile(e, t) { for (var s = 0, i = "js" == t ? "script" : "css" == t ? "link" : "none", a = "js" == t ? "src" : "css" == t ? "href" : "none", n = document.getElementsByTagName(i), c = n.length; c >= 0; c--) n[c] && null != n[c].getAttribute(a) && -1 != n[c].getAttribute(a).indexOf(e) && (n[c].parentNode.removeChild(n[c]), s += 1); s > 0 && alert("Removed " + s + " instances of " + e) } function createjscssfile(e, t) { if ("js" == t) { var s = document.createElement("script"); s.setAttribute("type", "text/javascript"), s.setAttribute("src", e) } else "css" == t && ((s = document.createElement("link")).setAttribute("rel", "stylesheet"), s.setAttribute("type", "text/css"), s.setAttribute("href", e)); return s } function replacejscssfile(e, t, s) { for (var i = 0, a = "js" == s ? "script" : "css" == s ? "link" : "none", n = "js" == s ? "src" : "css" == s ? "href" : "none", c = document.getElementsByTagName(a), r = c.length; r >= 0; r--) if (c[r] && null != c[r].getAttribute(n) && -1 != c[r].getAttribute(n).indexOf(e)) { var l = createjscssfile(t, s); c[r].parentNode.replaceChild(l, c[r]), i += 1 } i > 0 && alert("Replaced " + i + " instances of " + e + " with " + t) };
+        var args,$q='querySelector',$evt='addEventListener', sticky = document.getElementById('sticky'), anchor = sticky.previousElementSibling;
+        function trochoi(params) {
+            args = params;
+        }
+        function init() {
+            var loading = document[$q]('.loading'), itemp = loading.firstElementChild,sticky_relocate = function () {
+                var window_top = window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
+                var anchorP = anchor.getBoundingClientRect();
+                if (window_top > anchorP.top) {
+                    sticky.style.width = anchorP.width + 'px';
+                    sticky.classList.add('stick');
+                } else {
+                    sticky.style.width = '';
+                    sticky.classList.remove('stick');
+                }
+                }, lst = sticky.nextElementSibling//search-result-wrapper
+                , lstRow = document.createElement("div");
+            //
+            itemp.removeAttribute("style"); itemp = itemp.cloneNode(true);
+            loading.removeChild(loading.firstElementChild);
+            loading.classList.toggle('fade');
+            lstRow.className = "row";
+            lst.appendChild(lstRow);
+            //
+            for (var i = 0; i < 5; i++) {
+                var atMenu = itemp.cloneNode(true);
+                lstRow.appendChild(atMenu);
+                //
+                (function (atthumb, index) {
+                    var dlimg = new Image(), dummy = '?v=' + (new Date()).getTime(), imgReady = function (url) {
+                        var img$ = atthumb[$q](".bg-image"), els = img$[$q](".lds-ellipsis"), bgsize = 'contain';
+                        if (!url) {
+                            url = dlimg.getAttribute('src');
+                            bgsize = 'cover';
+                        };
+                        img$.style.background = 'url(' + url + ') center center / ' + bgsize + ' no-repeat';
+                        img$.removeChild(els);
+                    };
+                    if (index == 0) dummy = '';
+                    dlimg.onload = function () {
+                        imgReady();
+                    };
+                    dlimg.onerror = function () {
+                        imgReady('https://i.imgur.com/lpB6PQE.png');
+                    };
+                    dlimg.src = 'http://caunoi.dnd.vn/ech-xao-sa-nghe-25k/' + index + '.jpg' + dummy;
+                })(atMenu, i);
+            };
+            //
+            sticky[$q]('#selPRICE')[$evt]('change', function (e) {
+            });
+            //
+            sticky_relocate();
+            loading.nextElementSibling[$evt]("scroll", sticky_relocate)//gl-page-content-section
+            window[$evt]('resize', function (event) {
+                sticky_relocate();
+            });
+        }
+        function comsvr(args, cb) {
+            var xhr = new XMLHttpRequest(), url = "/jdata/sp.json";
+            xhr.open('GET', url);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send();
+            xhr.onload = function () {
+                if (xhr.status != 200) { // analyze HTTP status of the response
+
+
+                } else { // show the result
+                    init();
+                }
+            };
+            xhr.onerror = function () {
+
+            };
+        };
+        setTimeout(function () {
+            checkloadjscssfile('bootstrap.min.css' + '?v=' + (new Date()).getTime(), 'css', function () {
+                checkloadjscssfile('index.css' + '?v=' + (new Date()).getTime(), 'css', function () {
+                    comsvr();
+                });
+            });
+        }, 1);
+    </script>
+
+</body>
+
+</html>
