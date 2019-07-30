@@ -106,6 +106,15 @@
         margin-top: -55px;
         position: absolute;
     }
+        .noselect {
+            cursor: default;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
     </style>
 </head>
 
@@ -127,7 +136,7 @@
         </div>
         <span>Loading ...</span>
     </div>
-    <section class="gl-page-content-section">
+    <section class="gl-page-content-section noselect">
         <div class="container-fluid">
             <div id="map-result-section" class="map-result-wrapper">
                 <div id="sticky-anchor"></div>
