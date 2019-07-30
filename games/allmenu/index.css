@@ -759,6 +759,7 @@ a[aria-expanded=false] .fa-angle-down {
 .gl-page-content-section {
     height: 100%;
     overflow: auto;
+    padding-top: 90px;
     background: -webkit-radial-gradient(rgba(80,0,0,0.1) 0%,rgba(80,0,0,0.2) 30%,rgba(21,11,1,0.5) 100%),url(../../imgs/bg.png);
     background: radial-gradient(rgba(80,0,0,0.1) 0%,rgba(80,0,0,0.2) 30%,rgba(21,11,1,0.5) 100%),url(../../imgs/bg.png);
 }
