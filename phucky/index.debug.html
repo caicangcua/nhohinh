@@ -353,25 +353,42 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
-
-
     <script type="text/javascript">
-        var args, sticky = document.getElementById('sticky'), anchor = sticky.previousElementSibling;
+        Node.prototype.hasClass = function (e) { return this.classList ? this.classList.contains(e) : -1 < this.className.indexOf(e) }, Node.prototype.addClass = function (e) { if (this.classList) this.classList.add(e); else if (!this.hasClass(e)) { var t = this.className.split(" "); t.push(e), this.className = t.join(" ") } return this }, Node.prototype.removeClass = function (e) { if (this.classList) this.classList.remove(e); else { var t = this.className.split(" "); t.splice(t.indexOf(e), 1), this.className = t.join(" ") } return this }; var jscss_addin, filesadded = ""; function loadjscssfile(e, t, s) { if ("js" == t) (i = document.createElement("script")).setAttribute("type", "text/javascript"), i.setAttribute("src", e); else if ("css" == t) { var i; (i = document.createElement("link")).setAttribute("rel", "stylesheet"), i.setAttribute("type", "text/css"), i.setAttribute("href", e) } void 0 !== i && (s && (i.onload = s), document.getElementsByTagName("head")[0].appendChild(i)) } function checkloadjscssfile(e, t, s) { -1 == filesadded.indexOf("[" + e + "]") ? (loadjscssfile(e, t, s), filesadded += "[" + e + "]") : s && s() } function removejscssfile(e, t) { for (var s = 0, i = "js" == t ? "script" : "css" == t ? "link" : "none", a = "js" == t ? "src" : "css" == t ? "href" : "none", n = document.getElementsByTagName(i), c = n.length; c >= 0; c--) n[c] && null != n[c].getAttribute(a) && -1 != n[c].getAttribute(a).indexOf(e) && (n[c].parentNode.removeChild(n[c]), s += 1); s > 0 && alert("Removed " + s + " instances of " + e) } function createjscssfile(e, t) { if ("js" == t) { var s = document.createElement("script"); s.setAttribute("type", "text/javascript"), s.setAttribute("src", e) } else "css" == t && ((s = document.createElement("link")).setAttribute("rel", "stylesheet"), s.setAttribute("type", "text/css"), s.setAttribute("href", e)); return s } function replacejscssfile(e, t, s) { for (var i = 0, a = "js" == s ? "script" : "css" == s ? "link" : "none", n = "js" == s ? "src" : "css" == s ? "href" : "none", c = document.getElementsByTagName(a), r = c.length; r >= 0; r--) if (c[r] && null != c[r].getAttribute(n) && -1 != c[r].getAttribute(n).indexOf(e)) { var l = createjscssfile(t, s); c[r].parentNode.replaceChild(l, c[r]), i += 1 } i > 0 && alert("Replaced " + i + " instances of " + e + " with " + t) };
+        var args, $q = 'querySelector', $evt = 'addEventListener', sticky = document.getElementById('sticky'), anchor = sticky.previousElementSibling, frmD, defered = 2, dongcua;
         function trochoi(params) {
             args = params;
+            dongcua = params['dongcua'];
+            batdau();
         }
-        function init() {
-            var loading = document.querySelector('.loading'), itemp = loading.firstElementChild,sticky_relocate = function () {
-                var window_top = window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
-                var anchorP = anchor.getBoundingClientRect();
-                if (window_top > anchorP.top) {
-                    sticky.style.width = anchorP.width + 'px';
-                    sticky.classList.add('stick');
-                } else {
-                    sticky.style.width = '';
-                    sticky.classList.remove('stick');
-                }
-                }, lst = sticky.nextElementSibling//search-result-wrapper
+        function batdau() {
+            setTimeout(function () {
+                checkloadjscssfile('bootstrap.min.css' + '?v=' + (new Date()).getTime(), 'css', function () {
+                    checkloadjscssfile('index.css' + '?v=' + (new Date()).getTime(), 'css', function () {
+                        defered--;
+                        if (defered == 0) init(frmD.SP);
+                    });
+                });
+            }, 1);
+            comsvr({ 'url': "sp.json", 'type': "application/json" }, function (reps) {
+                frmD = JSON.parse(reps);
+                defered--;
+                if (defered == 0) init(frmD.SP);
+            });
+        }
+        function randomSP(array) {
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        function init(SP) {
+            var loading = document[$q]('.loading'), itemp = loading.firstElementChild,sticky_relocate = function () {
+
+            }
+                , lst = sticky.nextElementSibling//search-result-wrapper
                 , lstRow = document.createElement("div");
             //
             itemp.removeAttribute("style"); itemp = itemp.cloneNode(true);
@@ -380,13 +397,15 @@
             lstRow.className = "row";
             lst.appendChild(lstRow);
             //
-            for (var i = 0; i < 5; i++) {
-                var atMenu = itemp.cloneNode(true);
+            randomSP(SP);
+            //
+            for (var i = 0; i < SP.length; i++) {
+                var atMenu = itemp.cloneNode(true), cont = atMenu[$q]('.content'), dathang = cont[$q]('.price-btn-block'), actOrder = '<div class="nghiban"></div>';
                 lstRow.appendChild(atMenu);
                 //
-                (function (atthumb, index) {
+                (function (atthumb, prod) {
                     var dlimg = new Image(), dummy = '?v=' + (new Date()).getTime(), imgReady = function (url) {
-                        var img$ = atthumb.querySelector(".bg-image"), els = img$.querySelector(".lds-ellipsis"), bgsize = 'contain';
+                        var img$ = atthumb[$q](".bg-image"), els = img$[$q](".lds-ellipsis"), bgsize = 'contain';
                         if (!url) {
                             url = dlimg.getAttribute('src');
                             bgsize = 'cover';
@@ -394,49 +413,55 @@
                         img$.style.background = 'url(' + url + ') center center / ' + bgsize + ' no-repeat';
                         img$.removeChild(els);
                     };
-                    if (index == 0) dummy = '';
                     dlimg.onload = function () {
                         imgReady();
                     };
                     dlimg.onerror = function () {
                         imgReady('https://i.imgur.com/lpB6PQE.png');
                     };
-                    dlimg.src = 'http://caunoi.dnd.vn/ech-xao-sa-nghe-25k/' + index + '.jpg' + dummy;
-                })(atMenu, i);
+                    dlimg.src = prod.hinh + dummy;
+                })(atMenu, SP[i]);
+                cont[$q]('h5 a').innerHTML = SP[i].ten; if (dongcua) actOrder = '<a href="javascript:void(0)" class="btn theme-btn-dash pull-right">Gọi Món</a>';
+                dathang.innerHTML = '<span class="price">' + SP[i].gia + '</span>' + actOrder;
+                if (dongcua) {
+                    dathang[$q]('.btn').onclick = (function (ma) {
+                        return function () {
+                            if (args) {
+                                args.cb('DATHANG', { 'id': location.protocol + '//' + location.host + '/' + ma });
+                            }
+                        };
+                    })(SP[i].ma);
+                };
             };
             //
+            sticky[$q]('#selPRICE')[$evt]('change', function (e) {
+            });
+            sticky.style.display = 'block';
+            //
             sticky_relocate();
-            loading.nextElementSibling.addEventListener("scroll", sticky_relocate)//gl-page-content-section
-            window.addEventListener('resize', function (event) {
+            loading.nextElementSibling[$evt]("scroll", sticky_relocate)//gl-page-content-section
+            window[$evt]('resize', function (event) {
                 sticky_relocate();
             });
         }
-        function comsvr(args, cb) {
-            var xhr = new XMLHttpRequest(), url = "/jdata/sp.json";
-            xhr.open('GET', url);
-            xhr.setRequestHeader("Content-Type", "application/json");
+        function comsvr(ajaxP, cb) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', ajaxP['url']);
+            xhr.setRequestHeader("Content-Type",ajaxP['type']);
             xhr.send();
             xhr.onload = function () {
                 if (xhr.status != 200) { // analyze HTTP status of the response
 
 
                 } else { // show the result
-                    init();
+                    cb(xhr.response);
                 }
             };
             xhr.onerror = function () {
 
             };
         };
-        comsvr();
-
-        (function () {
-            "use strict";
-
-        })();
     </script>
-
-
 </body>
 
 </html>
