@@ -1,0 +1,442 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="#">
+    <title>Cơm Phúc Ký</title><!--http://codenpixel.com/demo/foodpicky/food_results.html#-->
+    <!-- Bootstrap core CSS -->
+
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <style type="text/css">
+        .loading {
+            text-transform: uppercase;
+            width: 150px;
+            text-align: center;
+            line-height: 50px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 45%;
+            margin: auto;
+            z-index: 99999999999;
+        }
+
+            .loading span {
+                position: relative;
+                z-index: 999;
+                color: #fff;
+            }
+
+            .loading:before {
+                content: '';
+                background: #61bdb6;
+                width: 128px;
+                height: 36px;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+                animation: 2s loadingBefore infinite ease-in-out;
+            }
+
+        @keyframes loadingBefore {
+            0% {
+                transform: translateX(-14px);
+            }
+
+            50% {
+                transform: translateX(14px);
+            }
+
+            100% {
+                transform: translateX(-14px);
+            }
+        }
+
+        .loading:after {
+            content: '';
+            background: #ff3600;
+            width: 14px;
+            height: 60px;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            opacity: .5;
+            animation: 2s loadingAfter infinite ease-in-out;
+        }
+
+        @keyframes loadingAfter {
+            0% {
+                transform: translateX(-50px);
+            }
+
+            50% {
+                transform: translateX(50px);
+            }
+
+            100% {
+                transform: translateX(-50px);
+            }
+        }
+
+        .lds-ellipsis {
+            display: inline-block;
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+            .lds-ellipsis div {
+                position: absolute;
+                top: 27px;
+                width: 11px;
+                height: 11px;
+                border-radius: 50%;
+                background: #fff;
+                animation-timing-function: cubic-bezier(0,1,1,0);
+            }
+
+                .lds-ellipsis div:nth-child(1) {
+                    left: 6px;
+                    animation: lds-ellipsis1 .6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(2) {
+                    left: 6px;
+                    animation: lds-ellipsis2 .6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(3) {
+                    left: 26px;
+                    animation: lds-ellipsis2 .6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(4) {
+                    left: 45px;
+                    animation: lds-ellipsis3 .6s infinite;
+                }
+
+        @keyframes lds-ellipsis1 {
+            0% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes lds-ellipsis3 {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(0);
+            }
+        }
+
+        @keyframes lds-ellipsis2 {
+            0% {
+                transform: translate(0,0);
+            }
+
+            100% {
+                transform: translate(19px,0);
+            }
+        }
+
+        .srcfade {
+            opacity: 1;
+            transition: opacity 1s;
+        }
+
+            .srcfade.fade {
+                opacity: 0;
+            }
+    </style>
+</head>
+
+<body class="home">
+    <div class="loading srcfade">
+        <div style="display:none" class="col-xs-12 col-sm-12 col-md-6 col-lg-4 food-item">
+            <div class="food-item-wrap">
+                <div class="figure-wrap bg-image">
+                    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                    <div class="distance"><i class="fa fa-pin"></i>1240m</div>
+                    <div class="review pull-right"><a href="#">198 reviews</a> </div>
+                </div>
+                <div class="content">
+                    <h5><a href="#">The South"s Best Fried Chicken</a></h5>
+                    <div class="product-name">Fried Chicken with cheese</div>
+                    <div class="price-btn-block"> <span class="price">$ 15,99</span> <a href="#" class="btn theme-btn-dash pull-right">Goi Mon</a> </div>
+                </div>
+            </div>
+        </div>
+        <span>Loading ...</span>
+    </div>
+    <section class="gl-page-content-section">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- SEARCH -->
+                <div id="map-result-section" class="map-result-wrapper">
+                    <!-- end:Pricing widget -->
+                    <div id="sticky-anchor"></div>
+                    <div id="sticky" class="widget clearfix">
+                        <div class="widget-heading">
+                            <button type="button" class="btn btn-danger">THOÁT</button>
+                            <select class="custom-select pull-right">
+                                <option selected="">(Tất cả )</option>
+                                <option value="1">Giá 25 K</option>
+                                <option value="2">Giá 35 K</option>
+                            </select>
+                            <span style="color: black;line-height: 38px;padding-right: 10px;float:right">
+                                Chọn theo giá:
+                            </span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <!-- end:Pricing widget -->
+                    <div class="search-result-wrapper">
+                        <!--<div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 food-item">
+                                <div class="food-item-wrap">
+                                    <div class="figure-wrap bg-image" data-image-src="http://caunoi.dnd.vn/ech-xao-sa-nghe-25k/0.jpg">
+                                        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                                        <div class="distance"><i class="fa fa-pin"></i>1240m</div>
+                                        <div class="review pull-right"><a href="#">198 reviews</a> </div>
+                                    </div>
+                                    <div class="content">
+                                        <h5><a href="#">The South"s Best Fried Chicken</a></h5>
+                                        <div class="product-name">Fried Chicken with cheese</div>
+                                        <div class="price-btn-block"> <span class="price">$ 15,99</span> <a href="#" class="btn theme-btn-dash pull-right">Goi Mon</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 food-item">
+                                <div class="food-item-wrap">
+                                    <div class="figure-wrap bg-image" data-image-src="http://codenpixel.com/demo/foodpicky/images/food2.jpg">
+                                        <div class="distance"><i class="fa fa-pin"></i>1240m</div>
+                                        <div class="review pull-right"><a href="#">198 reviews</a> </div>
+                                    </div>
+                                    <div class="content">
+                                        <h5><a href="#">The South"s Best Fried Chicken</a></h5>
+                                        <div class="product-name">Fried Chicken with cheese</div>
+                                        <div class="price-btn-block"> <span class="price">$ 18,49</span> <a href="#" class="btn theme-btn-dash pull-right">Goi Mon</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 food-item">
+                                <div class="food-item-wrap">
+                                    <div class="figure-wrap bg-image" data-image-src="http://codenpixel.com/demo/foodpicky/images/food1.jpg">
+                                        <div class="distance"><i class="fa fa-pin"></i>1240m</div>
+                                        <div class="review pull-right"><a href="#">198 reviews</a> </div>
+                                    </div>
+                                    <div class="content">
+                                        <h5><a href="#">The South"s Best Fried Chicken</a></h5>
+                                        <div class="product-name">Fried Chicken with cheese</div>
+                                        <div class="price-btn-block"> <span class="price">$ 15,99</span> <a href="#" class="btn theme-btn-dash pull-right">Goi Mon</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 food-item">
+                                <div class="food-item-wrap">
+                                    <div class="figure-wrap bg-image" data-image-src="http://codenpixel.com/demo/foodpicky/images/food2.jpg">
+                                        <div class="distance"><i class="fa fa-pin"></i>1240m</div>
+                                        <div class="review pull-right"><a href="#">198 reviews</a> </div>
+                                    </div>
+                                    <div class="content">
+                                        <h5><a href="#">The South"s Best Fried Chicken</a></h5>
+                                        <div class="product-name">Fried Chicken with cheese</div>
+                                        <div class="price-btn-block"> <span class="price">$ 18,49</span> <a href="#" class="btn theme-btn-dash pull-right">Goi Mon</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 food-item">
+                                <div class="food-item-wrap">
+                                    <div class="figure-wrap bg-image" data-image-src="http://codenpixel.com/demo/foodpicky/images/food2.jpg">
+                                        <div class="distance"><i class="fa fa-pin"></i>1240m</div>
+                                        <div class="review pull-right"><a href="#">198 reviews</a> </div>
+                                    </div>
+                                    <div class="content">
+                                        <h5><a href="#">The South"s Best Fried Chicken</a></h5>
+                                        <div class="product-name">Fried Chicken with cheese</div>
+                                        <div class="price-btn-block"> <span class="price">$ 18,49</span> <a href="#" class="btn theme-btn-dash pull-right">Goi Mon</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 food-item">
+                                <div class="food-item-wrap">
+                                    <div class="figure-wrap bg-image" data-image-src="http://codenpixel.com/demo/foodpicky/images/food2.jpg">
+                                        <div class="distance"><i class="fa fa-pin"></i>1240m</div>
+                                        <div class="review pull-right"><a href="#">198 reviews</a> </div>
+                                    </div>
+                                    <div class="content">
+                                        <h5><a href="#">The South"s Best Fried Chicken</a></h5>
+                                        <div class="product-name">Fried Chicken with cheese</div>
+                                        <div class="price-btn-block"> <span class="price">$ 18,49</span> <a href="#" class="btn theme-btn-dash pull-right">Goi Mon</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 food-item">
+                                <div class="food-item-wrap">
+                                    <div class="figure-wrap bg-image" data-image-src="http://codenpixel.com/demo/foodpicky/images/food2.jpg">
+                                        <div class="distance"><i class="fa fa-pin"></i>1240m</div>
+                                        <div class="review pull-right"><a href="#">198 reviews</a> </div>
+                                    </div>
+                                    <div class="content">
+                                        <h5><a href="#">The South"s Best Fried Chicken</a></h5>
+                                        <div class="product-name">Fried Chicken with cheese</div>
+                                        <div class="price-btn-block"> <span class="price">$ 18,49</span> <a href="#" class="btn theme-btn-dash pull-right">Goi Mon</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 food-item">
+                                <div class="food-item-wrap">
+                                    <div class="figure-wrap bg-image" data-image-src="http://codenpixel.com/demo/foodpicky/images/food2.jpg">
+                                        <div class="distance"><i class="fa fa-pin"></i>1240m</div>
+                                        <div class="review pull-right"><a href="#">198 reviews</a> </div>
+                                    </div>
+                                    <div class="content">
+                                        <h5><a href="#">The South"s Best Fried Chicken</a></h5>
+                                        <div class="product-name">Fried Chicken with cheese</div>
+                                        <div class="price-btn-block"> <span class="price">$ 18,49</span> <a href="#" class="btn theme-btn-dash pull-right">Goi Mon</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12" style="text-align:center">
+                                <nav aria-label="...">
+                                    <ul class="pagination">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a>
+                                        </li>
+                                        <li class="page-item active"> <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a> </li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+                <!-- SEARCH END-->
+            </div>
+        </div>
+    </section>
+
+    <!-- end:page wrapper -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+
+
+    <script type="text/javascript">
+        var args, sticky = document.getElementById('sticky'), anchor = sticky.previousElementSibling;
+        function trochoi(params) {
+            args = params;
+        }
+        function init() {
+            var loading = document.querySelector('.loading'), itemp = loading.firstElementChild,sticky_relocate = function () {
+                var window_top = window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
+                var anchorP = anchor.getBoundingClientRect();
+                if (window_top > anchorP.top) {
+                    sticky.style.width = anchorP.width + 'px';
+                    sticky.classList.add('stick');
+                } else {
+                    sticky.style.width = '';
+                    sticky.classList.remove('stick');
+                }
+                }, lst = sticky.nextElementSibling//search-result-wrapper
+                , lstRow = document.createElement("div");
+            //
+            itemp.removeAttribute("style"); itemp = itemp.cloneNode(true);
+            loading.removeChild(loading.firstElementChild);
+            loading.classList.toggle('fade');
+            lstRow.className = "row";
+            lst.appendChild(lstRow);
+            //
+            for (var i = 0; i < 5; i++) {
+                var atMenu = itemp.cloneNode(true);
+                lstRow.appendChild(atMenu);
+                //
+                (function (atthumb, index) {
+                    var dlimg = new Image(), dummy = '?v=' + (new Date()).getTime(), imgReady = function (url) {
+                        var img$ = atthumb.querySelector(".bg-image"), els = img$.querySelector(".lds-ellipsis"), bgsize = 'contain';
+                        if (!url) {
+                            url = dlimg.getAttribute('src');
+                            bgsize = 'cover';
+                        };
+                        img$.style.background = 'url(' + url + ') center center / ' + bgsize + ' no-repeat';
+                        img$.removeChild(els);
+                    };
+                    if (index == 0) dummy = '';
+                    dlimg.onload = function () {
+                        imgReady();
+                    };
+                    dlimg.onerror = function () {
+                        imgReady('https://i.imgur.com/lpB6PQE.png');
+                    };
+                    dlimg.src = 'http://caunoi.dnd.vn/ech-xao-sa-nghe-25k/' + index + '.jpg' + dummy;
+                })(atMenu, i);
+            };
+            //
+            sticky_relocate();
+            loading.nextElementSibling.addEventListener("scroll", sticky_relocate)//gl-page-content-section
+            window.addEventListener('resize', function (event) {
+                sticky_relocate();
+            });
+        }
+        function comsvr(args, cb) {
+            var xhr = new XMLHttpRequest(), url = "/jdata/sp.json";
+            xhr.open('GET', url);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send();
+            xhr.onload = function () {
+                if (xhr.status != 200) { // analyze HTTP status of the response
+
+
+                } else { // show the result
+                    init();
+                }
+            };
+            xhr.onerror = function () {
+
+            };
+        };
+        comsvr();
+
+        (function () {
+            "use strict";
+
+        })();
+    </script>
+
+
+</body>
+
+</html>
