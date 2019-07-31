@@ -370,7 +370,7 @@
                     });
                 });
             }, 1);
-            comsvr({ 'url': "sp.json", 'type': "application/json" }, function (reps) {
+            comsvr({ 'url': "sp.json" + '?v=' + (new Date()).getTime(), 'type': "application/json" }, function (reps) {
                 frmD = JSON.parse(reps);
                 defered--;
                 if (defered == 0) init(frmD.SP);
@@ -385,7 +385,7 @@
             }
         }
         function init(SP) {
-            var loading = document[$q]('.loading'), itemp = loading.firstElementChild,sticky_relocate = function () {
+            var loading = document[$q]('.loading'), itemp = loading.firstElementChild, sticky_relocate = function () {
 
             }
                 , lst = sticky.nextElementSibling//search-result-wrapper
@@ -421,9 +421,9 @@
                     };
                     dlimg.src = prod.hinh + dummy;
                 })(atMenu, SP[i]);
-                cont[$q]('h5 a').innerHTML = SP[i].ten; if (dongcua) actOrder = '<a href="javascript:void(0)" class="btn theme-btn-dash pull-right">Gọi Món</a>';
+                cont[$q]('h5 a').innerHTML = SP[i].ten; if (dongcua=='1') actOrder = '<a href="javascript:void(0)" class="btn theme-btn-dash pull-right">Gọi Món</a>';
                 dathang.innerHTML = '<span class="price">' + SP[i].gia + '</span>' + actOrder;
-                if (dongcua) {
+                if (dongcua == '1') {
                     dathang[$q]('.btn').onclick = (function (ma) {
                         return function () {
                             if (args) {
@@ -447,7 +447,7 @@
         function comsvr(ajaxP, cb) {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', ajaxP['url']);
-            xhr.setRequestHeader("Content-Type",ajaxP['type']);
+            xhr.setRequestHeader("Content-Type", ajaxP['type']);
             xhr.send();
             xhr.onload = function () {
                 if (xhr.status != 200) { // analyze HTTP status of the response

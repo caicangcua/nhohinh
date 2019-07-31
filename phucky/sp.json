@@ -29,6 +29,12 @@
       "ten": "Thịt kho tiêu 25K",
       "hinh": "https://i.imgur.com/O1vYfoW.jpg",
       "gia": "25.000đ"
+    },
+    {
+      "ma": "thit-kho-dau-hu-25k",
+      "ten": "Thịt Kho Đậu Hủ",
+      "hinh": "https://i.imgur.com/7VAKAeV.jpg",
+      "gia": "25.000đ"
     }
   ]
 }
