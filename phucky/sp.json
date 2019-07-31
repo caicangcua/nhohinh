@@ -1,0 +1,34 @@
+﻿{
+  "lcDB": {
+    "storename": "phucky",
+    "gio": {
+      "1": [ "09:00", "17:00" ],
+      "2": [ "08:00", "17:00" ],
+      "3": [ "07:00", "17:00" ],
+      "4": [ "09:00", "17:00" ],
+      "5": [ "09:00", "17:00" ],
+      "6": [ "09:00", "17:00" ],
+      "0": [ "00:00", "00:00" ]
+    }
+  },
+  "SP": [
+    {
+      "ma": "ca-ro-kho-tieu-25k",
+      "ten": "Cá rô kho tiêu",
+      "hinh": "https://i.imgur.com/bFfW6l7.jpg",
+      "gia": "25.000đ"
+    },
+    {
+      "ma": "ech-xao-sa-nghe-25k",
+      "ten": "Ếch xào nghệ",
+      "hinh": "https://i.imgur.com/yjGaBJk.jpg",
+      "gia": "25.000đ"
+    },
+    {
+      "ma": "thit-kho-tieu-25k",
+      "ten": "Thịt kho tiêu 25K",
+      "hinh": "https://i.imgur.com/O1vYfoW.jpg",
+      "gia": "25.000đ"
+    }
+  ]
+}
