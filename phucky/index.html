@@ -128,9 +128,9 @@
                     <div class="review pull-right"><a href="#">198 reviews</a> </div>-->
                 </div>
                 <div class="content">
-                    <h5><a href="#">Ếch Xào Sả Nghệ</a></h5>
+                    <h5><a href="javascript:void(0)"></a></h5>
                     <div class="product-name">Cơm hộp - Cơm trưa văn phòng</div>
-                    <div class="price-btn-block"> <span class="price">25.000đ</span> <div class="nghiban"></div></div>
+                    <div class="price-btn-block"></div>
                 </div>
             </div>
         </div>
@@ -166,9 +166,9 @@
         function trochoi(params) {
             args = params;
         }
-        function init() {
+        function init(SP) {
             var loading = document[$q]('.loading'), itemp = loading.firstElementChild,sticky_relocate = function () {
-                //sticky.style.width = anchor.getBoundingClientRect().width + 'px';
+
             }
                 , lst = sticky.nextElementSibling//search-result-wrapper
                 , lstRow = document.createElement("div");
@@ -179,11 +179,11 @@
             lstRow.className = "row";
             lst.appendChild(lstRow);
             //
-            for (var i = 0; i < 5; i++) {
-                var atMenu = itemp.cloneNode(true);
+            for (var i = 0; i < SP.length; i++) {
+                var atMenu = itemp.cloneNode(true), cont = atMenu[$q]('.content'), dathang = cont[$q]('.price-btn-block'), actOrder = '<div class="nghiban"></div>';
                 lstRow.appendChild(atMenu);
                 //
-                (function (atthumb, index) {
+                (function (atthumb, prod) {
                     var dlimg = new Image(), dummy = '?v=' + (new Date()).getTime(), imgReady = function (url) {
                         var img$ = atthumb[$q](".bg-image"), els = img$[$q](".lds-ellipsis"), bgsize = 'contain';
                         if (!url) {
@@ -193,15 +193,16 @@
                         img$.style.background = 'url(' + url + ') center center / ' + bgsize + ' no-repeat';
                         img$.removeChild(els);
                     };
-                    if (index == 0) dummy = '';
                     dlimg.onload = function () {
                         imgReady();
                     };
                     dlimg.onerror = function () {
                         imgReady('https://i.imgur.com/lpB6PQE.png');
                     };
-                    dlimg.src = 'http://caunoi.dnd.vn/ech-xao-sa-nghe-25k/' + index + '.jpg' + dummy;
-                })(atMenu, i);
+                    dlimg.src = prod.hinh + dummy;
+                })(atMenu, SP[i]);
+                cont[$q]('h5 a').innerHTML = SP[i].ten; //actOrder = '<a href="javascript:void(0)" class="btn theme-btn-dash pull-right">Gọi Món</a>';
+                dathang.innerHTML = '<span class="price">' + SP[i].gia + '</span>' + actOrder ;
             };
             //
             sticky[$q]('#selPRICE')[$evt]('change', function (e) {
@@ -224,7 +225,8 @@
 
 
                 } else { // show the result
-                    init();
+                    var resp = JSON.parse(xhr.response);
+                    init(resp.SP);
                 }
             };
             xhr.onerror = function () {
