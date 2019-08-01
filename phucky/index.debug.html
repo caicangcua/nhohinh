@@ -355,7 +355,7 @@
 
     <script type="text/javascript">
         Node.prototype.hasClass = function (e) { return this.classList ? this.classList.contains(e) : -1 < this.className.indexOf(e) }, Node.prototype.addClass = function (e) { if (this.classList) this.classList.add(e); else if (!this.hasClass(e)) { var t = this.className.split(" "); t.push(e), this.className = t.join(" ") } return this }, Node.prototype.removeClass = function (e) { if (this.classList) this.classList.remove(e); else { var t = this.className.split(" "); t.splice(t.indexOf(e), 1), this.className = t.join(" ") } return this }; var jscss_addin, filesadded = ""; function loadjscssfile(e, t, s) { if ("js" == t) (i = document.createElement("script")).setAttribute("type", "text/javascript"), i.setAttribute("src", e); else if ("css" == t) { var i; (i = document.createElement("link")).setAttribute("rel", "stylesheet"), i.setAttribute("type", "text/css"), i.setAttribute("href", e) } void 0 !== i && (s && (i.onload = s), document.getElementsByTagName("head")[0].appendChild(i)) } function checkloadjscssfile(e, t, s) { -1 == filesadded.indexOf("[" + e + "]") ? (loadjscssfile(e, t, s), filesadded += "[" + e + "]") : s && s() } function removejscssfile(e, t) { for (var s = 0, i = "js" == t ? "script" : "css" == t ? "link" : "none", a = "js" == t ? "src" : "css" == t ? "href" : "none", n = document.getElementsByTagName(i), c = n.length; c >= 0; c--) n[c] && null != n[c].getAttribute(a) && -1 != n[c].getAttribute(a).indexOf(e) && (n[c].parentNode.removeChild(n[c]), s += 1); s > 0 && alert("Removed " + s + " instances of " + e) } function createjscssfile(e, t) { if ("js" == t) { var s = document.createElement("script"); s.setAttribute("type", "text/javascript"), s.setAttribute("src", e) } else "css" == t && ((s = document.createElement("link")).setAttribute("rel", "stylesheet"), s.setAttribute("type", "text/css"), s.setAttribute("href", e)); return s } function replacejscssfile(e, t, s) { for (var i = 0, a = "js" == s ? "script" : "css" == s ? "link" : "none", n = "js" == s ? "src" : "css" == s ? "href" : "none", c = document.getElementsByTagName(a), r = c.length; r >= 0; r--) if (c[r] && null != c[r].getAttribute(n) && -1 != c[r].getAttribute(n).indexOf(e)) { var l = createjscssfile(t, s); c[r].parentNode.replaceChild(l, c[r]), i += 1 } i > 0 && alert("Replaced " + i + " instances of " + e + " with " + t) };
-        var args, $q = 'querySelector', $evt = 'addEventListener', sticky = document.getElementById('sticky'), anchor = sticky.previousElementSibling, frmD, defered = 2, dongcua;
+        var args, $q = 'querySelector', $evt = 'addEventListener', sticky = document.getElementById('sticky'), anchor = sticky.previousElementSibling, frmD, defered = 2, dongcua, baseURI = location.protocol + '//' + location.host;
         function trochoi(params) {
             args = params;
             dongcua = params['dongcua'];
@@ -419,15 +419,15 @@
                     dlimg.onerror = function () {
                         imgReady('https://i.imgur.com/lpB6PQE.png');
                     };
-                    dlimg.src = prod.hinh + dummy;
+                    dlimg.src = baseURI + '/' + SP[i].ma + '/0.jpg' + dummy;
                 })(atMenu, SP[i]);
-                cont[$q]('h5 a').innerHTML = SP[i].ten; if (dongcua=='1') actOrder = '<a href="javascript:void(0)" class="btn theme-btn-dash pull-right">Gọi Món</a>';
+                cont[$q]('h5 a').innerHTML = SP[i].ten; if (dongcua == '1') actOrder = '<a href="javascript:void(0)" class="btn theme-btn-dash pull-right">Gọi Món</a>';
                 dathang.innerHTML = '<span class="price">' + SP[i].gia + '</span>' + actOrder;
                 if (dongcua == '1') {
                     dathang[$q]('.btn').onclick = (function (ma) {
                         return function () {
                             if (args) {
-                                args.cb('DATHANG', { 'id': location.protocol + '//' + location.host + '/' + ma });
+                                args.cb('DATHANG', { 'id': baseURI + '/' + ma });
                             }
                         };
                     })(SP[i].ma);
