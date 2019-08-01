@@ -387,18 +387,12 @@
     <script type="text/javascript">
         Node.prototype.hasClass = function (e) { return this.classList ? this.classList.contains(e) : -1 < this.className.indexOf(e) }, Node.prototype.addClass = function (e) { if (this.classList) this.classList.add(e); else if (!this.hasClass(e)) { var t = this.className.split(" "); t.push(e), this.className = t.join(" ") } return this }, Node.prototype.removeClass = function (e) { if (this.classList) this.classList.remove(e); else { var t = this.className.split(" "); t.splice(t.indexOf(e), 1), this.className = t.join(" ") } return this }; var jscss_addin, filesadded = ""; function loadjscssfile(e, t, s) { if ("js" == t) (i = document.createElement("script")).setAttribute("type", "text/javascript"), i.setAttribute("src", e); else if ("css" == t) { var i; (i = document.createElement("link")).setAttribute("rel", "stylesheet"), i.setAttribute("type", "text/css"), i.setAttribute("href", e) } void 0 !== i && (s && (i.onload = s), document.getElementsByTagName("head")[0].appendChild(i)) } function checkloadjscssfile(e, t, s) { -1 == filesadded.indexOf("[" + e + "]") ? (loadjscssfile(e, t, s), filesadded += "[" + e + "]") : s && s() } function removejscssfile(e, t) { for (var s = 0, i = "js" == t ? "script" : "css" == t ? "link" : "none", a = "js" == t ? "src" : "css" == t ? "href" : "none", n = document.getElementsByTagName(i), c = n.length; c >= 0; c--) n[c] && null != n[c].getAttribute(a) && -1 != n[c].getAttribute(a).indexOf(e) && (n[c].parentNode.removeChild(n[c]), s += 1); s > 0 && alert("Removed " + s + " instances of " + e) } function createjscssfile(e, t) { if ("js" == t) { var s = document.createElement("script"); s.setAttribute("type", "text/javascript"), s.setAttribute("src", e) } else "css" == t && ((s = document.createElement("link")).setAttribute("rel", "stylesheet"), s.setAttribute("type", "text/css"), s.setAttribute("href", e)); return s } function replacejscssfile(e, t, s) { for (var i = 0, a = "js" == s ? "script" : "css" == s ? "link" : "none", n = "js" == s ? "src" : "css" == s ? "href" : "none", c = document.getElementsByTagName(a), r = c.length; r >= 0; r--) if (c[r] && null != c[r].getAttribute(n) && -1 != c[r].getAttribute(n).indexOf(e)) { var l = createjscssfile(t, s); c[r].parentNode.replaceChild(l, c[r]), i += 1 } i > 0 && alert("Replaced " + i + " instances of " + e + " with " + t) };
         var args, $q = 'querySelector', $evt = 'addEventListener', sticky = document.getElementById('sticky'), anchor = sticky.previousElementSibling, frmD, itemp, defered = 2, dongcua, baseURI = location.protocol + '//' + location.host;
-        function urlP(name) {
-            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            var results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        };
         function trochoi(params) {
             args = params;
             dongcua = params['dongcua'];
-            batdau();
+            batdau(0);
         }
-        function batdau() {
+        function batdau(causeBy) {
             setTimeout(function () {
                 checkloadjscssfile('bootstrap.min.css' + '?v=' + (new Date()).getTime(), 'css', function () {
                     checkloadjscssfile('index.css' + '?v=' + (new Date()).getTime(), 'css', function () {
@@ -410,9 +404,11 @@
             comsvr({ 'url': "sp.json" + '?v=' + (new Date()).getTime(), 'type': "application/json" }, function (reps) {
                 frmD = JSON.parse(reps);
                 defered--;
+                if (causeBy == 1) tinhDongCua();
                 if (defered == 0) init(frmD.SP);
             });
         }
+
         function randomSP(array) {
             for (var i = array.length - 1; i > 0; i--) {
                 var j = Math.floor(Math.random() * (i + 1));
@@ -437,7 +433,7 @@
             var loading = document[$q]('.loading'), sticky_relocate = function () {
 
             }
-                , lst = sticky.nextElementSibling//search-result-wrapper
+                , lst = document[$q]('.search-result-wrapper')//search-result-wrapper
                 , lstRow = document.createElement("div");
             //
             itemp = loading.firstElementChild;
@@ -500,6 +496,8 @@
                         return function () {
                             if (args) {
                                 args.cb('DATHANG', { 'id': baseURI + '/' + ma });
+                            } else {
+                                redirect({ 'id': baseURI + '/' + ma });
                             }
                         };
                     })(SP[i].ma);
@@ -523,10 +521,48 @@
 
             };
         };
+        function urlP(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
+        function tinhDongCua() {
+            if (frmD && frmD.hasOwnProperty('lcDB') && frmD['lcDB'].hasOwnProperty('gio')) {
+                var atD = new Date();
+                var fh = new Date(); fh.setHours(0); fh.setMinutes(0); fh.setSeconds(0);
+                var th = new Date(); th.setHours(0); th.setMinutes(0); th.setSeconds(0);
+                var t = frmD['lcDB']['gio'][atD.getDay()], tu = t[0].split(':'), den = t[1].split(':');
+                fh = fh.setMinutes(60 * parseInt(tu[0]) + parseInt(tu[1])); fh = new Date(fh);
+                th = th.setMinutes(60 * parseInt(den[0]) + parseInt(den[1])); th = new Date(th);
+                if (fh <= atD && atD <= th) {
+                    dongcua = "1";
+                } else {
+                    dongcua = "0";
+                };
+            }
+        }
+        function redirect(exData) {
+            var form = document.createElement('form');
+            form.method = 'post';
+            form.action = 'http://phucky.dnd.vn';// 'http://192.168.1.91:10996/phucky';
+            //
+            var input = document.createElement('input'), postData = exData || {};
+            input.type = "hidden";
+            input.name = "pricekm";
+            //
+            postData['ncc'] = frmD['lcDB']['storename'];
+            //if (!postData.hasOwnProperty('id')) postData['id'] = encodeURIComponent(window.location.href);
+            input.value = JSON.stringify(postData);
+            //
+            form.appendChild(input);
+            document.body.appendChild(form);
+            form.submit();
+        };
         (function () {
             if (urlP('v') == '') {
                 document[$q]('.btn.btn-danger').style.visibility = 'hidden';
-                batdau();
+                batdau(1);
             };
         })();
     </script>
