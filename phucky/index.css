@@ -745,6 +745,7 @@ a[aria-expanded=false] .fa-angle-down {
 
 #map-result-section {
     width: 100%;
+    min-height:50vh;
 }
 
 .home {
