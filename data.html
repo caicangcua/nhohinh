@@ -51,8 +51,9 @@
             var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent", eventer = window[eventMethod],
                 messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message",
                 puri = urlP('puri');
+            console.log(puri);
             eventer(messageEvent, function (e) {
-                console.log(puri);
+
                 console.log(e.origin);
                 if (e.origin !== puri) return;
                 dotrack();
