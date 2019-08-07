@@ -52,6 +52,8 @@
                 messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message",
                 puri = urlP('puri');
             eventer(messageEvent, function (e) {
+                console.log(puri);
+                console.log(e.origin);
                 if (e.origin !== puri) return;
                 dotrack();
             }, false);
