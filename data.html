@@ -7,7 +7,7 @@
 <body>
     <script>
         function comsvr(args, cb) {
-            var xhr = new XMLHttpRequest(), url = "/jdata/sp.json";
+            var xhr = new XMLHttpRequest(), url = "/jdata/sp.json?v=" + (new Date()).getTime();
             xhr.open('GET', url);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send();
