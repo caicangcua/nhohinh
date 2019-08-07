@@ -1,1 +1,46 @@
-{"ca-keo-kho-dua-cai-35k":"Tôi Là Hiệu","ech-xao-sa-nghe-25k":"Tôi Là Thái","new items":"Tôi Là Tý"}
+{
+  "lcDB": {
+    "storename": "phucky",
+    "gio": {
+      "1": [ "09:00", "17:00" ],
+      "2": [ "08:00", "17:00" ],
+      "3": [ "07:00", "17:00" ],
+      "4": [ "09:00", "17:00" ],
+      "5": [ "09:00", "17:00" ],
+      "6": [ "09:00", "17:00" ],
+      "0": [ "00:00", "00:00" ]
+    }
+  },
+  "SP": [
+    {
+      "ma": "ca-ro-kho-tieu-25k",
+      "ten": "Cá rô kho tiêu",
+      "gia": "25.000đ"
+    },
+    {
+      "ma": "ech-xao-sa-nghe-25k",
+      "ten": "Ếch xào nghệ",
+      "gia": "25.000đ"
+    },
+    {
+      "ma": "thit-kho-tieu-25k",
+      "ten": "Thịt kho tiêu 25K",
+      "gia": "25.000đ"
+    },
+    {
+      "ma": "thit-kho-dau-hu-25k",
+      "ten": "Thịt Kho Đậu Hủ",
+      "gia": "25.000đ"
+    },
+    {
+      "ma": "mam-kho-ca-tra-25k",
+      "ten": "Mắm kho cá tra 25K",
+      "gia": "25.000đ"
+    },
+    {
+      "ma": "ca-keo-kho-dua-cai-35k",
+      "ten": "Cá kèo kho dưa cải chua",
+      "gia": "35.000đ"
+    }
+  ]
+}
