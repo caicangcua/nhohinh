@@ -43,6 +43,7 @@
             clearTimeout(trackhwnd);
             comsvr({}, function (data) {
                 atD = new Date();
+                window.parent.postMessage(data, puri);
                 trackhwnd = setTimeout(function () { dotrack(); console.log('iframe json data' + atD); }, 30000);
             });
         };
