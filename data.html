@@ -2,15 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>postMessage Demo: Receiver</title>
+    <title></title>
 </head>
 <body>
-    <h1>Receiver Window</h1>
-    <p>
-        This document is on the domain: http://demos.matt-west.com
-    </p>
-    <div id="message"></div>
-
     <script>
         function comsvr(args, cb) {
             var xhr = new XMLHttpRequest(), url = "/jdata/sp.json";
@@ -51,7 +45,7 @@
         window.onload = function () {
             var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent", eventer = window[eventMethod],
                 messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
-                
+
             console.log(puri);
             eventer(messageEvent, function (e) {
 
@@ -61,6 +55,5 @@
             }, false);
         }
     </script>
-
 </body>
 </html>
