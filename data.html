@@ -39,7 +39,7 @@
             var results = regex.exec(location.search);
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         };
-        var trackhwnd, dotrack = function () {
+        var trackhwnd, puri = urlP('puri'), dotrack = function () {
             clearTimeout(trackhwnd);
             comsvr({}, function (data) {
                 atD = new Date();
@@ -50,8 +50,8 @@
 
         window.onload = function () {
             var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent", eventer = window[eventMethod],
-                messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message",
-                puri = urlP('puri');
+                messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+                
             console.log(puri);
             eventer(messageEvent, function (e) {
 
