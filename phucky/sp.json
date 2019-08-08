@@ -41,6 +41,26 @@
       "ma": "ca-keo-kho-dua-cai-35k",
       "ten": "Cá kèo kho dưa cải chua",
       "gia": "35.000đ"
+    },
+    {
+      "ma": "ca-dieu-hong-chien-35k",
+      "ten": "Cá diêu hồng chiên",
+      "gia": "35.000đ"
+    },
+    {
+      "ma": "ca-xac-kho-lat-35k",
+      "ten": "Cá xác kho lạt",
+      "gia": "35.000đ"
+    },
+    {
+      "ma": "canh-chua-dau-ca-35k",
+      "ten": "Canh chua đầu cá lóc/Cá hú",
+      "gia": "35.000đ"
+    },
+    {
+      "ma": "ca-tra-kho-mam-35k",
+      "ten": "Cá tra kho mắm",
+      "gia": "35.000đ"
     }
   ]
 }
