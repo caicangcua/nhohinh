@@ -3,11 +3,26 @@
 <head>
     <meta charset="utf-8">
     <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+    <!--<script src="http://localhost:3000/socket.io/socket.io.js"></script>-->
+    <script src="https://jshared.herokuapp.com/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io("https://jshared.herokuapp.com");//http://localhost:3000
+
+            //client nhận dữ liệu từ server
+			socket.on("Server-sent-data", function(data)
+			{
+			    var c = data;
+				//$("#chat-content").append(data);
+			});
+
+
+    </script>
 </head>
 <body>
     <script>
         function comsvr(args, cb) {
-            var xhr = new XMLHttpRequest(), url = "/jdata/tranlog.json?v=" + (new Date()).getTime();
+            var xhr = new XMLHttpRequest(), url = 'https://jshared.herokuapp.com/products'; "/jdata/tranlog.json?v=" + (new Date()).getTime();
             xhr.open('GET', url);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send();
@@ -37,7 +52,8 @@
             clearTimeout(trackhwnd);
             comsvr({}, function (data) {
                 atD = new Date();
-                window.parent.postMessage(data, puri);
+                //window.parent.postMessage(data, puri);
+                socket.emit("Client-sent-data", "Hello world");
                 trackhwnd = setTimeout(function () { dotrack();}, 30000);
             });
         };
@@ -54,6 +70,7 @@
                 dotrack();
             }, false);
         }
+        dotrack();
     </script>
 </body>
 </html>
